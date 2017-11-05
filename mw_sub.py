@@ -1,0 +1,17 @@
+from MW.MMAP import *
+from MW.Gandan import *
+from MW.GandanMsg import *
+from MW.GandanPub import *
+from MW.GandanSub import *
+
+import json
+def callback(_h):
+	#print(_h.cmd_, str(_h.dat_).strip())
+	s = str(_h.dat_).strip().replace('\'', '\"')
+	j = json.loads(s)
+	print(json.dumps(j, indent=4))
+
+if __name__ == "__main__":
+	_h = GandanSub("127.0.0.1", 8888, sys.argv[1], 1)
+	while True:
+		_h.sub(callback)
