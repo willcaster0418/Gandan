@@ -3,12 +3,15 @@ from ast import literal_eval
 from datetime import datetime
 import socket
 import threading, logging
+import traceback
 
 from MW.MMAP import *
 from MW.Gandan import *
 from MW.GandanMsg import *
 from MW.GandanPub import *
 from MW.GandanSub import *
+
+from P import *
 
 class Gandan:
 	def __init__(self, ip_port, path, size, item_size):
@@ -42,7 +45,10 @@ class Gandan:
 				(_cmd, _msg) = (_h.cmd_, _h.dat_)
 				_p = self.pubsub(_p, _req, _cmd, _msg)
 			except Exception as e:
+				_type, _value, _traceback = sys.exc_info()
 				self.log("handler %s" % str(e))
+				self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				_req.close()
 				break
 		self.log("handler for %s is done" % str(_req))
 
@@ -57,7 +63,9 @@ class Gandan:
 			if Gandan.version(None) < 300:
 				_pub.writep(bytes(_msg))
 			else:
-				_pub.writep(bytes(_msg,'utf-8'))
+				P("WRITE:"+str(_pub.w())+":"+str(_pub.r()), _pub.writep, bytes(_msg,'utf-8'))
+				k = max(PD.keys())
+				self.log(str(PD[k]))
 		elif _cmd == "PUB":
 			self.pub_topic_[_topic] = []
 			self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
