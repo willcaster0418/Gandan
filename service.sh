@@ -13,8 +13,8 @@ if [ $USER = "gandan" ] && [ $1 = "start" ];then
 
 elif [ $USER == "gandan" ] && [ $1 == "stop" ] ; then
 
-    ps aux|grep -v grep|egrep mw_main.py|awk '{print $2}'|xargs -Iz kill z
-    ps aux|grep -v grep|egrep mw_pub.py |awk '{print $2}'|xargs -Iz kill z
+    ps aux|grep -v grep|egrep gandan.*mw_main.py|awk '{print $2}'|xargs -Iz kill z
+    ps aux|grep -v grep|egrep gandan.*mw_pub.py |awk '{print $2}'|xargs -Iz kill z
 
 else
 

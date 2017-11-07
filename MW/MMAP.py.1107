@@ -86,7 +86,6 @@ class RoboMMAP(threading.Thread, MMAP):
 		self.topic	= topic
 		self.time	= 0.001
 		self.callback = callback
-		#self.cond_ = threading.Condition()
 
 	def run (self)   : self.handle()
 
@@ -94,7 +93,6 @@ class RoboMMAP(threading.Thread, MMAP):
 		#put handler in while loop
 		while True:
 			try:
-				#self.cond_.wait()
 				time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
 					self.callback(self.topic, self.readp())
