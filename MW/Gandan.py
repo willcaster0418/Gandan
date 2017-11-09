@@ -26,6 +26,7 @@ class Gandan:
 		self.wlist_ = []
 		self.lock_ = threading.Lock()
 		self.dict_lock_ = {}
+
 	def setup_log(self, path):
 		l_format = '%(asctime)s^%(levelname)s^%(message)s'
 		d_format = '%Y-%m-%d^%H:%M:%S'
@@ -41,25 +42,21 @@ class Gandan:
 				(_i, _o, _e) = select(self.rlist_, [], [], 1)
 				for __i in _i:
 					_h = GandanMsg.recv(None, __i)
-
-					if Gandan.version(None) < 300:
-						self.log(_h.__str__())
-					else:
-						self.log(str(_h))
-
 					if _h == None: 
-						__i.close()
-						self.lock_.acquire()
-						self.rlist_.remove(__i)
-						self.lock_.release()
+						#raise Exception('None')
 						continue
 
 					(_cmd, _msg) = (_h.cmd_, _h.dat_)
 					_p = self.pubsub(_p, __i, _cmd, _msg)
 
 			except Exception as e:
+				__i.close()
+				self.lock_.wait()
+				self.lock_.acquire()
+				self.rlist_.remove(__i)
+				self.lock_.release()
+
 				_type, _value, _traceback = sys.exc_info()
-				self.log("handler %s" % str(e))
 				self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				continue
 
@@ -93,9 +90,9 @@ class Gandan:
 			self.sub_topic_[_topic].append(_req)
 			self.log("_cmd : %s" % _cmd + "_topic : %s is created for SUB" % _topic)
 		elif _cmd == "SUB":
-			self.dict_lock_[_topic].acquire()
+			#self.dict_lock_[_topic].acquire()
 			self.sub_topic_[_topic].append(_req)
-			self.dict_lock_[_topic].release()
+			#self.dict_lock_[_topic].release()
 			self.log("_cmd : %s" % _cmd + "_topic : %s is appended for SUB" % _topic)
 		else:
 			self.log("%s, " % _cmd + "%s" % _topic)
@@ -114,11 +111,12 @@ class Gandan:
 			while True:
 				try:
 					_r, _a = s.accept()
-					self.lock_.acquire()
+					#self.lock_.acquire()
 					self.rlist_.append(_r)
-					self.lock_.release()
+					#self.lock_.release()
 				except Exception as e:
-					self.log("%s"%str(e)+":%s"%str(e))
+					_type, _value, _traceback = sys.exc_info()
+					self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 					break
 
 	def mon(self, _topic, _data):
@@ -132,11 +130,8 @@ class Gandan:
 					else:
 						GandanMsg.send(None, __i, "DATA_"+_topic, str(d,'utf-8'))
 			except Exception as e:
-				self.log("%s"%str(e)+":%s"%str(e))
-				__i.close()
-				self.dict_lock_[_topic].acquire()
-				self.sub_topic_[_topic].remove(__i)
-				self.dict_lock_[_topic].release()
+				_type, _value, _traceback = sys.exc_info()
+				self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				continue
 
 	@staticmethod
@@ -151,5 +146,5 @@ if __name__ == "__main__":
 		h.start()
 
 	except Exception as e:
-		print("Error in Gandan", e)
-
+		_type, _value, _traceback = sys.exc_info()
+		self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))

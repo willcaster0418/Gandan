@@ -99,5 +99,6 @@ class RoboMMAP(threading.Thread, MMAP):
 				if self.r() < self.w() and self.callback != None:
 					self.callback(self.topic, self.readp())
 			except Exception as e:
-				print(e)
+				_type, _value, _traceback = sys.exc_info()
+				self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				break
