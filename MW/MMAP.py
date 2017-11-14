@@ -84,7 +84,7 @@ class RoboMMAP(threading.Thread, MMAP):
 		threading.Thread.__init__(self)
 		MMAP.__init__(self, path, size, item_size)
 		self.topic	= topic
-		self.time	= 0.001
+		self.time	= 0.1
 		self.callback = callback
 		#self.cond_ = threading.Condition()
 

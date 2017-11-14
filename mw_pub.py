@@ -6,6 +6,6 @@ if __name__ == "__main__":
 	while True:
 		for _l in _list:
 			_h.pub(sys.argv[1], str(_l))
-			import time;time.sleep(0.1)
+			import time;time.sleep(1)
 
 	_h.close()
