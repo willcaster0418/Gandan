@@ -11,8 +11,6 @@ from MW.GandanMsg import *
 from MW.GandanPub import *
 from MW.GandanSub import *
 
-from P import *
-
 class Gandan:
 	def __init__(self, ip_port, path, size, item_size):
 		self.ip_port = ip_port
@@ -65,9 +63,7 @@ class Gandan:
 			if Gandan.version(None) < 300:
 				_pub.writep(bytes(_msg))
 			else:
-				P("WRITE:"+str(_pub.w())+":"+str(_pub.r()), _pub.writep, bytes(_msg,'utf-8'))
-				k = max(PD.keys())
-				self.log(str(PD[k]))
+				_pub.writep(bytes(_msg,'utf-8'))
 		elif _cmd == "PUB":
 			self.pub_topic_[_topic] = []
 			self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))

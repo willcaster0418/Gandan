@@ -4,11 +4,9 @@ from MW.GandanMsg import *
 from MW.GandanPub import *
 from MW.GandanSub import *
 
-from P import *
 import json
 
 def callback(_h):
-	global _id
 	print(_h.cmd_, str(_h.dat_).strip())
 	return
 

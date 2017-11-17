@@ -1,0 +1,7 @@
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+log/
+que/
+MW/__pycache__/

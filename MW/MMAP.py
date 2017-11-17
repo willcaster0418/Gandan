@@ -1,6 +1,5 @@
 import os,struct,threading,time
 from mmap import mmap
-from P import *
 
 class MMAP:
 	def __init__(self, path, size, item_size):
