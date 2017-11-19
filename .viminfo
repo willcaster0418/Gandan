@@ -11,9 +11,9 @@
 ~MSle0~/printf
 
 # Command Line History (newest to oldest):
-:q
 :wq
 :w
+:q
 
 # Search String History (newest to oldest):
 ?/printf
@@ -48,13 +48,20 @@
 	t_function
 
 # File marks:
-'0  1  0  ~/.gitignore
-'1  60  0  ~/MW_C/thread.c
-'2  65  77  ~/MW_C/thread.c
-'3  2  0  ~/MW_C/makefile
-'4  68  0  ~/MW_C/thread.c
+'0  12  3  ~/.gitignore
+'1  10  4  ~/.gitignore
+'2  5  7  ~/.gitignore
+'3  1  0  ~/.gitignore
+'4  60  0  ~/MW_C/thread.c
+'5  65  77  ~/MW_C/thread.c
+'6  2  0  ~/MW_C/makefile
+'7  68  0  ~/MW_C/thread.c
 
 # Jumplist (newest first):
+-'  12  3  ~/.gitignore
+-'  10  0  ~/.gitignore
+-'  6  9  ~/.gitignore
+-'  5  0  ~/.gitignore
 -'  1  0  ~/.gitignore
 -'  60  0  ~/MW_C/thread.c
 -'  68  0  ~/MW_C/thread.c
@@ -84,11 +91,82 @@
 -'  1  0  ~/MW_C/makefile
 -'  2  0  ~/MW_C/makefile
 -'  1  0  ~/MW_C/makefile
+-'  60  0  ~/MW_C/thread.c
+-'  68  0  ~/MW_C/thread.c
+-'  65  4  ~/MW_C/thread.c
+-'  22  22  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  71  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  60  0  ~/MW_C/thread.c
+-'  68  0  ~/MW_C/thread.c
+-'  65  4  ~/MW_C/thread.c
+-'  22  22  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  71  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  60  0  ~/MW_C/thread.c
+-'  68  0  ~/MW_C/thread.c
+-'  65  4  ~/MW_C/thread.c
+-'  22  22  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  71  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  60  0  ~/MW_C/thread.c
+-'  68  0  ~/MW_C/thread.c
+-'  65  4  ~/MW_C/thread.c
+-'  22  22  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  71  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  60  0  ~/MW_C/thread.c
+-'  68  0  ~/MW_C/thread.c
+-'  65  4  ~/MW_C/thread.c
+-'  22  22  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/makefile
+-'  1  0  ~/MW_C/thread.c
+-'  2  0  ~/MW_C/makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/.gitignore
-	"	1	0
+	"	12	3
+	^	12	4
+	.	12	3
+	+	5	7
+	+	6	9
+	+	11	9
+	+	10	4
+	+	12	3
 
 > ~/MW_C/thread.c
 	"	60	0

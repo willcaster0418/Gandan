@@ -2,6 +2,11 @@
 .bash_logout
 .bash_profile
 .bashrc
+.viminfo
+.gitconfig
 log/
 que/
 MW/__pycache__/
+.git/
+.gitignore
+.pki
