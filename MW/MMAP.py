@@ -1,5 +1,6 @@
 import os,struct,threading,time
 from mmap import mmap
+from P import *
 
 class MMAP:
 	def __init__(self, path, size, item_size):
@@ -12,6 +13,7 @@ class MMAP:
 		for i in range(0, item_size):
 			self.erase_buff_ += ' '
 		self.erase_buff_ = bytes(self.erase_buff_, "ascii")
+
 	def init_file(self, path, size):
 		#import pdb; pdb.set_trace()
 		if os.path.isfile(path):
@@ -83,9 +85,8 @@ class RoboMMAP(threading.Thread, MMAP):
 		threading.Thread.__init__(self)
 		MMAP.__init__(self, path, size, item_size)
 		self.topic	= topic
-		self.time	= 0.1
+		self.time	= 0.001
 		self.callback = callback
-		#self.cond_ = threading.Condition()
 
 	def run (self)   : self.handle()
 
@@ -93,11 +94,9 @@ class RoboMMAP(threading.Thread, MMAP):
 		#put handler in while loop
 		while True:
 			try:
-				#self.cond_.wait()
 				time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
 					self.callback(self.topic, self.readp())
 			except Exception as e:
-				_type, _value, _traceback = sys.exc_info()
-				self.log(str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				print(e)
 				break

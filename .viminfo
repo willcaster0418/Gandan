@@ -8,14 +8,36 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/printf
+~MSle0~/replay
+
+# Last Substitute Search Pattern:
+~MSle0&    
+
+# Last Substitute String:
+$
 
 # Command Line History (newest to oldest):
 :wq
 :w
 :q
+:e ./
+:e 
+:vs 
+:31
+:se list
+:vs tmp
+:51
+:%s/    /\t/g
+:ㅈ
 
 # Search String History (newest to oldest):
+?/replay
+?/hi
+?/cdc
+?/without
+? \<GandanMsg\>
+?/cdcd
+?     
 ?/printf
 
 # Expression History (newest to oldest):
@@ -25,40 +47,105 @@
 # Input Line History (newest to oldest):
 
 # Registers:
-""1	CHAR	0
-	
-	    // ③ main() 함수에서도 쓰레드에서 돌아가고 있는 동일한 함수 실행
-	    t_function((void *)pM);
-	 
-"2	BLOCK	1
-	[]
-	[]
-	[]
-"3	BLOCK	0
-	 
-	 
-	 
+"0	LINE	0
+				except Exception as e:
+					logging.info(str(e))
+					time.sleep(1)
+""1	LINE	0
+						print("1",str(e))
+"2	LINE	0
+					print("connection error")
+"3	LINE	0
+				print(str(e))
 "4	LINE	0
-	
+				print("hi")
 "5	LINE	0
-	
+					print("error without return")
 "6	LINE	0
-	출처: http://bitsoul.tistory.com/157 [Happy Programmer~]
+				elif str(e) == "convert":
+"7	LINE	0
+					print("timeout")
+"8	LINE	0
+	
+"9	CHAR	0
+	
+				elif str(e) == "conn":
+					print("connection error")
+					try:
+						self.s.close()
+						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+					except Exception as e:
+						print("1",str(e))
+						return
 "-	CHAR	0
-	t_function
+	connerror
 
 # File marks:
-'0  12  3  ~/.gitignore
-'1  10  4  ~/.gitignore
-'2  5  7  ~/.gitignore
-'3  1  0  ~/.gitignore
-'4  60  0  ~/MW_C/thread.c
-'5  65  77  ~/MW_C/thread.c
-'6  2  0  ~/MW_C/makefile
-'7  68  0  ~/MW_C/thread.c
+'0  56  3  ~/MW/GandanPub.py
+'1  37  5  ~/MW/GandanSub.py
+'2  19  3  ~/mw_sub.py
+'3  17  3  ~/mw_sub.py
+'4  29  4  ~/MW/GandanSub.py
+'5  56  3  ~/MW/GandanMsg.py
+'6  52  0  ~/MW/GandanMsg.py
+'7  55  6  ~/MW/GandanMsg.py
+'8  31  17  ~/MW/GandanSub.py
+'9  30  9  ~/MW/GandanSub.py
 
 # Jumplist (newest first):
--'  12  3  ~/.gitignore
+-'  56  3  ~/MW/GandanPub.py
+-'  1  0  ~/MW/GandanPub.py
+-'  37  5  ~/MW/GandanSub.py
+-'  29  4  ~/MW/GandanSub.py
+-'  19  3  ~/mw_sub.py
+-'  17  3  ~/mw_sub.py
+-'  56  3  ~/MW/GandanMsg.py
+-'  88  3  ~/MW/GandanMsg.py
+-'  52  0  ~/MW/GandanMsg.py
+-'  55  2  ~/MW/GandanMsg.py
+-'  31  4  ~/MW/GandanSub.py
+-'  30  3  ~/MW/GandanSub.py
+-'  32  5  ~/MW/GandanSub.py
+-'  22  3  ~/MW/GandanSub.py
+-'  86  15  ~/MW/GandanMsg.py
+-'  85  2  ~/MW/GandanMsg.py
+-'  38  4  ~/MW/GandanSub.py
+-'  59  1  ~/MW/GandanSub.py
+-'  20  3  ~/mw_sub.py
+-'  23  4  ~/MW/GandanSub.py
+-'  84  0  ~/MW/GandanMsg.py
+-'  67  2  ~/MW/GandanMsg.py
+-'  82  17  ~/MW/GandanMsg.py
+-'  58  4  ~/MW/GandanMsg.py
+-'  65  4  ~/MW/GandanMsg.py
+-'  89  0  ~/MW/GandanMsg.py
+-'  87  2  ~/MW/GandanMsg.py
+-'  1  0  ~/MW/GandanMsg.py
+-'  19  2  ~/MW/GandanSub.py
+-'  39  3  ~/MW/GandanSub.py
+-'  41  0  ~/MW/GandanSub.py
+-'  15  2  ~/MW/GandanSub.py
+-'  15  1  ~/mw_sub.py
+-'  14  1  ~/mw_sub.py
+-'  51  2  ~/MW/GandanSub.py
+-'  10  0  ~/MW/GandanSub.py
+-'  1  0  ~/gmw_main.py
+-'  1  0  ~/MW/GandanSub.py
+-'  122  18  ~/MW/Gandan.py
+-'  119  2  ~/MW/Gandan.py
+-'  153  0  ~/log/20171128.Gandan.log
+-'  150  0  ~/log/20171128.Gandan.log
+-'  204  0  ~/log/20171128.Gandan.log
+-'  1  0  ~/MW/Gandan.py
+-'  264  0  ~/log/20171128.Gandan.log
+-'  1  0  ~/log/20171128.Gandan.log
+-'  1  0  ~/mw_pub.py
+-'  1  0  ~/mw_sub.py
+-'  1  0  ~/service.sh
+-'  12  0  ~/.gitignore
+-'  1  0  ~/.git/MERGE_MSG
+-'  1  5  ~/.git/COMMIT_EDITMSG
 -'  10  0  ~/.gitignore
 -'  6  9  ~/.gitignore
 -'  5  0  ~/.gitignore
@@ -99,67 +186,232 @@
 -'  1  0  ~/MW_C/makefile
 -'  1  0  ~/MW_C/thread.c
 -'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  71  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  60  0  ~/MW_C/thread.c
--'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  71  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  60  0  ~/MW_C/thread.c
--'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  71  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  60  0  ~/MW_C/thread.c
--'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  71  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  60  0  ~/MW_C/thread.c
--'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
+-'  95  0  ~/MW/GandanMsg.py
+-'  56  3  ~/MW/GandanMsg.py
+-'  56  3  ~/MW/GandanMsg.py
+-'  88  3  ~/MW/GandanMsg.py
+-'  19  3  ~/mw_sub.py
+-'  17  3  ~/mw_sub.py
 
 # History of marks within files (newest to oldest):
 
+> ~/MW/GandanPub.py
+	"	56	3
+	^	56	4
+	.	56	3
+	+	14	39
+	+	55	23
+	+	56	3
+
+> ~/MW/GandanSub.py
+	"	37	5
+	^	29	10
+	.	37	0
+	+	41	15
+	+	29	23
+	+	39	38
+	+	41	4
+	+	41	4
+	+	39	0
+	+	29	39
+	+	39	29
+	+	41	0
+	+	14	0
+	+	41	2
+	+	41	1
+	+	41	0
+	+	41	0
+	+	41	0
+	+	41	0
+	+	39	0
+	+	39	16
+	+	39	0
+	+	39	9
+	+	22	0
+	+	29	71
+	+	39	5
+	+	39	0
+	+	38	0
+	+	26	0
+	+	19	2
+	+	29	40
+	+	28	26
+	+	29	20
+	+	29	20
+	+	22	19
+	+	11	61
+	+	29	27
+	+	29	36
+	+	22	0
+	+	21	0
+	+	24	0
+	+	27	17
+	+	28	11
+	+	29	44
+	+	29	0
+	+	29	47
+	+	29	25
+	+	29	24
+	+	29	20
+	+	29	23
+	+	29	24
+	+	29	24
+	+	29	24
+	+	29	23
+	+	29	24
+	+	29	4
+	+	29	10
+	+	29	37
+	+	29	0
+	+	29	20
+	+	29	30
+	+	38	8
+	+	38	16
+	+	29	34
+	+	38	0
+	+	29	0
+	+	29	26
+	+	35	0
+	+	31	0
+	+	28	37
+	+	29	30
+	+	30	9
+	+	29	0
+	+	31	0
+	+	37	0
+
+> ~/mw_sub.py
+	"	19	3
+	.	19	0
+	+	16	5
+	+	17	19
+	+	18	24
+	+	20	10
+	+	20	15
+	+	20	13
+	+	20	0
+	+	20	10
+	+	20	0
+	+	19	10
+	+	17	0
+	+	19	0
+
+> ~/MW/GandanMsg.py
+	"	56	3
+	^	84	0
+	.	84	0
+	+	57	6
+	+	58	3
+	+	65	3
+	+	67	3
+	+	67	25
+	+	67	11
+	+	67	27
+	+	67	4
+	+	67	9
+	+	67	22
+	+	67	0
+	+	67	5
+	+	68	2
+	+	73	2
+	+	78	2
+	+	85	1
+	+	85	0
+	+	85	0
+	+	67	32
+	+	67	20
+	+	67	32
+	+	65	24
+	+	67	0
+	+	67	10
+	+	82	3
+	+	83	3
+	+	85	0
+	+	85	29
+	+	85	31
+	+	85	11
+	+	67	4
+	+	67	0
+	+	57	7
+	+	58	4
+	+	65	4
+	+	67	3
+	+	67	3
+	+	67	5
+	+	67	24
+	+	67	31
+	+	57	0
+	+	66	4
+	+	64	3
+	+	59	30
+	+	60	29
+	+	65	2
+	+	66	3
+	+	67	3
+	+	67	3
+	+	67	0
+	+	62	0
+	+	61	0
+	+	67	0
+	+	67	0
+	+	69	2
+	+	70	2
+	+	72	0
+	+	82	2
+	+	83	2
+	+	73	2
+	+	55	8
+	+	78	2
+	+	77	0
+	+	78	2
+	+	79	0
+	+	81	0
+	+	76	0
+	+	72	5
+	+	73	2
+	+	71	0
+	+	74	0
+	+	75	26
+	+	63	27
+	+	63	25
+	+	83	24
+	+	85	25
+	+	67	0
+	+	67	0
+	+	55	18
+	+	89	0
+	+	67	0
+	+	86	0
+	+	84	0
+
+> /home/robosys/gandan/MW/GandanSub.py
+	"	41	6
+
+> ~/tmp
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/gmw_main.py
+	"	1	0
+
+> ~/MW/Gandan.py
+	"	122	18
+	^	128	42
+	.	128	41
+	+	128	41
+
+> ~/log/20171128.Gandan.log
+	"	153	0
+
+> ~/mw_pub.py
+	"	1	0
+
+> ~/service.sh
+	"	1	0
+
 > ~/.gitignore
-	"	12	3
+	"	12	0
 	^	12	4
 	.	12	3
 	+	5	7
@@ -167,6 +419,15 @@
 	+	11	9
 	+	10	4
 	+	12	3
+
+> ~/.git/MERGE_MSG
+	"	1	0
+
+> ~/.git/COMMIT_EDITMSG
+	"	1	5
+	^	1	6
+	.	1	5
+	+	1	5
 
 > ~/MW_C/thread.c
 	"	60	0

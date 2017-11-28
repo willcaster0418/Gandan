@@ -52,16 +52,37 @@ class GandanMsg:
 
 	@staticmethod
 	def recv(self, _sock):
+		_b = ''; _sz = 0;
 		while True:
-			_b = _sock.recv(1)
-			if _b == b'#': break
-			if len(_b) == 0: return None
-		_b   = _sock.recv(4)  
-		_sz  = struct.unpack("!i", _b)[0]
-		_b   = _sock.recv(_sz)
+			try:
+				_b = _sock.recv(1)
+			except socket.timeout as e:
+				raise Exception('timeout')
+
+			if len(_b) == 0:
+				raise Exception('conn')
+			
+			if _b == b'#': 
+				break
+		try:
+			_b   = _sock.recv(4)  
+		except socket.timeout as e:
+			raise Exception('timeout')
+
+		try:
+			_sz  = struct.unpack("!i", _b)[0]
+		except socket.timeout as e:
+			raise Exception('convert')
+
+		try:
+			_b   = _sock.recv(_sz)
+		except socket.timeout as e:
+			raise Exception('timeout')
+
+		if len(_b) == 0:
+			raise Exception('conn')
+
 		if GandanMsg.version(None) < 300:
 			return GandanMsg.conv2(None, _b)
 		else:
 			return GandanMsg.conv3(None, _b)
-
-

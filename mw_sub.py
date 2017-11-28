@@ -13,4 +13,7 @@ def callback(_h):
 if __name__ == "__main__":
 	_h = GandanSub("127.0.0.1", 8889, sys.argv[1], 1)
 	while True:
-		_h.sub(callback)
+		try:
+			_h.sub(callback)
+		except Exception as e:
+			continue
