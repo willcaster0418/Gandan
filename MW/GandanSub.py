@@ -27,14 +27,17 @@ class GandanSub:
 		except Exception as e:
 			if str(e) in ["timeout", "convert"]:
 				return
-			else: #str(e) == "conn":
+			elif str(e) == "conn":
 				try:
+					print(str(e))
 					self.s.close()
 					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
 				except Exception as e:
 					return
+			else:
+				return
 
 	def close(self):
 		self.s.close()

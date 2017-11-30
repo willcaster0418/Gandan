@@ -1,4 +1,4 @@
-import os,struct,threading,time
+import os,struct,threading,time,gc
 from mmap import mmap
 from P import *
 
@@ -41,7 +41,7 @@ class MMAP:
 	def wp(self): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", self.w()+1))
 	def rs(self, r): self.m.seek(3, os.SEEK_SET); self.m.write(struct.pack("i", r))
 	def ws(self, w): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", w))
-	def writep(self, data): self.write(data); self.ws(self.w()+1); return self.r();
+	def writep(self, data): self.write(data); self.ws(self.w()+1); del(data); return self.r();
 	def readp(self)	   : _l = self.read(); self.rs(self.r() + len(_l)); return _l
 
 	def write(self, data):
@@ -96,7 +96,9 @@ class RoboMMAP(threading.Thread, MMAP):
 			try:
 				time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
-					self.callback(self.topic, self.readp())
+					_list = self.readp()
+					self.callback(self.topic, _list)
+					del(_list)
 			except Exception as e:
 				print(e)
 				break

@@ -17,9 +17,9 @@
 $
 
 # Command Line History (newest to oldest):
+:q
 :wq
 :w
-:q
 :e ./
 :e 
 :vs 
@@ -82,18 +82,23 @@ $
 	connerror
 
 # File marks:
-'0  56  3  ~/MW/GandanPub.py
-'1  37  5  ~/MW/GandanSub.py
-'2  19  3  ~/mw_sub.py
-'3  17  3  ~/mw_sub.py
-'4  29  4  ~/MW/GandanSub.py
-'5  56  3  ~/MW/GandanMsg.py
-'6  52  0  ~/MW/GandanMsg.py
-'7  55  6  ~/MW/GandanMsg.py
-'8  31  17  ~/MW/GandanSub.py
-'9  30  9  ~/MW/GandanSub.py
+'0  1  0  ~/sync.sh
+'1  2  0  /tmp/crontab.X9whj8
+'2  1  0  ~/log/20171130.Gandan.log
+'3  56  3  ~/MW/GandanPub.py
+'4  37  5  ~/MW/GandanSub.py
+'5  19  3  ~/mw_sub.py
+'6  17  3  ~/mw_sub.py
+'7  29  4  ~/MW/GandanSub.py
+'8  56  3  ~/MW/GandanMsg.py
+'9  52  0  ~/MW/GandanMsg.py
 
 # Jumplist (newest first):
+-'  1  0  ~/sync.sh
+-'  2  0  /tmp/crontab.X9whj8
+-'  1  0  /tmp/crontab.X9whj8
+-'  1  0  ~/log/20171130.Gandan.log
+-'  22182  0  ~/log/20171130.Gandan.log
 -'  56  3  ~/MW/GandanPub.py
 -'  1  0  ~/MW/GandanPub.py
 -'  37  5  ~/MW/GandanSub.py
@@ -186,14 +191,21 @@ $
 -'  1  0  ~/MW_C/makefile
 -'  1  0  ~/MW_C/thread.c
 -'  2  0  ~/MW_C/makefile
--'  95  0  ~/MW/GandanMsg.py
--'  56  3  ~/MW/GandanMsg.py
--'  56  3  ~/MW/GandanMsg.py
--'  88  3  ~/MW/GandanMsg.py
--'  19  3  ~/mw_sub.py
--'  17  3  ~/mw_sub.py
 
 # History of marks within files (newest to oldest):
+
+> ~/sync.sh
+	"	1	0
+
+> /tmp/crontab.X9whj8
+	"	2	0
+	^	2	1
+	.	2	0
+	+	1	0
+	+	2	0
+
+> ~/log/20171130.Gandan.log
+	"	1	0
 
 > ~/MW/GandanPub.py
 	"	56	3

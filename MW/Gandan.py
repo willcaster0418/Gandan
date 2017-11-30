@@ -64,6 +64,7 @@ class Gandan:
 					_p = self.sub(_req, _topic, _msg)
 				else:
 					self.log("neither PUB nor SUB")
+				del(_msg)
 			except Exception as e:
 				_type, _value, _traceback = sys.exc_info()
 				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
@@ -78,7 +79,7 @@ class Gandan:
 		_path = self.path_+_topic
 
 		if _topic in self.pub_topic_.keys(): 
-			self.log("PUB write %s, " % _topic + "%s" % _msg)
+			#self.log("PUB write %s, " % _topic + "%s" % _msg)
 			_pub = self.pub_topic_[_topic][-1]
 			_pub.writep(bytes(_msg,'utf-8'))
 		else:
@@ -117,7 +118,7 @@ class Gandan:
 		if not _topic in self.sub_topic_.keys():
 			return
 		for i, _req in enumerate(self.sub_topic_[_topic]):
-			self.log("SUB[%s] send to [%s]" % (_topic, str(_req)))
+			#self.log("SUB[%s] send to [%s]" % (_topic, str(_req)))
 			try:
 				for d in _data:
 					if Gandan.version(None) < 300:
