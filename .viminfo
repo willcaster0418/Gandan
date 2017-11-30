@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/replay
+~MSle0~/P
 
 # Last Substitute Search Pattern:
 ~MSle0&    
@@ -17,9 +17,9 @@
 $
 
 # Command Line History (newest to oldest):
-:q
 :wq
 :w
+:q
 :e ./
 :e 
 :vs 
@@ -31,6 +31,7 @@ $
 :ㅈ
 
 # Search String History (newest to oldest):
+?/P
 ?/replay
 ?/hi
 ?/cdc
@@ -52,48 +53,44 @@ $
 					logging.info(str(e))
 					time.sleep(1)
 ""1	LINE	0
-						print("1",str(e))
+	
 "2	LINE	0
-					print("connection error")
+	from P import *
 "3	LINE	0
-				print(str(e))
-"4	LINE	0
-				print("hi")
-"5	LINE	0
-					print("error without return")
-"6	LINE	0
-				elif str(e) == "convert":
-"7	LINE	0
-					print("timeout")
-"8	LINE	0
-	
-"9	CHAR	0
-	
-				elif str(e) == "conn":
-					print("connection error")
-					try:
-						self.s.close()
-						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-					except Exception as e:
 						print("1",str(e))
-						return
+"4	LINE	0
+					print("connection error")
+"5	LINE	0
+				print(str(e))
+"6	LINE	0
+				print("hi")
+"7	LINE	0
+					print("error without return")
+"8	LINE	0
+				elif str(e) == "convert":
+"9	LINE	0
+					print("timeout")
 "-	CHAR	0
 	connerror
 
 # File marks:
-'0  1  0  ~/sync.sh
-'1  2  0  /tmp/crontab.X9whj8
-'2  1  0  ~/log/20171130.Gandan.log
-'3  56  3  ~/MW/GandanPub.py
-'4  37  5  ~/MW/GandanSub.py
-'5  19  3  ~/mw_sub.py
-'6  17  3  ~/mw_sub.py
-'7  29  4  ~/MW/GandanSub.py
-'8  56  3  ~/MW/GandanMsg.py
-'9  52  0  ~/MW/GandanMsg.py
+'0  15  0  ~/MW/Gandan.py
+'1  1  0  ~/sync.sh
+'2  2  0  /tmp/crontab.X9whj8
+'3  1  0  ~/log/20171130.Gandan.log
+'4  56  3  ~/MW/GandanPub.py
+'5  37  5  ~/MW/GandanSub.py
+'6  19  3  ~/mw_sub.py
+'7  17  3  ~/mw_sub.py
+'8  29  4  ~/MW/GandanSub.py
+'9  56  3  ~/MW/GandanMsg.py
 
 # Jumplist (newest first):
+-'  15  0  ~/MW/Gandan.py
+-'  57  19  ~/MW/Gandan.py
+-'  12  14  ~/MW/Gandan.py
+-'  9  11  ~/MW/Gandan.py
+-'  120  3  ~/MW/Gandan.py
 -'  1  0  ~/sync.sh
 -'  2  0  /tmp/crontab.X9whj8
 -'  1  0  /tmp/crontab.X9whj8
@@ -137,8 +134,7 @@ $
 -'  10  0  ~/MW/GandanSub.py
 -'  1  0  ~/gmw_main.py
 -'  1  0  ~/MW/GandanSub.py
--'  122  18  ~/MW/Gandan.py
--'  119  2  ~/MW/Gandan.py
+-'  117  2  ~/MW/Gandan.py
 -'  153  0  ~/log/20171128.Gandan.log
 -'  150  0  ~/log/20171128.Gandan.log
 -'  204  0  ~/log/20171128.Gandan.log
@@ -186,13 +182,15 @@ $
 -'  60  0  ~/MW_C/thread.c
 -'  68  0  ~/MW_C/thread.c
 -'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/Gandan.py
+	"	15	0
+	^	126	42
+	.	15	0
+	+	126	41
+	+	15	0
 
 > ~/sync.sh
 	"	1	0
@@ -406,12 +404,6 @@ $
 
 > ~/gmw_main.py
 	"	1	0
-
-> ~/MW/Gandan.py
-	"	122	18
-	^	128	42
-	.	128	41
-	+	128	41
 
 > ~/log/20171128.Gandan.log
 	"	153	0

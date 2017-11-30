@@ -12,8 +12,6 @@ from MW.GandanMsg import *
 from MW.GandanPub import *
 from MW.GandanSub import *
 
-from P import *
-
 class Gandan:
 	def __init__(self, ip_port, path, size, item_size):
 		self.ip_port = ip_port
