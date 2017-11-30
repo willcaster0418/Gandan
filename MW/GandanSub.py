@@ -29,14 +29,19 @@ class GandanSub:
 				return
 			elif str(e) == "conn":
 				try:
-					print(str(e))
-					self.s.close()
+					#self.s.close()
 					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
 				except Exception as e:
+					logging.info(str(e))
+					time.sleep(3)
 					return
 			else:
+				self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+				self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+				logging.info(str(e))
+				time.sleep(3)
 				return
 
 	def close(self):

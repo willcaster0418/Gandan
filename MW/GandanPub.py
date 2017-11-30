@@ -38,8 +38,8 @@ class GandanPub:
 		try:
 			if self.cmd_ == None:
 				self.cmd_ = _cmd
-				self.hb_thr = threading.Thread(target=self.hb, args=())
-				self.hb_thr.start()
+				#self.hb_thr = threading.Thread(target=self.hb, args=())
+				#self.hb_thr.start()
 			try:
 				self.publock.acquire()
 				GandanMsg.send(None, self.s, _cmd, _data)

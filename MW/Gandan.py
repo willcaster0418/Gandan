@@ -37,7 +37,9 @@ class Gandan:
 			try:
 				_h = GandanMsg.recv(None, _req)
 			except Exception as e:
-				continue
+				_type, _value, _traceback = sys.exc_info()
+				self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				break
 
 			try:	
 				if _h == None: 
@@ -62,10 +64,9 @@ class Gandan:
 					_p = self.sub(_req, _topic, _msg)
 				else:
 					self.log("neither PUB nor SUB")
-				del(_msg)
 			except Exception as e:
 				_type, _value, _traceback = sys.exc_info()
-				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				break
 		self.log("handler is done socket : %s" % str(_req))
 
