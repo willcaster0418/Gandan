@@ -19,6 +19,7 @@ $
 # Command Line History (newest to oldest):
 :wq
 :w
+:Wq
 :q
 :e ./
 :e 
@@ -31,6 +32,7 @@ $
 :ㅈ
 
 # Search String History (newest to oldest):
+?/s
 ?/P
 ?/replay
 ?/hi
@@ -57,35 +59,38 @@ $
 "2	LINE	0
 	from P import *
 "3	LINE	0
-						print("1",str(e))
+	
 "4	LINE	0
-					print("connection error")
+	from P import *
 "5	LINE	0
-				print(str(e))
+						print("1",str(e))
 "6	LINE	0
-				print("hi")
+					print("connection error")
 "7	LINE	0
-					print("error without return")
+				print(str(e))
 "8	LINE	0
-				elif str(e) == "convert":
+				print("hi")
 "9	LINE	0
-					print("timeout")
+					print("error without return")
 "-	CHAR	0
 	connerror
 
 # File marks:
-'0  15  0  ~/MW/Gandan.py
-'1  1  0  ~/sync.sh
-'2  2  0  /tmp/crontab.X9whj8
-'3  1  0  ~/log/20171130.Gandan.log
-'4  56  3  ~/MW/GandanPub.py
-'5  37  5  ~/MW/GandanSub.py
-'6  19  3  ~/mw_sub.py
-'7  17  3  ~/mw_sub.py
-'8  29  4  ~/MW/GandanSub.py
-'9  56  3  ~/MW/GandanMsg.py
+'0  3  0  ~/MW/MMAP.py
+'1  15  0  ~/MW/Gandan.py
+'2  1  0  ~/sync.sh
+'3  2  0  /tmp/crontab.X9whj8
+'4  1  0  ~/log/20171130.Gandan.log
+'5  56  3  ~/MW/GandanPub.py
+'6  37  5  ~/MW/GandanSub.py
+'7  19  3  ~/mw_sub.py
+'8  17  3  ~/mw_sub.py
+'9  29  4  ~/MW/GandanSub.py
 
 # Jumplist (newest first):
+-'  3  0  ~/MW/MMAP.py
+-'  4  0  ~/MW/MMAP.py
+-'  1  0  ~/MW/MMAP.py
 -'  15  0  ~/MW/Gandan.py
 -'  57  19  ~/MW/Gandan.py
 -'  12  14  ~/MW/Gandan.py
@@ -181,9 +186,14 @@ $
 -'  1  0  ~/MW_C/makefile
 -'  60  0  ~/MW_C/thread.c
 -'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/MMAP.py
+	"	3	0
+	.	3	0
+	+	4	0
+	+	3	0
 
 > ~/MW/Gandan.py
 	"	15	0
