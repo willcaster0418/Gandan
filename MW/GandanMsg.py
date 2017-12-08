@@ -81,8 +81,10 @@ class GandanMsg:
 
 		if len(_b) == 0:
 			raise Exception('conn')
-
-		if GandanMsg.version(None) < 300:
-			return GandanMsg.conv2(None, _b)
-		else:
-			return GandanMsg.conv3(None, _b)
+		try:
+			if GandanMsg.version(None) < 300:
+				return GandanMsg.conv2(None, _b)
+			else:
+				return GandanMsg.conv3(None, _b)
+		except Exception as e:
+			return None

@@ -32,6 +32,7 @@ class Gandan:
 
 	def handler(self, _req):
 		_p = None
+		_h = None
 		_cnt_none = 0
 		while(True):
 			try:
@@ -39,7 +40,7 @@ class Gandan:
 			except Exception as e:
 				_type, _value, _traceback = sys.exc_info()
 				self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
-				break
+				_h = None
 
 			try:	
 				if _h == None: 
