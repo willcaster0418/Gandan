@@ -21,7 +21,7 @@ void *_t(void *data)
         // 현재 process id 와 thread id 를 함께 출력
         printf("[%s] pid:%u, tid:%x --- %d\n", 
             thread_name, (unsigned int)pid, (unsigned int)tid, i);
-        i++;
+        //i++;
         sleep(1);  // 1초간 대기
     }
 }
@@ -51,7 +51,7 @@ int main()
     }
  
     // ② 2번 쓰레드 생성
-    thr_id = pthread_create(&p_thread[1], NULL, t_function, (void *)p2);
+    thr_id = pthread_create(&p_thread[1], NULL, _t, (void *)p2);
     if (thr_id < 0)
     {
         perror("thread create error : ");

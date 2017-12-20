@@ -8,20 +8,30 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/P
+~MSle0~/pdb
 
 # Last Substitute Search Pattern:
-~MSle0&    
+~MSle0&tmp
 
 # Last Substitute String:
-$
+$buf_ptr
 
 # Command Line History (newest to oldest):
-:q!
 :wq
 :w
-:q
 :Wq
+:q
+:q!
+:ㅈ
+:54
+:W
+:17,23s/tmp/buf_ptr/g
+:set nu
+:s/tmp/buf/
+:.,.+1!:q!
+:%!xxd
+:%s/    /\t/g
+:set list
 :e ./
 :e 
 :vs 
@@ -29,20 +39,34 @@ $
 :se list
 :vs tmp
 :51
-:%s/    /\t/g
-:ㅈ
 
 # Search String History (newest to oldest):
+?/pdb
+?/recv
+?/sub
+? \<GandanMsg\>
+?/cdcd
+?/send
+?/printf
+?/ld
+? \<t_function\>
+?/que_name
+? tmp
+? \<tmp\>
+?/cdc
+??buf
+??buff
+?/readp
+? \<file\>
+? \<buf\>
+?/80
+?/munmap
+?     
 ?/s
 ?/P
 ?/replay
 ?/hi
-?/cdc
 ?/without
-? \<GandanMsg\>
-?/cdcd
-?     
-?/printf
 
 # Expression History (newest to oldest):
 
@@ -52,153 +76,251 @@ $
 
 # Registers:
 "0	LINE	0
-				except Exception as e:
-					logging.info(str(e))
-					time.sleep(1)
-""1	BLOCK	7
-			
-			
-			
-			
-"2	LINE	0
-	
+				self.total_size = 12 + len(bytes(_cmd, "utf-8")) + len(bytes(_dat,"utf-8"))
+"1	BLOCK	0
+	s
+	s
+"2	BLOCK	0
+	(
+	(
 "3	LINE	0
-	from P import *
-"4	LINE	0
-	
+					import pdb;pdb.set_trace()
+"4	BLOCK	0
+	(
+	(
 "5	LINE	0
-	from P import *
+				import time;time.sleep(1)
 "6	LINE	0
-						print("1",str(e))
+				import pdb;pdb.set_trace()
 "7	LINE	0
-					print("connection error")
+				import pdb;pdb.set_trace()
 "8	LINE	0
-				print(str(e))
+				import pdb;pdb.set_trace()
 "9	LINE	0
-				print("hi")
-"-	CHAR	0
-	connerror
+	#	gcc -lpthread ./thread.c -o thread
+""-	CHAR	0
+	,"utf-8"
 
 # File marks:
-'0  20634  0  ~/log/20171208.Gandan.log
-'1  7278  0  ~/log/20171207.Gandan.log
-'2  7265  0  ~/log/20171207.Gandan.log
-'3  7266  0  ~/log/20171207.Gandan.log
-'4  1  0  ~/log/20171207.Gandan.log
-'5  90  13  ~/MW/GandanMsg.py
-'6  41  2  ~/MW/GandanMsg.py
-'7  7171  0  ~/log/20171207.Gandan.log
-'8  1  0  ~/log/20171204.Gandan.log
-'9  1  0  ~/log/20171201.Gandan.log
+'0  9  59  ~/MW/GandanMsg.py
+'1  21  57  ~/MW/GandanMsg.py
+'2  22  30  ~/MW/GandanMsg.py
+'3  41  4  ~/MW/Gandan.py
+'4  10  1  ~/mw_pub.py
+'5  91  29  ~/MW/GandanMsg.py
+'6  39  23  ~/MW/Gandan.py
+'7  13  0  ~/gmw_main.py
+'8  17  3  ~/mw_sub.py
+'9  11  26  ~/mw_pub.py
 
 # Jumplist (newest first):
--'  20634  0  ~/log/20171208.Gandan.log
--'  2763  0  ~/log/20171208.Gandan.log
--'  1  0  ~/log/20171208.Gandan.log
--'  7278  0  ~/log/20171207.Gandan.log
--'  7265  0  ~/log/20171207.Gandan.log
--'  7266  0  ~/log/20171207.Gandan.log
--'  1  0  ~/log/20171207.Gandan.log
--'  7  0  ~/log/20171207.Gandan.log
--'  7168  0  ~/log/20171207.Gandan.log
--'  7171  0  ~/log/20171207.Gandan.log
--'  90  13  ~/MW/GandanMsg.py
--'  88  3  ~/MW/GandanMsg.py
--'  41  2  ~/MW/GandanMsg.py
--'  56  2  ~/MW/GandanMsg.py
--'  1  0  ~/log/20171204.Gandan.log
--'  1  0  ~/log/20171201.Gandan.log
+-'  9  59  ~/MW/GandanMsg.py
+-'  21  3  ~/MW/GandanMsg.py
+-'  22  3  ~/MW/GandanMsg.py
+-'  91  4  ~/MW/GandanMsg.py
+-'  41  4  ~/MW/Gandan.py
+-'  39  4  ~/MW/Gandan.py
+-'  10  1  ~/mw_pub.py
+-'  11  3  ~/mw_pub.py
+-'  72  2  ~/MW/GandanMsg.py
+-'  49  5  ~/MW/Gandan.py
+-'  13  0  ~/gmw_main.py
 -'  1  0  ~/gmw_main.py
--'  14066  0  ~/log/prev/20171130.Gandan.log
--'  941  0  ~/log/prev/20171130.Gandan.log
--'  9414236  0  ~/log/prev/20171130.Gandan.log
--'  1  0  ~/log/prev/20171130.Gandan.log
--'  3  0  ~/MW/MMAP.py
--'  4  0  ~/MW/MMAP.py
--'  1  0  ~/MW/MMAP.py
--'  15  0  ~/MW/Gandan.py
--'  57  19  ~/MW/Gandan.py
--'  12  14  ~/MW/Gandan.py
--'  9  11  ~/MW/Gandan.py
--'  120  3  ~/MW/Gandan.py
--'  1  0  ~/sync.sh
--'  2  0  /tmp/crontab.X9whj8
--'  1  0  /tmp/crontab.X9whj8
--'  1  0  ~/log/20171130.Gandan.log
--'  22182  0  ~/log/20171130.Gandan.log
--'  56  3  ~/MW/GandanPub.py
--'  1  0  ~/MW/GandanPub.py
--'  37  5  ~/MW/GandanSub.py
--'  29  4  ~/MW/GandanSub.py
--'  19  3  ~/mw_sub.py
 -'  17  3  ~/mw_sub.py
--'  52  0  ~/MW/GandanMsg.py
--'  55  2  ~/MW/GandanMsg.py
--'  31  4  ~/MW/GandanSub.py
--'  30  3  ~/MW/GandanSub.py
--'  32  5  ~/MW/GandanSub.py
--'  22  3  ~/MW/GandanSub.py
--'  86  15  ~/MW/GandanMsg.py
--'  85  2  ~/MW/GandanMsg.py
--'  38  4  ~/MW/GandanSub.py
--'  59  1  ~/MW/GandanSub.py
--'  20  3  ~/mw_sub.py
--'  23  4  ~/MW/GandanSub.py
--'  84  0  ~/MW/GandanMsg.py
--'  67  2  ~/MW/GandanMsg.py
--'  82  17  ~/MW/GandanMsg.py
--'  58  4  ~/MW/GandanMsg.py
--'  65  4  ~/MW/GandanMsg.py
--'  91  0  ~/MW/GandanMsg.py
--'  87  2  ~/MW/GandanMsg.py
--'  1  0  ~/MW/GandanMsg.py
--'  19  2  ~/MW/GandanSub.py
--'  39  3  ~/MW/GandanSub.py
--'  41  0  ~/MW/GandanSub.py
--'  15  2  ~/MW/GandanSub.py
--'  15  1  ~/mw_sub.py
+-'  8  3  ~/mw_pub.py
+-'  16  2  ~/MW/GandanMsg.py
+-'  5  1  ~/mw_pub.py
+-'  11  2  ~/MW/GandanMsg.py
 -'  14  1  ~/mw_sub.py
--'  51  2  ~/MW/GandanSub.py
--'  10  0  ~/MW/GandanSub.py
--'  1  0  ~/MW/GandanSub.py
--'  117  2  ~/MW/Gandan.py
--'  153  0  ~/log/20171128.Gandan.log
--'  150  0  ~/log/20171128.Gandan.log
--'  204  0  ~/log/20171128.Gandan.log
--'  1  0  ~/MW/Gandan.py
--'  264  0  ~/log/20171128.Gandan.log
--'  1  0  ~/log/20171128.Gandan.log
+-'  17  5  ~/MW/GandanMsg.py
+-'  38  9  ~/MW/GandanMsg.py
+-'  46  9  ~/MW/GandanMsg.py
+-'  50  13  ~/MW/GandanMsg.py
+-'  49  1  ~/MW/GandanMsg.py
+-'  51  0  ~/MW/GandanPub.py
+-'  1  0  ~/MW/GandanPub.py
+-'  9  3  ~/mw_pub.py
+-'  66  4  ~/MW/GandanMsg.py
+-'  42  2  ~/MW/GandanMsg.py
+-'  52  3  ~/MW/GandanMsg.py
+-'  188  100  ~/log/20171220.Gandan.log
+-'  1  0  ~/log/20171220.Gandan.log
+-'  6  1  ~/mw_pub.py
 -'  1  0  ~/mw_pub.py
 -'  1  0  ~/mw_sub.py
--'  1  0  ~/service.sh
--'  12  0  ~/.gitignore
--'  1  0  ~/.git/MERGE_MSG
--'  1  5  ~/.git/COMMIT_EDITMSG
--'  10  0  ~/.gitignore
--'  6  9  ~/.gitignore
--'  5  0  ~/.gitignore
--'  1  0  ~/.gitignore
--'  60  0  ~/MW_C/thread.c
+-'  24  9  ~/MW_C/thread.c
+-'  67  4  ~/MW_C/thread.c
+-'  2  14  ~/MW_C/makefile
+-'  1  3  ~/MW_C/makefile
+-'  20  8  ~/MW_C/thread.c
 -'  68  0  ~/MW_C/thread.c
--'  65  4  ~/MW_C/thread.c
--'  22  22  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
+-'  54  4  ~/MW_C/thread.c
+-'  15  1  ~/MW_C/mmap.c
+-'  2  149  ~/MW_C/some
+-'  1  0  ~/MW_C/some
 -'  1  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  71  0  ~/MW_C/thread.c
--'  2  0  ~/MW_C/makefile
--'  1  0  ~/MW_C/makefile
--'  2  0  ~/MW_C/makefile
+-'  42  37  ~/MW_C/thread.c
+-'  43  7  ~/MW_C/thread.c
+-'  26  0  ~/MW_C/mmap.c
+-'  10  0  ~/MW_C/mmap.c
+-'  11  0  ~/MW_C/mmap.c
+-'  44  1  ~/MW_C/mmap.c
+-'  73  1  ~/MW_C/mmap.c
+-'  1  0  ~/MW_C/mmap.c
+-'  77  0  ~/MW_C/mmap.c
+-'  71  1  ~/MW_C/mmap.c
+-'  47  15  ~/MW_C/mmap.c
+-'  74  12  ~/MW_C/mmap.c
+-'  48  18  ~/MW_C/mmap.c
+-'  41  2  ~/MW_C/mmap.c
+-'  1  0  ~/MW_C/TEST
+-'  64  1  ~/MW_C/mmap.c
+-'  76  1  ~/MW_C/mmap.c
+-'  3  1  ~/MW_C/makefile
+-'  14  1  ~/MW_C/mmap.c
+-'  12  30  ~/MW_C/mmap.c
+-'  72  24  ~/MW_C/mmap.c
+-'  16  0  ~/MW_C/mmap.c
+-'  20  13  ~/MW_C/mmap.c
+-'  21  1  ~/MW_C/mmap.c
+-'  17  3  ~/MW_C/mmap.c
+-'  75  1  ~/MW_C/mmap.c
+-'  2  9  ~/MW_C/test.py
+-'  10  0  ~/MW_C/test.py
+-'  2  0  ~/MW_C/TEST
+-'  56  1  ~/MW_C/mmap.c
+-'  78  12  ~/MW/MMAP.py
+-'  62  0  ~/MW/MMAP.py
+-'  43  1  ~/MW/MMAP.py
+-'  9  0  ~/MW_C/test.py
+-'  5  0  ~/MW_C/test.py
+-'  6  0  ~/MW_C/test.py
+-'  20  3  ~/MW/MMAP.py
+-'  9  2  ~/MW/MMAP.py
+-'  7  0  ~/MW_C/test.py
+-'  3  0  ~/MW_C/test.py
+-'  83  1  ~/MW/MMAP.py
+-'  1  0  ~/MW_C/t
+-'  33  2  ~/MW/MMAP.py
+-'  17  2  ~/MW/Gandan.py
+-'  88  3  ~/MW/GandanMsg.py
+-'  1  0  ~/MW_C/test.py
+-'  1  0  ~/MW_C/OM
+-'  1  0  ~/MW_C/test
+-'  36  0  ~/MW/MMAP.py
+-'  30  2  ~/MW/MMAP.py
+-'  3  0  ~/MW/MMAP.py
+-'  60  2  ~/MW_C/mmap.c
 
 # History of marks within files (newest to oldest):
 
-> ~/log/20171208.Gandan.log
-	"	20634	0
+> ~/MW/GandanMsg.py
+	"	9	59
+	^	11	3
+	.	9	59
+	+	70	11
+	+	70	27
+	+	70	4
+	+	70	9
+	+	70	22
+	+	70	0
+	+	70	5
+	+	71	2
+	+	76	2
+	+	81	2
+	+	88	1
+	+	88	0
+	+	88	0
+	+	70	32
+	+	70	20
+	+	70	32
+	+	68	24
+	+	70	0
+	+	70	10
+	+	85	3
+	+	86	3
+	+	88	0
+	+	88	29
+	+	88	31
+	+	88	11
+	+	70	4
+	+	70	0
+	+	60	7
+	+	61	4
+	+	68	4
+	+	70	3
+	+	70	3
+	+	70	5
+	+	70	24
+	+	70	31
+	+	60	0
+	+	69	4
+	+	67	3
+	+	62	30
+	+	63	29
+	+	68	2
+	+	69	3
+	+	70	3
+	+	70	3
+	+	70	0
+	+	65	0
+	+	64	0
+	+	70	0
+	+	70	0
+	+	72	2
+	+	73	2
+	+	75	0
+	+	85	2
+	+	86	2
+	+	76	2
+	+	58	8
+	+	81	2
+	+	80	0
+	+	81	2
+	+	82	0
+	+	84	0
+	+	79	0
+	+	75	5
+	+	76	2
+	+	74	0
+	+	77	0
+	+	78	26
+	+	66	27
+	+	66	25
+	+	86	24
+	+	88	25
+	+	70	0
+	+	70	0
+	+	58	18
+	+	94	0
+	+	70	0
+	+	89	0
+	+	87	5
+	+	89	0
+	+	92	24
+	+	93	13
+	+	50	0
+	+	11	75
+	+	72	28
+	+	16	42
+	+	72	2
+	+	91	29
+	+	22	0
+	+	21	54
+	+	22	57
+	+	21	57
+	+	91	0
+	+	19	0
+	+	18	36
+	+	19	48
+	+	18	48
+	+	8	0
+	+	10	6
+	+	11	2
+	+	9	59
 
 > ~/MW/Gandan.py
-	"	17	2
+	"	41	4
 	^	35	11
 	.	35	10
 	+	127	41
@@ -207,245 +329,219 @@ $
 	+	44	0
 	+	35	10
 
-> ~/MW/GandanMsg.py
-	"	85	35
-	^	90	14
-	.	90	13
-	+	57	6
-	+	58	3
-	+	65	3
-	+	67	3
-	+	67	25
-	+	67	11
-	+	67	27
-	+	67	4
-	+	67	9
-	+	67	22
-	+	67	0
-	+	67	5
-	+	68	2
-	+	73	2
-	+	78	2
-	+	85	1
-	+	85	0
-	+	85	0
-	+	67	32
-	+	67	20
-	+	67	32
-	+	65	24
-	+	67	0
-	+	67	10
-	+	82	3
-	+	83	3
-	+	85	0
-	+	85	29
-	+	85	31
-	+	85	11
-	+	67	4
-	+	67	0
-	+	57	7
-	+	58	4
-	+	65	4
-	+	67	3
-	+	67	3
-	+	67	5
-	+	67	24
-	+	67	31
-	+	57	0
-	+	66	4
-	+	64	3
-	+	59	30
-	+	60	29
-	+	65	2
-	+	66	3
-	+	67	3
-	+	67	3
-	+	67	0
-	+	62	0
-	+	61	0
-	+	67	0
-	+	67	0
-	+	69	2
-	+	70	2
-	+	72	0
-	+	82	2
-	+	83	2
-	+	73	2
-	+	55	8
-	+	78	2
-	+	77	0
-	+	78	2
-	+	79	0
-	+	81	0
+> ~/mw_pub.py
+	"	10	1
+	^	10	2
+	.	10	2
+	+	5	25
+	+	9	16
+	+	8	3
+	+	5	27
+	+	11	28
+	+	8	0
+	+	11	0
+	+	10	2
+
+> ~/gmw_main.py
+	"	13	0
+
+> ~/mw_sub.py
+	"	17	3
+	.	17	0
+	+	17	0
+
+> ~/MW/GandanPub.py
+	"	51	0
+
+> ~/log/20171220.Gandan.log
+	"	188	100
+
+> ~/MW_C/thread.c
+	"	24	9
+	^	24	10
+	.	24	9
+	+	54	50
+	+	24	9
+
+> ~/MW_C/makefile
+	"	2	14
+	^	2	15
+	.	2	15
+	+	3	0
+	+	2	34
+	+	3	6
+	+	2	0
+	+	1	0
+	+	2	0
+	+	4	5
+	+	2	0
+	+	5	0
+	+	6	16
+	+	5	41
+	+	6	29
+	+	2	15
+
+> ~/MW_C/mmap.c
+	"	15	1
+	^	26	0
+	.	26	0
+	+	75	22
+	+	75	27
+	+	75	27
+	+	75	9
+	+	75	4
+	+	75	6
+	+	75	6
+	+	75	0
+	+	75	10
+	+	75	10
+	+	75	10
+	+	75	9
+	+	75	6
+	+	75	6
+	+	75	9
+	+	75	8
+	+	75	0
+	+	75	0
+	+	75	13
+	+	75	12
+	+	75	16
+	+	75	20
+	+	75	19
+	+	75	24
+	+	75	8
+	+	75	4
+	+	75	10
+	+	75	0
+	+	75	0
+	+	56	0
+	+	75	0
+	+	75	0
+	+	75	0
+	+	10	0
+	+	11	10
+	+	50	4
+	+	24	0
+	+	49	0
+	+	12	22
+	+	14	0
 	+	76	0
-	+	72	5
-	+	73	2
-	+	71	0
-	+	74	0
-	+	75	26
-	+	63	27
-	+	63	25
-	+	83	24
-	+	85	25
-	+	67	0
-	+	67	0
-	+	55	18
-	+	91	0
-	+	67	0
-	+	86	0
-	+	84	5
-	+	86	0
-	+	89	24
-	+	90	13
+	+	14	14
+	+	16	8
+	+	17	0
+	+	24	0
+	+	24	0
+	+	14	23
+	+	17	9
+	+	21	0
+	+	17	0
+	+	21	7
+	+	20	8
+	+	22	8
+	+	12	44
+	+	18	15
+	+	24	0
+	+	15	0
+	+	63	0
+	+	71	19
+	+	70	10
+	+	71	29
+	+	72	41
+	+	14	7
+	+	12	30
+	+	15	1
+	+	18	8
+	+	71	20
+	+	64	70
+	+	48	0
+	+	43	10
+	+	48	18
+	+	73	13
+	+	41	3
+	+	73	21
+	+	33	22
+	+	34	0
+	+	38	1
+	+	41	25
+	+	44	39
+	+	73	10
+	+	74	12
+	+	33	10
+	+	48	0
+	+	44	18
+	+	45	0
+	+	44	19
+	+	48	0
+	+	45	41
+	+	47	15
+	+	10	10
+	+	10	0
+	+	11	0
+	+	10	36
+	+	71	1
+	+	11	0
+	+	10	0
+	+	10	0
+	+	11	0
+	+	25	0
+	+	26	0
+
+> ~/MW_C/some
+	"	2	149
+
+> ~/MW_C/TEST
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	0
+
+> ~/MW_C/test.py
+	"	2	9
+	^	2	10
+	.	2	9
+	+	5	6
+	+	3	21
+	+	5	38
+	+	9	8
+	+	10	12
+	+	6	0
+	+	7	0
+	+	7	40
+	+	4	0
+	+	10	0
+	+	3	23
+	+	10	0
+	+	5	0
+	+	6	0
+	+	7	0
+	+	5	0
+	+	7	40
+	+	8	0
+	+	6	0
+	+	9	0
+	+	10	0
+	+	2	9
+
+> ~/MW/MMAP.py
+	"	78	12
+	.	3	0
+	+	4	0
+	+	3	0
+
+> ~/MW_C/t
+	"	1	0
+
+> ~/MW_C/OM
+	"	1	0
+
+> ~/MW_C/test
+	"	1	0
+
+> ~/log/20171208.Gandan.log
+	"	20634	0
 
 > ~/log/20171207.Gandan.log
 	"	7278	0
 
 > ~/log/20171204.Gandan.log
-	"	1	0
-
-> ~/log/20171201.Gandan.log
-	"	1	0
-
-> ~/gmw_main.py
-	"	1	0
-
-> ~/log/prev/20171130.Gandan.log
-	"	14066	0
-
-> ~/MW/MMAP.py
-	"	3	0
-	.	3	0
-	+	4	0
-	+	3	0
-
-> ~/sync.sh
-	"	1	0
-
-> /tmp/crontab.X9whj8
-	"	2	0
-	^	2	1
-	.	2	0
-	+	1	0
-	+	2	0
-
-> ~/log/20171130.Gandan.log
-	"	1	0
-
-> ~/MW/GandanPub.py
-	"	56	3
-	^	56	4
-	.	56	3
-	+	14	39
-	+	55	23
-	+	56	3
-
-> ~/MW/GandanSub.py
-	"	37	5
-	^	29	10
-	.	37	0
-	+	41	15
-	+	29	23
-	+	39	38
-	+	41	4
-	+	41	4
-	+	39	0
-	+	29	39
-	+	39	29
-	+	41	0
-	+	14	0
-	+	41	2
-	+	41	1
-	+	41	0
-	+	41	0
-	+	41	0
-	+	41	0
-	+	39	0
-	+	39	16
-	+	39	0
-	+	39	9
-	+	22	0
-	+	29	71
-	+	39	5
-	+	39	0
-	+	38	0
-	+	26	0
-	+	19	2
-	+	29	40
-	+	28	26
-	+	29	20
-	+	29	20
-	+	22	19
-	+	11	61
-	+	29	27
-	+	29	36
-	+	22	0
-	+	21	0
-	+	24	0
-	+	27	17
-	+	28	11
-	+	29	44
-	+	29	0
-	+	29	47
-	+	29	25
-	+	29	24
-	+	29	20
-	+	29	23
-	+	29	24
-	+	29	24
-	+	29	24
-	+	29	23
-	+	29	24
-	+	29	4
-	+	29	10
-	+	29	37
-	+	29	0
-	+	29	20
-	+	29	30
-	+	38	8
-	+	38	16
-	+	29	34
-	+	38	0
-	+	29	0
-	+	29	26
-	+	35	0
-	+	31	0
-	+	28	37
-	+	29	30
-	+	30	9
-	+	29	0
-	+	31	0
-	+	37	0
-
-> ~/mw_sub.py
-	"	19	3
-	.	19	0
-	+	16	5
-	+	17	19
-	+	18	24
-	+	20	10
-	+	20	15
-	+	20	13
-	+	20	0
-	+	20	10
-	+	20	0
-	+	19	10
-	+	17	0
-	+	19	0
-
-> /home/robosys/gandan/MW/GandanSub.py
-	"	41	6
-
-> ~/tmp
-	"	1	0
-	.	1	0
-	+	1	0
-
-> ~/log/20171128.Gandan.log
-	"	153	0
-
-> ~/mw_pub.py
-	"	1	0
-
-> ~/service.sh
 	"	1	0

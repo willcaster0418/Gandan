@@ -5,18 +5,21 @@ import threading, logging, socket
 
 class GandanMsg:
 	def __init__(self, _cmd, _dat): 
-		self.total_size = 12 + len(_cmd) + len(_dat)
+		if GandanMsg.version(None) < 300:
+			self.total_size = 12 + len(bytes(_cmd)) + len(bytes(_dat))
+		else:
+			self.total_size = 12 + len(bytes(_cmd, "utf-8")) + len(bytes(_dat,"utf-8"))
 		(self.sep_, self.cmd_, self.dat_) = (b'#', _cmd, _dat)
 
 	def __bytes__(self):
 		_b =  self.sep_
-		_b += struct.pack("!i", len(self.cmd_) + len(self.dat_)+8)
+		_b += struct.pack("!i", self.total_size-4)
 		if GandanMsg.version(None) < 300:
-			_b += struct.pack("!i", len(self.cmd_)) + bytes(self.cmd_)
-			_b += struct.pack("!i", len(self.dat_)) + bytes(self.dat_)
+			_b += struct.pack("!i", len(bytes(self.cmd_))) + bytes(self.cmd_)
+			_b += struct.pack("!i", len(bytes(self.dat_))) + bytes(self.dat_)
 		else:
-			_b += struct.pack("!i", len(self.cmd_)) + bytes(self.cmd_, "utf-8")
-			_b += struct.pack("!i", len(self.dat_)) + bytes(self.dat_, "utf-8")
+			_b += struct.pack("!i", len(bytes(self.cmd_, "utf-8"))) + bytes(self.cmd_, "utf-8")
+			_b += struct.pack("!i", len(bytes(self.dat_, "utf-8"))) + bytes(self.dat_, "utf-8")
 		return _b
 	
 	def __str__(self):
