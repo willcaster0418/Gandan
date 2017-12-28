@@ -38,8 +38,8 @@ class Gandan:
 			try:
 				_h = GandanMsg.recv(None, _req)
 			except Exception as e:
-				_type, _value, _traceback = sys.exc_info()
-				self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				#_type, _value, _traceback = sys.exc_info()
+				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				_h = None
 
 			try:	
@@ -66,10 +66,9 @@ class Gandan:
 				else:
 					self.log("neither PUB nor SUB")
 			except Exception as e:
-				_type, _value, _traceback = sys.exc_info()
-				self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
+				#_type, _value, _traceback = sys.exc_info()
+				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
 				break
-		self.log("handler is done socket : %s" % str(_req))
 
 	def pub(self, _req, _topic, _msg):
 		if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
@@ -117,8 +116,11 @@ class Gandan:
 	def mon(self, _topic, _data):
 		if not _topic in self.sub_topic_.keys():
 			return
+
+		error_req_list = []
+
+		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
 		for i, _req in enumerate(self.sub_topic_[_topic]):
-			#self.log("SUB[%s] send to [%s]" % (_topic, str(_req)))
 			try:
 				for d in _data:
 					if Gandan.version(None) < 300:
@@ -126,8 +128,15 @@ class Gandan:
 					else:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d,'utf-8'))
 			except Exception as e:
-				self.log("#Error in SUB [%s]" % _topic)
+				#self.log("#Error in SUB [%s]" % _topic)
+				error_req_list.append(_req)
 				continue
+
+		for _req in error_req_list:
+			self.sub_topic_[_topic].remove(_req)
+
+		if len(error_req_list) > 0:
+			self.log("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))
 
 	@staticmethod
 	def version(self):

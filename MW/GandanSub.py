@@ -21,14 +21,16 @@ class GandanSub:
 
 			if _h.dat_.strip() == "HB":
 				logging.info("Heart Beat...[%s]" % self.cmd_)
-				return 0
+				return 1
 
 			cb(_h)
 			return 1
 
 		except Exception as e:
-			if str(e) in ["timeout", "convert"]:
-				return
+			if str(e) in ["timeout"]:
+				return 1
+			elif str(e) in ["convert"]:
+				return -2
 			else:
 				try:
 					self.s.close()

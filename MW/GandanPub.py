@@ -1,3 +1,4 @@
+#--*--encoding:utf-8--*--
 import struct, sys
 import socket
 import re
@@ -38,8 +39,8 @@ class GandanPub:
 		try:
 			if self.cmd_ == None:
 				self.cmd_ = _cmd
-				#self.hb_thr = threading.Thread(target=self.hb, args=())
-				#self.hb_thr.start()
+				self.hb_thr = threading.Thread(target=self.hb, args=())
+				self.hb_thr.start()
 			try:
 				self.publock.acquire()
 				GandanMsg.send(None, self.s, _cmd, _data)
@@ -52,23 +53,31 @@ class GandanPub:
 		except Exception as e:
 			logging.info(str(e))
 			logging.info("connection lost retry ... ")
+
 			if self.replay_ == 1:
 				self.buff.append(_data)
 
 			try:
+				self.publock.acquire()
 				self.s.close()
 				self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				self.s = GandanPub.connect(None, self.s, self.ip_port_)
+				#재접속 시 무조건 HB를 날려줌
+				hb_msg = "HB"
+				GandanMsg.send(None, self.s, self.cmd_, hb_msg)
+				self.publock.release()
 
 			except Exception as e:
+				self.publock.release()
 				logging.info(str(e))
 				logging.info("connection buff[%s]" % str(self.buff))
-				return
+				return -1
 
 			if self.replay_ == 1:
 				for _d in self.buff:
 					self.pub(_cmd, _d)
 			self.buff = []
+			return 0
 
 	def close(self):
 		self.s.close()
