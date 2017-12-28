@@ -20,29 +20,24 @@ class GandanSub:
 			_h = GandanMsg.recv(None, self.s)
 
 			if _h.dat_.strip() == "HB":
-				return
+				logging.info("Heart Beat...[%s]" % self.cmd_)
+				return 0
 
 			cb(_h)
+			return 1
 
 		except Exception as e:
 			if str(e) in ["timeout", "convert"]:
 				return
-			elif str(e) == "conn":
+			else:
 				try:
-					#self.s.close()
+					self.s.close()
 					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
 				except Exception as e:
 					logging.info(str(e))
-					time.sleep(3)
-					return
-			else:
-				self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-				self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-				logging.info(str(e))
-				time.sleep(3)
-				return
+					return -1
 
 	def close(self):
 		self.s.close()

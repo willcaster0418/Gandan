@@ -45,8 +45,8 @@ class Gandan:
 			try:	
 				if _h == None: 
 					#self.log("None is return from socket : %s" % str(_req))
-					#SUB이 받으면 None을 return하는 경우가 종종 있는 거 같음
-					if _cnt_none < 30:
+					#SUB이 소켓을 닫으면  None을 return
+					if _cnt_none < 4:
 						_cnt_none += 1
 						continue
 					else:

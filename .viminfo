@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/pdb
+~MSle0~/\^15:00
 
 # Last Substitute Search Pattern:
 ~MSle0&tmp
@@ -17,10 +17,10 @@
 $buf_ptr
 
 # Command Line History (newest to oldest):
+:q
 :wq
 :w
 :Wq
-:q
 :q!
 :ㅈ
 :54
@@ -41,6 +41,9 @@ $buf_ptr
 :51
 
 # Search String History (newest to oldest):
+?/\^15:00
+?/^15:00
+??15:00
 ?/pdb
 ?/recv
 ?/sub
@@ -77,54 +80,75 @@ $buf_ptr
 # Registers:
 "0	LINE	0
 				self.total_size = 12 + len(bytes(_cmd, "utf-8")) + len(bytes(_dat,"utf-8"))
-"1	BLOCK	0
+""1	LINE	0
+						time.sleep(3)
+"2	CHAR	0
+				else:
+					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+					logging.info(str(e))
+					time.sleep(3)
+					return
+	
+	
+"3	BLOCK	0
 	s
 	s
-"2	BLOCK	0
-	(
-	(
-"3	LINE	0
-					import pdb;pdb.set_trace()
 "4	BLOCK	0
 	(
 	(
 "5	LINE	0
-				import time;time.sleep(1)
-"6	LINE	0
-				import pdb;pdb.set_trace()
+					import pdb;pdb.set_trace()
+"6	BLOCK	0
+	(
+	(
 "7	LINE	0
-				import pdb;pdb.set_trace()
+				import time;time.sleep(1)
 "8	LINE	0
 				import pdb;pdb.set_trace()
 "9	LINE	0
-	#	gcc -lpthread ./thread.c -o thread
-""-	CHAR	0
-	,"utf-8"
+				import pdb;pdb.set_trace()
+"-	CHAR	0
+	 str(e) == "conn"
 
 # File marks:
-'0  9  59  ~/MW/GandanMsg.py
-'1  21  57  ~/MW/GandanMsg.py
-'2  22  30  ~/MW/GandanMsg.py
-'3  41  4  ~/MW/Gandan.py
-'4  10  1  ~/mw_pub.py
-'5  91  29  ~/MW/GandanMsg.py
-'6  39  23  ~/MW/Gandan.py
-'7  13  0  ~/gmw_main.py
-'8  17  3  ~/mw_sub.py
-'9  11  26  ~/mw_pub.py
+'0  16  14  ~/MW/GandanSub.py
+'1  36  5  ~/MW/GandanSub.py
+'2  70  42  ~/MW/Gandan.py
+'3  406409  0  ~/log/20171228.Gandan.log
+'4  13  0  ~/gmw_main.py
+'5  1  0  ~/service.sh
+'6  9  3  ~/MW/GandanMsg.py
+'7  21  57  ~/MW/GandanMsg.py
+'8  22  30  ~/MW/GandanMsg.py
+'9  41  4  ~/MW/Gandan.py
 
 # Jumplist (newest first):
--'  9  59  ~/MW/GandanMsg.py
+-'  16  14  ~/MW/GandanSub.py
+-'  36  5  ~/MW/GandanSub.py
+-'  1  0  ~/MW/GandanSub.py
+-'  70  42  ~/MW/Gandan.py
+-'  41  4  ~/MW/Gandan.py
+-'  406409  0  ~/log/20171228.Gandan.log
+-'  429507  17  ~/log/20171228.Gandan.log
+-'  429508  17  ~/log/20171228.Gandan.log
+-'  429509  17  ~/log/20171228.Gandan.log
+-'  429510  17  ~/log/20171228.Gandan.log
+-'  429511  17  ~/log/20171228.Gandan.log
+-'  429512  17  ~/log/20171228.Gandan.log
+-'  439498  0  ~/log/20171228.Gandan.log
+-'  1  0  ~/log/20171228.Gandan.log
+-'  13  0  ~/gmw_main.py
+-'  1  0  ~/service.sh
+-'  9  3  ~/MW/GandanMsg.py
 -'  21  3  ~/MW/GandanMsg.py
 -'  22  3  ~/MW/GandanMsg.py
 -'  91  4  ~/MW/GandanMsg.py
--'  41  4  ~/MW/Gandan.py
 -'  39  4  ~/MW/Gandan.py
 -'  10  1  ~/mw_pub.py
 -'  11  3  ~/mw_pub.py
 -'  72  2  ~/MW/GandanMsg.py
 -'  49  5  ~/MW/Gandan.py
--'  13  0  ~/gmw_main.py
 -'  1  0  ~/gmw_main.py
 -'  17  3  ~/mw_sub.py
 -'  8  3  ~/mw_pub.py
@@ -198,24 +222,45 @@ $buf_ptr
 -'  20  3  ~/MW/MMAP.py
 -'  9  2  ~/MW/MMAP.py
 -'  7  0  ~/MW_C/test.py
--'  3  0  ~/MW_C/test.py
--'  83  1  ~/MW/MMAP.py
--'  1  0  ~/MW_C/t
--'  33  2  ~/MW/MMAP.py
--'  17  2  ~/MW/Gandan.py
--'  88  3  ~/MW/GandanMsg.py
--'  1  0  ~/MW_C/test.py
--'  1  0  ~/MW_C/OM
--'  1  0  ~/MW_C/test
--'  36  0  ~/MW/MMAP.py
--'  30  2  ~/MW/MMAP.py
--'  3  0  ~/MW/MMAP.py
--'  60  2  ~/MW_C/mmap.c
 
 # History of marks within files (newest to oldest):
 
+> ~/MW/GandanSub.py
+	"	16	14
+	^	40	14
+	.	40	0
+	+	23	48
+	+	24	11
+	+	27	10
+	+	34	5
+	+	32	7
+	+	43	0
+	+	41	0
+	+	40	0
+
+> ~/MW/Gandan.py
+	"	70	42
+	^	48	48
+	.	48	48
+	+	127	41
+	+	15	0
+	+	43	12
+	+	44	0
+	+	35	10
+	+	49	20
+	+	48	48
+
+> ~/log/20171228.Gandan.log
+	"	406409	0
+
+> ~/gmw_main.py
+	"	13	0
+
+> ~/service.sh
+	"	1	0
+
 > ~/MW/GandanMsg.py
-	"	9	59
+	"	9	3
 	^	11	3
 	.	9	59
 	+	70	11
@@ -319,16 +364,6 @@ $buf_ptr
 	+	11	2
 	+	9	59
 
-> ~/MW/Gandan.py
-	"	41	4
-	^	35	11
-	.	35	10
-	+	127	41
-	+	15	0
-	+	43	12
-	+	44	0
-	+	35	10
-
 > ~/mw_pub.py
 	"	10	1
 	^	10	2
@@ -341,9 +376,6 @@ $buf_ptr
 	+	8	0
 	+	11	0
 	+	10	2
-
-> ~/gmw_main.py
-	"	13	0
 
 > ~/mw_sub.py
 	"	17	3
@@ -535,13 +567,4 @@ $buf_ptr
 	"	1	0
 
 > ~/MW_C/test
-	"	1	0
-
-> ~/log/20171208.Gandan.log
-	"	20634	0
-
-> ~/log/20171207.Gandan.log
-	"	7278	0
-
-> ~/log/20171204.Gandan.log
 	"	1	0
