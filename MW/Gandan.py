@@ -40,28 +40,16 @@ class Gandan:
 			except Exception as e:
 				#_type, _value, _traceback = sys.exc_info()
 				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
-				_h = None
+				break
 
 			try:	
-				if _h == None: 
-					#self.log("None is return from socket : %s" % str(_req))
-					#SUB이 소켓을 닫으면  None을 return
-					if _cnt_none < 4:
-						_cnt_none += 1
-						continue
-					else:
-						break
-				else:
-					_cnt_none = 0
-					self.log(_h.__str__())
-					
 				(_cmd, _msg) = (_h.cmd_, _h.dat_)
 				[_pubsub, _topic]  = _cmd.split("_")
 				if _pubsub == "PUB":
-					self.log("PUB received with TOPIC[%s]" % _topic)
+					#self.log("PUB received with TOPIC[%s]" % _topic)
 					_p = self.pub(_req, _topic, _msg)
 				elif _pubsub == "SUB":
-					self.log("SUB received with TOPIC[%s]" % _topic)
+					#self.log("SUB received with TOPIC[%s]" % _topic)
 					_p = self.sub(_req, _topic, _msg)
 				else:
 					self.log("neither PUB nor SUB")
@@ -77,26 +65,26 @@ class Gandan:
 
 		_path = self.path_+_topic
 
-		if _topic in self.pub_topic_.keys(): 
-			#self.log("PUB write %s, " % _topic + "%s" % _msg)
-			_pub = self.pub_topic_[_topic][-1]
-			_pub.writep(bytes(_msg,'utf-8'))
-		else:
+		_pub = None
+		if not _topic in self.pub_topic_.keys(): 
 			self.pub_topic_[_topic] = []
 			self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
-			self.pub_topic_[_topic][-1].start()
 			_pub = self.pub_topic_[_topic][-1]
-			_pub.writep(bytes(_msg,'utf-8'))
-			self.log("PUB que path : %s monitor start" % _path + ", TOPIC : %s" % _topic)
+			_pub.start()
+			self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+
+		_pub = self.pub_topic_[_topic][-1]
+		_pub.writep(bytes(_msg,'utf-8'))
+		self.log("PUB write %s, " % _topic + "%s" % _msg.strip() + "r[%d]w[%d]" % (_pub.r(), _pub.w()))
 
 	def sub(self, _req, _topic, _msg):
 		if not _topic in self.sub_topic_.keys():
 			self.sub_topic_[_topic] = []
 			self.sub_topic_[_topic].append(_req)
-			self.log("_topic : %s is created for SUB" % _topic)
+			#self.log("_topic : %s is created for SUB" % _topic)
 		else:
 			self.sub_topic_[_topic].append(_req)
-			self.log("_topic : %s is appended for SUB" % _topic)
+			#self.log("_topic : %s is appended for SUB" % _topic)
 
 	def start(self):
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -117,6 +105,7 @@ class Gandan:
 		if not _topic in self.sub_topic_.keys():
 			return
 
+		#self.log("Send in SUB [%s]..Done" % str(_data))
 		error_req_list = []
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
@@ -127,6 +116,7 @@ class Gandan:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d))
 					else:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d,'utf-8'))
+						self.log("Send in SUB [%s]..Done" % _topic)
 			except Exception as e:
 				#self.log("#Error in SUB [%s]" % _topic)
 				error_req_list.append(_req)

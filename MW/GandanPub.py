@@ -12,12 +12,12 @@ from MW.GandanPub import *
 from MW.GandanSub import *
 
 class GandanPub:
-	def __init__(self, ip, port, replay = 0):
+	def __init__(self, ip, port):
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.ip_port_ = (ip, port)
 		self.s = GandanPub.connect(None, self.s, self.ip_port_)
-		self.replay_ = replay
-		self.buff = []
+		self.prev_cmd_ = None
+		self.prev_data_ = None
 		self.cmd_ = None
 		#for multiple use
 		self.publock = threading.Lock()
@@ -25,14 +25,15 @@ class GandanPub:
 	def hb(self):
 		while True:
 			try:
-				self.publock.acquire()
+				#self.publock.acquire()
 				hb_msg = "HB"
-				GandanMsg.send(None, self.s, self.cmd_, hb_msg)
-				self.publock.release()
+				#GandanMsg.send(None, self.s, self.cmd_, hb_msg)
+				self.pub(self.cmd_, "HB")
+				#self.publock.release()
 				logging.info("send HB for topic[%s]...done" % self.cmd_)
 				time.sleep(30)
 			except Exception as e:
-				self.publock.release()
+				#self.publock.release()
 				continue
 
 	def pub(self, _cmd, _data):
@@ -44,6 +45,10 @@ class GandanPub:
 			try:
 				self.publock.acquire()
 				GandanMsg.send(None, self.s, _cmd, _data)
+				#socket closing 없이 죽은 경우, 첫번째 전송까지는 Exception 발생하지 않음
+				#적절한 수준의 전송보장은 아닌 것 같음
+				self.prev_cmd_ = _cmd
+				self.prev_data_ = _data
 				self.publock.release()
 			except Exception as e:
 				logging.info(str(e))
@@ -51,32 +56,33 @@ class GandanPub:
 				raise Exception("connection lost")
 
 		except Exception as e:
-			logging.info(str(e))
-			logging.info("connection lost retry ... ")
 
-			if self.replay_ == 1:
-				self.buff.append(_data)
+			while True:
+				try:
+					logging.info("connection lost retry ... ")
+					self.publock.acquire()
+					self.s.close()
+					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+					self.s = GandanPub.connect(None, self.s, self.ip_port_)
+					self.publock.release()
+					logging.info("connection lost retry ... SUCC ")
 
-			try:
-				self.publock.acquire()
-				self.s.close()
-				self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-				self.s = GandanPub.connect(None, self.s, self.ip_port_)
-				#재접속 시 무조건 HB를 날려줌
-				hb_msg = "HB"
-				GandanMsg.send(None, self.s, self.cmd_, hb_msg)
-				self.publock.release()
+					if False:#self.prev_cmd_ != None and self.prev_data_ != None:
+						self.pub(self.prev_cmd_, self.prev_data_)
+						logging.info("send[%s][%s] .. Done" % (self.prev_cmd_, self.prev_data_))
 
-			except Exception as e:
-				self.publock.release()
-				logging.info(str(e))
-				logging.info("connection buff[%s]" % str(self.buff))
-				return -1
+					for i in range(0, 10):
+						self.pub(_cmd, "Re-Initialize Connection")
+						time.sleep(0.1)
 
-			if self.replay_ == 1:
-				for _d in self.buff:
-					self.pub(_cmd, _d)
-			self.buff = []
+					self.pub(_cmd, _data)
+					logging.info("send[%s][%s] .. Done" % (_cmd, _data))
+					return 0
+
+				except Exception as e:
+					self.publock.release()
+					time.sleep(1)
+
 			return 0
 
 	def close(self):

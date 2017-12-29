@@ -22,9 +22,9 @@ class GandanSub:
 			if _h.dat_.strip() == "HB":
 				logging.info("Heart Beat...[%s]" % self.cmd_)
 				return 1
-
-			cb(_h)
-			return 1
+			else:
+				cb(_h)
+				return 1
 
 		except Exception as e:
 			if str(e) in ["timeout"]:
@@ -32,14 +32,15 @@ class GandanSub:
 			elif str(e) in ["convert"]:
 				return -2
 			else:
-				try:
-					self.s.close()
-					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-
-				except Exception as e:
-					logging.info(str(e))
-					return -1
+				while True:
+					try:
+						self.s.close()
+						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+						return 1
+					except Exception as e:
+						logging.info(str(e))
+						time.sleep(1)
 
 	def close(self):
 		self.s.close()
