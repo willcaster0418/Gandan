@@ -5,7 +5,7 @@ import threading, logging, socket
 
 class GandanMsg:
 	def __init__(self, _cmd, _dat): 
-		if GandanMsg.version(None) < 300:
+		if GandanMsg.version(None) < 3:
 			self.total_size = 12 + len(bytes(_cmd)) + len(bytes(_dat))
 		else:
 			self.total_size = 12 + len(bytes(_cmd, "utf-8")) + len(bytes(_dat,"utf-8"))
@@ -14,7 +14,7 @@ class GandanMsg:
 	def __bytes__(self):
 		_b =  self.sep_
 		_b += struct.pack("!i", self.total_size-4)
-		if GandanMsg.version(None) < 300:
+		if GandanMsg.version(None) < 3:
 			_b += struct.pack("!i", len(bytes(self.cmd_))) + bytes(self.cmd_)
 			_b += struct.pack("!i", len(bytes(self.dat_))) + bytes(self.dat_)
 		else:
@@ -27,7 +27,7 @@ class GandanMsg:
 
 	@staticmethod
 	def version(self):
-		return int(re.sub('\.','',sys.version.split(' ')[0]).zfill(3))
+		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
 
 	@staticmethod
 	def conv2(self, _b):
@@ -48,7 +48,7 @@ class GandanMsg:
 	@staticmethod
 	def send(self, _sock, _cmd, _msg):
 		_h = GandanMsg(_cmd, _msg)
-		if GandanMsg.version(None) < 300:
+		if GandanMsg.version(None) < 3:
 			_sock.send(_h.__bytes__())
 		else:
 			_sock.send(bytes(_h))
@@ -85,7 +85,7 @@ class GandanMsg:
 		if len(_b) == 0:
 			raise Exception('conn')
 		try:
-			if GandanMsg.version(None) < 300:
+			if GandanMsg.version(None) < 3:
 				return GandanMsg.conv2(None, _b)
 			else:
 				return GandanMsg.conv3(None, _b)

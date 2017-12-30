@@ -47,7 +47,7 @@ class GandanSub:
 
 	@staticmethod
 	def version(self):
-		return int(re.sub('\.','',sys.version.split(' ')[0]).zfill(3))
+		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
 
 	@staticmethod
 	def connect(self, _sock, _ip_port, _cmd, _io):

@@ -21,6 +21,8 @@ class Gandan:
 		self.pub_topic_ = {}
 		self.sub_topic_ = {}
 		self.rlist_ = []
+		self.p_reg_lock = threading.Lock()
+		self.s_reg_lock = threading.Lock()
 
 	def setup_log(self, path):
 		l_format = '%(asctime)s:%(msecs)03d^%(levelname)s^%(funcName)s^%(lineno)d^%(message)s'
@@ -31,66 +33,87 @@ class Gandan:
 		logging.info(_d)
 
 	def handler(self, _req):
-		_p = None
+		_p = True
 		_h = None
 		_cnt_none = 0
-		while(True):
+		while(_p):
 			try:
 				_h = GandanMsg.recv(None, _req)
+				(_cmd, _msg)	  = (_h.cmd_, _h.dat_)
+				[_pubsub, _topic] = _cmd.split("_")
 			except Exception as e:
-				#_type, _value, _traceback = sys.exc_info()
-				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
-				break
+				_type, _value, _traceback = sys.exc_info()
+				self.log("#Error" + str(_type) + str(_value))
+				for _err_str in traceback.format_tb(_traceback):
+					self.log(_err_str)
+				_p = False
+				continue
 
-			try:	
-				(_cmd, _msg) = (_h.cmd_, _h.dat_)
-				[_pubsub, _topic]  = _cmd.split("_")
-				if _pubsub == "PUB":
-					#self.log("PUB received with TOPIC[%s]" % _topic)
+			#Note : PUB/SUB가 등록 시 경쟁하는 상황이 발생가능
+			if _pubsub == "PUB": 
+				if not _topic in self.pub_topic_.keys():
+					self.p_reg_lock.acquire()
 					_p = self.pub(_req, _topic, _msg)
-				elif _pubsub == "SUB":
-					#self.log("SUB received with TOPIC[%s]" % _topic)
-					_p = self.sub(_req, _topic, _msg)
+					self.p_reg_lock.release()
 				else:
-					self.log("neither PUB nor SUB")
-			except Exception as e:
-				#_type, _value, _traceback = sys.exc_info()
-				#self.log("#Error" + str(_type) + str(_value) + str(traceback.format_tb(_traceback)))
-				break
+					_p = self.pub(_req, _topic, _msg)
+				continue
+
+			if _pubsub == "SUB":
+				if not _topic in self.sub_topic_.keys():
+					self.s_reg_lock.acquire()
+					_p = self.sub(_req, _topic, _msg)
+					self.s_reg_lock.release()
+				else: 
+					_p = self.sub(_req, _topic, _msg)
+				continue
 
 	def pub(self, _req, _topic, _msg):
-		if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
-			raise Exception("Invalid Access to PUB ORDER or OM from %s" % _req.get_sockname()[0])
-			_req.close()
+		try:
+			_path = self.path_+_topic
+			_pub = None
 
-		_path = self.path_+_topic
+			if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
+				_req.close()
+				return False
 
-		_pub = None
-		if not _topic in self.pub_topic_.keys(): 
-			self.pub_topic_[_topic] = []
-			self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
-			_pub = self.pub_topic_[_topic][-1]
-			_pub.start()
-			self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+			if not _topic in self.pub_topic_.keys(): 
+				self.pub_topic_[_topic] = []
+				self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
+				_pub = self.pub_topic_[_topic][-1]
+				_pub.start()
+				self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+			else:
+				_pub = self.pub_topic_[_topic][-1]
 
-		_pub = self.pub_topic_[_topic][-1]
-		_pub.writep(bytes(_msg,'utf-8'))
-		self.log("PUB write %s, " % _topic + "%s" % _msg.strip() + "r[%d]w[%d]" % (_pub.r(), _pub.w()))
+			_pub.writep(bytes(_msg,'utf-8'))
+		except Exception as e:
+			self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+			return False
+
+		self.log("PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+		return True
 
 	def sub(self, _req, _topic, _msg):
-		if not _topic in self.sub_topic_.keys():
-			self.sub_topic_[_topic] = []
-			self.sub_topic_[_topic].append(_req)
-			#self.log("_topic : %s is created for SUB" % _topic)
-		else:
-			self.sub_topic_[_topic].append(_req)
-			#self.log("_topic : %s is appended for SUB" % _topic)
+		try:
+			if not _topic in self.sub_topic_.keys():
+				self.sub_topic_[_topic] = []
+				self.sub_topic_[_topic].append(_req)
+				self.log("_topic : %s is created for SUB" % _topic)
+			else:
+				self.sub_topic_[_topic].append(_req)
+				self.log("_topic : %s is appended for SUB" % _topic)
+		except Exception as e:
+			return False
+		return True
 
 	def start(self):
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+			self.log("------------ MW Gandan Start --------------")
 			s.bind(self.ip_port)
 			s.listen(10)
+			#Todo : 소켓 당 쓰레드를 띄우는 대신 다중 IO로 변경
 			while True:
 				try:
 					_r, _a = s.accept()
@@ -105,20 +128,17 @@ class Gandan:
 		if not _topic in self.sub_topic_.keys():
 			return
 
-		#self.log("Send in SUB [%s]..Done" % str(_data))
 		error_req_list = []
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
 		for i, _req in enumerate(self.sub_topic_[_topic]):
 			try:
 				for d in _data:
-					if Gandan.version(None) < 300:
+					if Gandan.version(None) < 3:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d))
 					else:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d,'utf-8'))
-						self.log("Send in SUB [%s]..Done" % _topic)
 			except Exception as e:
-				#self.log("#Error in SUB [%s]" % _topic)
 				error_req_list.append(_req)
 				continue
 
@@ -130,7 +150,7 @@ class Gandan:
 
 	@staticmethod
 	def version(self):
-		return int(re.sub('\.','',sys.version.split(' ')[0]).zfill(3))
+		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
 
 if __name__ == "__main__":
 	try:
