@@ -112,23 +112,24 @@ $buf_ptr
 	 str(e) == "conn"
 
 # File marks:
-'0  1  0  ~/sync.sh
-'1  16  14  ~/MW/GandanSub.py
-'2  36  5  ~/MW/GandanSub.py
-'3  70  42  ~/MW/Gandan.py
-'4  406409  0  ~/log/20171228.Gandan.log
-'5  13  0  ~/gmw_main.py
-'6  1  0  ~/service.sh
-'7  9  3  ~/MW/GandanMsg.py
-'8  21  57  ~/MW/GandanMsg.py
-'9  22  30  ~/MW/GandanMsg.py
+'0  62  0  ~/MW/Gandan.py
+'1  1  0  ~/sync.sh
+'2  16  14  ~/MW/GandanSub.py
+'3  36  5  ~/MW/GandanSub.py
+'4  70  42  ~/MW/Gandan.py
+'5  406409  0  ~/log/20171228.Gandan.log
+'6  13  0  ~/gmw_main.py
+'7  1  0  ~/service.sh
+'8  9  3  ~/MW/GandanMsg.py
+'9  21  57  ~/MW/GandanMsg.py
 
 # Jumplist (newest first):
+-'  62  0  ~/MW/Gandan.py
+-'  70  4  ~/MW/Gandan.py
 -'  1  0  ~/sync.sh
 -'  16  14  ~/MW/GandanSub.py
 -'  36  5  ~/MW/GandanSub.py
 -'  1  0  ~/MW/GandanSub.py
--'  70  42  ~/MW/Gandan.py
 -'  41  4  ~/MW/Gandan.py
 -'  406409  0  ~/log/20171228.Gandan.log
 -'  429507  17  ~/log/20171228.Gandan.log
@@ -220,10 +221,20 @@ $buf_ptr
 -'  9  0  ~/MW_C/test.py
 -'  5  0  ~/MW_C/test.py
 -'  6  0  ~/MW_C/test.py
--'  20  3  ~/MW/MMAP.py
--'  9  2  ~/MW/MMAP.py
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/Gandan.py
+	"	62	0
+	^	48	48
+	.	48	48
+	+	127	41
+	+	15	0
+	+	43	12
+	+	44	0
+	+	35	10
+	+	49	20
+	+	48	48
 
 > ~/sync.sh
 	"	1	0
@@ -240,18 +251,6 @@ $buf_ptr
 	+	43	0
 	+	41	0
 	+	40	0
-
-> ~/MW/Gandan.py
-	"	70	42
-	^	48	48
-	.	48	48
-	+	127	41
-	+	15	0
-	+	43	12
-	+	44	0
-	+	35	10
-	+	49	20
-	+	48	48
 
 > ~/log/20171228.Gandan.log
 	"	406409	0

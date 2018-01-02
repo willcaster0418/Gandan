@@ -36,6 +36,7 @@ class Gandan:
 		_p = True
 		_h = None
 		_cnt_none = 0
+		_pubsub = ""
 		while(_p):
 			try:
 				_h = GandanMsg.recv(None, _req)
@@ -66,7 +67,12 @@ class Gandan:
 					self.s_reg_lock.release()
 				else: 
 					_p = self.sub(_req, _topic, _msg)
-				continue
+				break
+		try:
+			if _pubsub == "PUB":
+				_req.close()
+		except Exception as e:
+			self.log("#Error socket close for %s" % str(_req))
 
 	def pub(self, _req, _topic, _msg):
 		try:

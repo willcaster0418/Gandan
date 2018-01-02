@@ -21,26 +21,28 @@ class GandanPub:
 		self.cmd_ = None
 		#for multiple use
 		self.publock = threading.Lock()
+		self.hb_flag = True
 
-	def hb(self):
-		while True:
+	def hb(self, obj):
+		while obj.hb_flag:
 			try:
 				#self.publock.acquire()
 				hb_msg = "HB"
 				#GandanMsg.send(None, self.s, self.cmd_, hb_msg)
 				self.pub(self.cmd_, "HB")
 				#self.publock.release()
-				logging.info("send HB for topic[%s]...done" % self.cmd_)
+				logging.info("send HB for topic[%s, %s]...done" % (self.cmd_, self.hb_flag))
 				time.sleep(30)
 			except Exception as e:
 				#self.publock.release()
+				time.sleep(1)
 				continue
 
 	def pub(self, _cmd, _data):
 		try:
 			if self.cmd_ == None:
 				self.cmd_ = _cmd
-				self.hb_thr = threading.Thread(target=self.hb, args=())
+				self.hb_thr = threading.Thread(target=self.hb, args=(self,))
 				self.hb_thr.start()
 			try:
 				self.publock.acquire()
@@ -87,6 +89,7 @@ class GandanPub:
 
 	def close(self):
 		self.s.close()
+		self.hb_flag = False
 
 	@staticmethod
 	def version(self):

@@ -9,10 +9,10 @@ from MW.GandanSub import *
 
 class GandanSub:
 	def __init__(self, ip, port, _cmd, _io): # _io is wating time 
-		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.ip_port_ = (ip, port)
 		self.io_	  = _io
 		self.cmd_	 = _cmd
+		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
 	def sub(self, cb):
@@ -32,15 +32,22 @@ class GandanSub:
 			elif str(e) in ["convert"]:
 				return -2
 			else:
+				logging.info(str(e)+": #Error Try to reconnect")
 				while True:
 					try:
-						self.s.close()
+						_tmp_socket = self.s
 						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 						return 1
 					except Exception as e:
-						logging.info(str(e))
-						time.sleep(1)
+						logging.info(str(e)+": reconnect Failed #Error Try to reconnect")
+					finally:
+						try:
+							_tmp_socket.close()
+							logging.info("socket close succ")
+						except Exception as e:
+							logging.info("socket close fail")
+						time.sleep(60)
 
 	def close(self):
 		self.s.close()
