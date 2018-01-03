@@ -101,7 +101,7 @@ class Gandan:
 			self.log(str(e))
 			return False
 
-		self.log("PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+		self.log("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 		return True
 
 	def sub(self, _req, _topic, _msg):
