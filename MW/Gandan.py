@@ -92,9 +92,13 @@ class Gandan:
 			else:
 				_pub = self.pub_topic_[_topic][-1]
 
-			_pub.writep(bytes(_msg,'utf-8'))
+			if Gandan.version() < 3:
+				_pub.writep(bytes(_msg))
+			else:
+				_pub.writep(bytes(_msg,'utf-8'))
 		except Exception as e:
-			self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+			#self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+			self.log(str(e))
 			return False
 
 		self.log("PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))

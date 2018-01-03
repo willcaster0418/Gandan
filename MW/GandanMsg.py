@@ -74,12 +74,12 @@ class GandanMsg:
 
 		try:
 			_sz  = struct.unpack("!i", _b)[0]
-		except socket.timeout as e:
+		except Exception as e:
 			raise Exception('convert')
 
 		try:
 			_b   = _sock.recv(_sz)
-		except socket.timeout as e:
+		except Exception as e:
 			raise Exception('timeout')
 
 		if len(_b) == 0:
@@ -90,4 +90,4 @@ class GandanMsg:
 			else:
 				return GandanMsg.conv3(None, _b)
 		except Exception as e:
-			return None
+			raise Exception('convert')

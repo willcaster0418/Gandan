@@ -7,7 +7,7 @@ fi
 
 if [ $USER = "gandan" ] && [ $1 = "start" ];then
     
-    /usr/bin/python3.4 /home/gandan/gmw_main.py &
+    /usr/bin/python /home/gandan/gmw_main.py &
 
 elif [ $USER == "gandan" ] && [ $1 == "stop" ] ; then
 

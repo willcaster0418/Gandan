@@ -23,24 +23,28 @@ class GandanSub:
 				logging.info("Heart Beat...[%s]" % self.cmd_)
 				return 1
 			else:
-				cb(_h)
-				return 1
+				try:
+					cb(_h)
+					return 1
+				except Exception as e:
+					logging.info("exception in cb : please catch exception[%s]" % str(e))
 
 		except Exception as e:
 			if str(e) in ["timeout"]:
 				return 1
 			elif str(e) in ["convert"]:
 				return -2
-			else:
+			elif str(e) in ["conn"]:
 				logging.info(str(e)+": #Error Try to reconnect")
 				while True:
 					try:
 						_tmp_socket = self.s
 						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+						logging.info("reconnect SUCC")
 						return 1
 					except Exception as e:
-						logging.info(str(e)+": reconnect Failed #Error Try to reconnect")
+						logging.info(str(e)+" : reconnect FAIL")
 					finally:
 						try:
 							_tmp_socket.close()
@@ -48,6 +52,8 @@ class GandanSub:
 						except Exception as e:
 							logging.info("socket close fail")
 						time.sleep(60)
+			else:
+				logging.info(str(e)+":unknown error")
 
 	def close(self):
 		self.s.close()
