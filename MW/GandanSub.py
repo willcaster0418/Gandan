@@ -15,7 +15,7 @@ class GandanSub:
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
-	def sub(self, cb):
+	def sub(self, cb, obj=None):
 		try:
 			_h = GandanMsg.recv(None, self.s)
 
@@ -24,7 +24,10 @@ class GandanSub:
 				return 1
 			else:
 				try:
-					cb(_h)
+					if obj == None:
+						cb(_h)
+					else:
+						cb(_h, obj)
 					return 1
 				except Exception as e:
 					logging.info("exception in cb : please catch exception[%s]" % str(e))
