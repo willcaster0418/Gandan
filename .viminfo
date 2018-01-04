@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/PUB
+~MSle0~/conver
 
 # Last Substitute Search Pattern:
 ~MSle0&tmp
@@ -19,12 +19,13 @@ $buf_ptr
 # Command Line History (newest to oldest):
 :wq
 :w
-:W
 :q
+:q!
+:42
+:W
 :33
 :e
 :Wq
-:q!
 :ㅈ
 :54
 :17,23s/tmp/buf_ptr/g
@@ -43,13 +44,18 @@ $buf_ptr
 :51
 
 # Search String History (newest to oldest):
+?/conver
+??Conver
+?/Error
+?/str
+?/recv
+?/version..
+?/version
 ?/PUB
 ?/selflog
 ? \<data\>
 ?/str\(
 ?/str(
-?/str
-?/version
 ? \<_pub\>
 ?/bytes
 ?/print
@@ -57,7 +63,6 @@ $buf_ptr
 ?/^15:00
 ??15:00
 ?/pdb
-?/recv
 ?/sub
 ? \<GandanMsg\>
 ?/cdcd
@@ -125,54 +130,82 @@ $buf_ptr
 	print
 
 # File marks:
-'0  104  76  ~/MW/Gandan.py
-'1  53  50  ~/MW/MMAP.py
-'2  93  4  ~/MW/Gandan.py
-'3  11  0  ~/log/20180103.Gandan.log
-'4  96  25  ~/MW/Gandan.py
-'5  98  33  ~/MW/Gandan.py
-'6  13  0  ~/gmw_main.py
-'7  9  0  ~/log/20180103.Gandan.log
-'8  101  10  ~/MW/Gandan.py
-'9  1  0  ~/log/20180103.Gandan.log
+'0  53  4  ~/MW/Gandan.py
+'1  10530  0  ~/log/20180104.Gandan.log
+'2  54  1  ~/MW/Gandan.py
+'3  10513  0  ~/log/20180104.Gandan.log
+'4  80  34  ~/MW/Gandan.py
+'5  93  28  ~/MW/GandanMsg.py
+'6  10537  0  ~/log/20180104.Gandan.log
+'7  13178  37  ~/log/20180104.Gandan.log
+'8  10  21  ~/service.sh
+'9  31  10  ~/MW/MMAP.py
 
 # Jumplist (newest first):
--'  104  76  ~/MW/Gandan.py
--'  93  4  ~/MW/Gandan.py
--'  53  50  ~/MW/MMAP.py
--'  46  19  ~/MW/MMAP.py
+-'  53  4  ~/MW/Gandan.py
+-'  54  4  ~/MW/Gandan.py
+-'  10530  0  ~/log/20180104.Gandan.log
+-'  10513  0  ~/log/20180104.Gandan.log
+-'  80  1  ~/MW/Gandan.py
+-'  10537  0  ~/log/20180104.Gandan.log
+-'  93  28  ~/MW/GandanMsg.py
+-'  91  4  ~/MW/GandanMsg.py
+-'  10520  61  ~/log/20180104.Gandan.log
+-'  17241  0  ~/log/20180104.Gandan.log
+-'  13178  0  ~/log/20180104.Gandan.log
+-'  14107  0  ~/log/20180104.Gandan.log
+-'  2866  37  ~/log/20180104.Gandan.log
+-'  176  37  ~/log/20180104.Gandan.log
+-'  96  0  ~/log/20180104.Gandan.log
+-'  10  21  ~/service.sh
+-'  31  10  ~/MW/MMAP.py
+-'  1  10  ~/MW/MMAP.py
+-'  42  60  ~/MW/MMAP.py
+-'  41  60  ~/MW/MMAP.py
+-'  40  57  ~/MW/MMAP.py
 -'  39  57  ~/MW/MMAP.py
 -'  38  22  ~/MW/MMAP.py
 -'  37  22  ~/MW/MMAP.py
 -'  32  10  ~/MW/MMAP.py
--'  31  10  ~/MW/MMAP.py
--'  1  10  ~/MW/MMAP.py
+-'  56  4  ~/MW/MMAP.py
+-'  53  4  ~/MW/MMAP.py
+-'  1  0  ~/log/20180104.Gandan.log
+-'  66  4  ~/MW/GandanMsg.py
+-'  98  3  ~/MW/Gandan.py
+-'  86  3  ~/MW/GandanMsg.py
+-'  61  4  ~/MW/GandanMsg.py
+-'  42  2  ~/MW/GandanMsg.py
+-'  90  3  ~/MW/GandanMsg.py
+-'  65  3  ~/MW/GandanMsg.py
+-'  9  3  ~/MW/GandanMsg.py
+-'  150  15  ~/MW/Gandan.py
+-'  166  32  ~/MW/Gandan.py
+-'  165  5  ~/MW/Gandan.py
+-'  107  2  ~/MW/Gandan.py
+-'  96  4  ~/MW/Gandan.py
+-'  46  19  ~/MW/MMAP.py
 -'  78  3  ~/MW/MMAP.py
--'  96  5  ~/MW/Gandan.py
--'  98  16  ~/MW/Gandan.py
+-'  99  5  ~/MW/Gandan.py
+-'  101  16  ~/MW/Gandan.py
 -'  33  2  ~/MW/Gandan.py
 -'  11  0  ~/log/20180103.Gandan.log
 -'  9  0  ~/log/20180103.Gandan.log
--'  67  5  ~/MW/Gandan.py
--'  174  0  ~/MW/Gandan.py
--'  163  32  ~/MW/Gandan.py
--'  162  5  ~/MW/Gandan.py
--'  147  15  ~/MW/Gandan.py
--'  99  6  ~/MW/Gandan.py
--'  101  3  ~/MW/Gandan.py
+-'  70  5  ~/MW/Gandan.py
+-'  177  0  ~/MW/Gandan.py
+-'  102  6  ~/MW/Gandan.py
+-'  104  3  ~/MW/Gandan.py
 -'  13  0  ~/gmw_main.py
 -'  1  0  ~/log/20180103.Gandan.log
--'  87  4  ~/MW/Gandan.py
--'  88  4  ~/MW/Gandan.py
--'  100  3  ~/MW/Gandan.py
--'  173  2  ~/MW/Gandan.py
+-'  90  4  ~/MW/Gandan.py
+-'  91  4  ~/MW/Gandan.py
+-'  103  3  ~/MW/Gandan.py
+-'  176  2  ~/MW/Gandan.py
 -'  6  1  ~/mw_pub.py
 -'  1  0  ~/mw_pub.py
--'  62  0  ~/MW/Gandan.py
+-'  65  0  ~/MW/Gandan.py
 -'  11  2  ~/mw_pub.py
--'  10  18  ~/service.sh
 -'  1  0  ~/service.sh
--'  70  4  ~/MW/Gandan.py
+-'  73  4  ~/MW/Gandan.py
 -'  1  0  ~/sync.sh
 -'  16  14  ~/MW/GandanSub.py
 -'  36  5  ~/MW/GandanSub.py
@@ -187,10 +220,8 @@ $buf_ptr
 -'  429512  17  ~/log/20171228.Gandan.log
 -'  439498  0  ~/log/20171228.Gandan.log
 -'  1  0  ~/log/20171228.Gandan.log
--'  9  3  ~/MW/GandanMsg.py
 -'  21  3  ~/MW/GandanMsg.py
 -'  22  3  ~/MW/GandanMsg.py
--'  91  4  ~/MW/GandanMsg.py
 -'  39  4  ~/MW/Gandan.py
 -'  12  3  ~/mw_pub.py
 -'  72  2  ~/MW/GandanMsg.py
@@ -209,110 +240,40 @@ $buf_ptr
 -'  51  0  ~/MW/GandanPub.py
 -'  1  0  ~/MW/GandanPub.py
 -'  10  3  ~/mw_pub.py
--'  66  4  ~/MW/GandanMsg.py
--'  42  2  ~/MW/GandanMsg.py
--'  52  3  ~/MW/GandanMsg.py
--'  188  100  ~/log/20171220.Gandan.log
--'  1  0  ~/log/20171220.Gandan.log
--'  7  1  ~/mw_pub.py
--'  2  0  ~/mw_pub.py
--'  1  0  ~/mw_sub.py
--'  24  9  ~/MW_C/thread.c
--'  67  4  ~/MW_C/thread.c
--'  2  14  ~/MW_C/makefile
--'  1  3  ~/MW_C/makefile
--'  20  8  ~/MW_C/thread.c
--'  68  0  ~/MW_C/thread.c
--'  54  4  ~/MW_C/thread.c
--'  15  1  ~/MW_C/mmap.c
--'  2  149  ~/MW_C/some
--'  1  0  ~/MW_C/some
--'  1  0  ~/MW_C/thread.c
--'  42  37  ~/MW_C/thread.c
--'  43  7  ~/MW_C/thread.c
--'  26  0  ~/MW_C/mmap.c
--'  10  0  ~/MW_C/mmap.c
--'  11  0  ~/MW_C/mmap.c
--'  44  1  ~/MW_C/mmap.c
 
 # History of marks within files (newest to oldest):
 
 > ~/MW/Gandan.py
-	"	104	76
-	^	104	77
-	.	104	76
-	+	131	41
+	"	53	4
+	^	54	5
+	.	54	4
+	+	134	41
 	+	15	0
 	+	43	12
 	+	44	0
 	+	35	10
 	+	49	20
 	+	48	48
-	+	100	3
-	+	101	10
-	+	95	27
-	+	97	7
-	+	98	3
-	+	96	26
-	+	104	76
+	+	103	3
+	+	104	10
+	+	98	27
+	+	100	7
+	+	101	3
+	+	99	26
+	+	107	76
+	+	98	24
+	+	53	4
+	+	50	29
+	+	51	13
+	+	52	8
+	+	53	4
+	+	54	4
 
-> ~/MW/MMAP.py
-	"	53	50
-	.	3	0
-	+	4	0
-	+	3	0
-
-> ~/log/20180103.Gandan.log
-	"	11	0
-
-> ~/gmw_main.py
-	"	13	0
-
-> ~/mw_pub.py
-	"	6	1
-	^	6	19
-	.	6	18
-	+	6	25
-	+	10	16
-	+	9	3
-	+	6	27
-	+	12	28
-	+	9	0
-	+	12	0
-	+	11	2
-	+	1	22
-	+	6	18
-
-> /usr/share/vim/vim74/doc/help.txt
-	"	1	0
-
-> ~/service.sh
-	"	10	18
-	^	10	19
-	.	10	18
-	+	10	18
-
-> ~/sync.sh
-	"	1	0
-
-> ~/MW/GandanSub.py
-	"	16	14
-	^	40	14
-	.	40	0
-	+	23	48
-	+	24	11
-	+	27	10
-	+	34	5
-	+	32	7
-	+	43	0
-	+	41	0
-	+	40	0
-
-> ~/log/20171228.Gandan.log
-	"	406409	0
+> ~/log/20180104.Gandan.log
+	"	10530	0
 
 > ~/MW/GandanMsg.py
-	"	9	3
+	"	93	28
 	^	11	3
 	.	9	59
 	+	70	11
@@ -415,6 +376,61 @@ $buf_ptr
 	+	10	6
 	+	11	2
 	+	9	59
+
+> ~/service.sh
+	"	10	21
+	^	10	22
+	.	10	21
+	+	10	21
+
+> ~/MW/MMAP.py
+	"	31	10
+	.	3	0
+	+	4	0
+	+	3	0
+
+> ~/log/20180103.Gandan.log
+	"	11	0
+
+> ~/gmw_main.py
+	"	13	0
+
+> ~/mw_pub.py
+	"	6	1
+	^	6	19
+	.	6	18
+	+	6	25
+	+	10	16
+	+	9	3
+	+	6	27
+	+	12	28
+	+	9	0
+	+	12	0
+	+	11	2
+	+	1	22
+	+	6	18
+
+> /usr/share/vim/vim74/doc/help.txt
+	"	1	0
+
+> ~/sync.sh
+	"	1	0
+
+> ~/MW/GandanSub.py
+	"	16	14
+	^	40	14
+	.	40	0
+	+	23	48
+	+	24	11
+	+	27	10
+	+	34	5
+	+	32	7
+	+	43	0
+	+	41	0
+	+	40	0
+
+> ~/log/20171228.Gandan.log
+	"	406409	0
 
 > ~/mw_sub.py
 	"	17	3
@@ -565,30 +581,3 @@ $buf_ptr
 	.	1	0
 	+	1	0
 	+	1	0
-
-> ~/MW_C/test.py
-	"	2	9
-	^	2	10
-	.	2	9
-	+	5	6
-	+	3	21
-	+	5	38
-	+	9	8
-	+	10	12
-	+	6	0
-	+	7	0
-	+	7	40
-	+	4	0
-	+	10	0
-	+	3	23
-	+	10	0
-	+	5	0
-	+	6	0
-	+	7	0
-	+	5	0
-	+	7	40
-	+	8	0
-	+	6	0
-	+	9	0
-	+	10	0
-	+	2	9

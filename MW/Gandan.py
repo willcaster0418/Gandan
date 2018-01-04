@@ -47,8 +47,11 @@ class Gandan:
 				self.log("#Error" + str(_type) + str(_value))
 				for _err_str in traceback.format_tb(_traceback):
 					self.log(_err_str)
-				_p = False
-				continue
+				if str(e) in ['convert']:
+					continue
+				else:
+					_p = False
+					continue
 
 			#Note : PUB/SUB가 등록 시 경쟁하는 상황이 발생가능
 			if _pubsub == "PUB": 
@@ -92,7 +95,7 @@ class Gandan:
 			else:
 				_pub = self.pub_topic_[_topic][-1]
 
-			if Gandan.version() < 3:
+			if Gandan.version(None) < 3:
 				_pub.writep(bytes(_msg))
 			else:
 				_pub.writep(bytes(_msg,'utf-8'))
