@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/conver
+~MSle0~/09:00
 
 # Last Substitute Search Pattern:
 ~MSle0&tmp
@@ -19,10 +19,10 @@ $buf_ptr
 # Command Line History (newest to oldest):
 :wq
 :w
+:W
 :q
 :q!
 :42
-:W
 :33
 :e
 :Wq
@@ -44,6 +44,9 @@ $buf_ptr
 :51
 
 # Search String History (newest to oldest):
+?/09:00
+?/cdcd
+?/issue_code
 ?/conver
 ??Conver
 ?/Error
@@ -65,7 +68,6 @@ $buf_ptr
 ?/pdb
 ?/sub
 ? \<GandanMsg\>
-?/cdcd
 ?/send
 ?/printf
 ?/ld
@@ -98,11 +100,118 @@ $buf_ptr
 "0	LINE	0
 				else:
 					_pub.writep(bytes(_msg,'utf-8'))
-""1	LINE	0
+""1	BLOCK	3
+		
+		
+		
+		
+		
+"2	CHAR	0
+	648
+<08:10:01:616^{'issue_code': '105190', 'time': '081001', 'sell_1_price': 33820.0, 'sell_2_price': 33950.0, 'sell_3_price': 33985.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 19, 'sell_2_amt': 10, 'sell_3_amt': 50, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 32000, 'buy_2_price': 31500, 'buy_3_price': 31000, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	648
+<08:10:56:640^{'issue_code': '105190', 'time': '081056', 'sell_1_price': 33820.0, 'sell_2_price': 33950.0, 'sell_3_price': 33985.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 19, 'sell_2_amt': 10, 'sell_3_amt': 50, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 32500, 'buy_2_price': 32000, 'buy_3_price': 31500, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:22:55:054^{'issue_code': '105190', 'time': '082254', 'sell_1_price': 33085.0, 'sell_2_price': 33090.0, 'sell_3_price': 33095.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6000, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33060, 'buy_2_price': 33055, 'buy_3_price': 33050, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:24:23:947^{'issue_code': '105190', 'time': '082423', 'sell_1_price': 33080.0, 'sell_2_price': 33085.0, 'sell_3_price': 33090.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6000, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33055, 'buy_2_price': 33050, 'buy_3_price': 33045, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:28:28:689^{'issue_code': '105190', 'time': '082828', 'sell_1_price': 33085.0, 'sell_2_price': 33090.0, 'sell_3_price': 33095.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6000, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33060, 'buy_2_price': 33055, 'buy_3_price': 33050, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:30:01:069^{'issue_code': '105190', 'time': '083000', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5277, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33065, 'buy_2_price': 33060, 'buy_3_price': 33055, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:31:38:870^{'issue_code': '105190', 'time': '083000', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5277, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33065, 'buy_2_price': 33060, 'buy_3_price': 33055, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:31:38:871^{'issue_code': '105190', 'time': '083000', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5277, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33065, 'buy_2_price': 33060, 'buy_3_price': 33055, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:36:09:538^{'issue_code': '105190', 'time': '083000', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5277, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33065, 'buy_2_price': 33060, 'buy_3_price': 33055, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:37:10:145^{'issue_code': '105190', 'time': '083709', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5276, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33065, 'buy_2_price': 33060, 'buy_3_price': 33055, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:41:49:348^{'issue_code': '105190', 'time': '084149', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5276, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33070, 'buy_2_price': 33065, 'buy_3_price': 33060, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:43:57:576^{'issue_code': '105190', 'time': '084357', 'sell_1_price': 33100.0, 'sell_2_price': 33105.0, 'sell_3_price': 33110.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5276, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33075, 'buy_2_price': 33070, 'buy_3_price': 33065, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:44:03:068^{'issue_code': '105190', 'time': '084402', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33070, 'buy_2_price': 33065, 'buy_3_price': 33060, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:45:29:673^{'issue_code': '105190', 'time': '084529', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33085, 'buy_2_price': 33080, 'buy_3_price': 33075, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:45:29:673^{'issue_code': '105190', 'time': '084529', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33085, 'buy_2_price': 33080, 'buy_3_price': 33075, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:45:35:550^{'issue_code': '105190', 'time': '084535', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33070, 'buy_2_price': 33065, 'buy_3_price': 33060, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:45:35:646^{'issue_code': '105190', 'time': '084535', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33070, 'buy_2_price': 33065, 'buy_3_price': 33060, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:46:19:769^{'issue_code': '105190', 'time': '084619', 'sell_1_price': 33100.0, 'sell_2_price': 33105.0, 'sell_3_price': 33110.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33075, 'buy_2_price': 33070, 'buy_3_price': 33065, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:46:26:478^{'issue_code': '105190', 'time': '084626', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5999, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33070, 'buy_2_price': 33065, 'buy_3_price': 33060, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:49:35:246^{'issue_code': '105190', 'time': '084935', 'sell_1_price': 33090.0, 'sell_2_price': 33095.0, 'sell_3_price': 33100.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 6000, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33080, 'buy_2_price': 33070, 'buy_3_price': 33065, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:50:40:238^{'issue_code': '105190', 'time': '085040', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33085, 'buy_2_price': 33075, 'buy_3_price': 33070, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:51:05:571^{'issue_code': '105190', 'time': '085105', 'sell_1_price': 33095.0, 'sell_2_price': 33100.0, 'sell_3_price': 33105.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33085, 'buy_2_price': 33075, 'buy_3_price': 33070, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:01:977^{'issue_code': '105190', 'time': '085401', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:02:239^{'issue_code': '105190', 'time': '085402', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:05:853^{'issue_code': '105190', 'time': '085405', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:05:977^{'issue_code': '105190', 'time': '085405', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:06:642^{'issue_code': '105190', 'time': '085406', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:08:982^{'issue_code': '105190', 'time': '085408', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:11:405^{'issue_code': '105190', 'time': '085411', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:11:661^{'issue_code': '105190', 'time': '085411', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:54:12:377^{'issue_code': '105190', 'time': '085412', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:06:346^{'issue_code': '105190', 'time': '085506', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:16:778^{'issue_code': '105190', 'time': '085516', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:32:566^{'issue_code': '105190', 'time': '085532', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:37:718^{'issue_code': '105190', 'time': '085537', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:44:943^{'issue_code': '105190', 'time': '085544', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:55:52:498^{'issue_code': '105190', 'time': '085552', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:57:14:646^{'issue_code': '105190', 'time': '085714', 'sell_1_price': 33100.0, 'sell_2_price': 33105.0, 'sell_3_price': 33110.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 6000, 'sell_3_amt': 6000, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33080, 'buy_3_price': 33075, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:57:50:470^{'issue_code': '105190', 'time': '085750', 'sell_1_price': 33105.0, 'sell_2_price': 33110.0, 'sell_3_price': 33115.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33085, 'buy_2_price': 33080, 'buy_3_price': 33075, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:02:146^{'issue_code': '105190', 'time': '085802', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	652
+<08:58:06:110^{'issue_code': '105190', 'time': '085805', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 99, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:06:238^{'issue_code': '105190', 'time': '085806', 'sell_1_price': 33115.0, 'sell_2_price': 33120.0, 'sell_3_price': 33125.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5376, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:07:650^{'issue_code': '105190', 'time': '085807', 'sell_1_price': 33120.0, 'sell_2_price': 33125.0, 'sell_3_price': 33130.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5376, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33095, 'buy_3_price': 33090, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:08:030^{'issue_code': '105190', 'time': '085807', 'sell_1_price': 33120.0, 'sell_2_price': 33125.0, 'sell_3_price': 33130.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5376, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33095, 'buy_3_price': 33090, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:09:150^{'issue_code': '105190', 'time': '085808', 'sell_1_price': 33125.0, 'sell_2_price': 33130.0, 'sell_3_price': 33135.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5376, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33105, 'buy_2_price': 33100, 'buy_3_price': 33095, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:09:474^{'issue_code': '105190', 'time': '085809', 'sell_1_price': 33125.0, 'sell_2_price': 33130.0, 'sell_3_price': 33135.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 5376, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33105, 'buy_2_price': 33100, 'buy_3_price': 33095, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:11:446^{'issue_code': '105190', 'time': '085811', 'sell_1_price': 33120.0, 'sell_2_price': 33125.0, 'sell_3_price': 33130.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 5277, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33100, 'buy_2_price': 33095, 'buy_3_price': 33090, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:12:051^{'issue_code': '105190', 'time': '085811', 'sell_1_price': 33115.0, 'sell_2_price': 33120.0, 'sell_3_price': 33125.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33095, 'buy_2_price': 33090, 'buy_3_price': 33085, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:12:838^{'issue_code': '105190', 'time': '085812', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+	654
+<08:58:12:950^{'issue_code': '105190', 'time': '085812', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
+"3	LINE	0
 				else:
-"2	LINE	0
+"4	LINE	0
 						time.sleep(3)
-"3	CHAR	0
+"5	CHAR	0
 				else:
 					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
@@ -111,37 +220,72 @@ $buf_ptr
 					return
 	
 	
-"4	BLOCK	0
+"6	BLOCK	0
 	s
 	s
-"5	BLOCK	0
-	(
-	(
-"6	LINE	0
-					import pdb;pdb.set_trace()
 "7	BLOCK	0
 	(
 	(
 "8	LINE	0
-				import time;time.sleep(1)
-"9	LINE	0
-				import pdb;pdb.set_trace()
+					import pdb;pdb.set_trace()
+"9	BLOCK	0
+	(
+	(
 "-	CHAR	0
 	print
 
 # File marks:
-'0  53  4  ~/MW/Gandan.py
-'1  10530  0  ~/log/20180104.Gandan.log
-'2  54  1  ~/MW/Gandan.py
-'3  10513  0  ~/log/20180104.Gandan.log
-'4  80  34  ~/MW/Gandan.py
-'5  93  28  ~/MW/GandanMsg.py
-'6  10537  0  ~/log/20180104.Gandan.log
-'7  13178  37  ~/log/20180104.Gandan.log
-'8  10  21  ~/service.sh
-'9  31  10  ~/MW/MMAP.py
+'0  30  14  ~/MW/GandanSub.py
+'1  15  14  ~/virtual_mkt.py
+'2  17  9  ~/virtual_mkt.py
+'3  14  52  ~/virtual_mkt.py
+'4  1  12  ~/105190_mkt.log
+'5  1  21  ~/virtual_mkt.py
+'6  19  15  ~/virtual_mkt.py
+'7  1  0  ~/105190.log
+'8  247662  0  ~/mkt.log
+'9  53  4  ~/MW/Gandan.py
 
 # Jumplist (newest first):
+-'  30  14  ~/MW/GandanSub.py
+-'  16  2  ~/MW/GandanSub.py
+-'  15  14  ~/virtual_mkt.py
+-'  17  2  ~/virtual_mkt.py
+-'  14  1  ~/virtual_mkt.py
+-'  1  0  ~/virtual_mkt.py
+-'  1  12  ~/105190_mkt.log
+-'  19  1  ~/virtual_mkt.py
+-'  11443  0  ~/105190_mkt.log
+-'  501  0  ~/105190_mkt.log
+-'  1  0  ~/105190.log
+-'  11518  0  ~/105190.log
+-'  12  0  ~/105190.log
+-'  247662  0  ~/mkt.log
+-'  31  49  ~/mkt.log
+-'  30  49  ~/mkt.log
+-'  28  49  ~/mkt.log
+-'  27  49  ~/mkt.log
+-'  26  49  ~/mkt.log
+-'  25  49  ~/mkt.log
+-'  24  49  ~/mkt.log
+-'  23  49  ~/mkt.log
+-'  22  49  ~/mkt.log
+-'  21  49  ~/mkt.log
+-'  20  49  ~/mkt.log
+-'  19  49  ~/mkt.log
+-'  17  49  ~/mkt.log
+-'  16  49  ~/mkt.log
+-'  15  49  ~/mkt.log
+-'  14  49  ~/mkt.log
+-'  13  49  ~/mkt.log
+-'  12  49  ~/mkt.log
+-'  11  49  ~/mkt.log
+-'  10  49  ~/mkt.log
+-'  9  49  ~/mkt.log
+-'  8  49  ~/mkt.log
+-'  6  49  ~/mkt.log
+-'  5  49  ~/mkt.log
+-'  1  0  ~/mkt.log
 -'  53  4  ~/MW/Gandan.py
 -'  54  4  ~/MW/Gandan.py
 -'  10530  0  ~/log/20180104.Gandan.log
@@ -201,47 +345,69 @@ $buf_ptr
 -'  103  3  ~/MW/Gandan.py
 -'  176  2  ~/MW/Gandan.py
 -'  6  1  ~/mw_pub.py
--'  1  0  ~/mw_pub.py
--'  65  0  ~/MW/Gandan.py
--'  11  2  ~/mw_pub.py
--'  1  0  ~/service.sh
--'  73  4  ~/MW/Gandan.py
--'  1  0  ~/sync.sh
--'  16  14  ~/MW/GandanSub.py
--'  36  5  ~/MW/GandanSub.py
--'  1  0  ~/MW/GandanSub.py
--'  41  4  ~/MW/Gandan.py
--'  406409  0  ~/log/20171228.Gandan.log
--'  429507  17  ~/log/20171228.Gandan.log
--'  429508  17  ~/log/20171228.Gandan.log
--'  429509  17  ~/log/20171228.Gandan.log
--'  429510  17  ~/log/20171228.Gandan.log
--'  429511  17  ~/log/20171228.Gandan.log
--'  429512  17  ~/log/20171228.Gandan.log
--'  439498  0  ~/log/20171228.Gandan.log
--'  1  0  ~/log/20171228.Gandan.log
--'  21  3  ~/MW/GandanMsg.py
--'  22  3  ~/MW/GandanMsg.py
--'  39  4  ~/MW/Gandan.py
--'  12  3  ~/mw_pub.py
--'  72  2  ~/MW/GandanMsg.py
--'  49  5  ~/MW/Gandan.py
--'  1  0  ~/gmw_main.py
--'  17  3  ~/mw_sub.py
--'  9  3  ~/mw_pub.py
--'  16  2  ~/MW/GandanMsg.py
--'  11  2  ~/MW/GandanMsg.py
--'  14  1  ~/mw_sub.py
--'  17  5  ~/MW/GandanMsg.py
--'  38  9  ~/MW/GandanMsg.py
--'  46  9  ~/MW/GandanMsg.py
--'  50  13  ~/MW/GandanMsg.py
--'  49  1  ~/MW/GandanMsg.py
--'  51  0  ~/MW/GandanPub.py
--'  1  0  ~/MW/GandanPub.py
--'  10  3  ~/mw_pub.py
+-'  13  52  ~/virtual_mkt.py
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/GandanSub.py
+	"	30	14
+	^	30	15
+	.	30	14
+	+	23	48
+	+	24	11
+	+	30	10
+	+	37	5
+	+	35	7
+	+	46	0
+	+	44	0
+	+	43	0
+	+	18	26
+	+	27	20
+	+	28	12
+	+	29	13
+	+	30	14
+
+> ~/virtual_mkt.py
+	"	15	14
+	^	15	15
+	.	15	14
+	+	12	0
+	+	1	10
+	+	12	17
+	+	14	32
+	+	2	28
+	+	7	26
+	+	3	0
+	+	8	23
+	+	3	0
+	+	4	21
+	+	5	10
+	+	15	12
+	+	1	16
+	+	19	15
+	+	1	21
+	+	14	52
+	+	11	4
+	+	13	0
+	+	19	1
+	+	16	22
+	+	20	0
+	+	18	8
+	+	19	1
+	+	17	9
+	+	15	14
+	e	12	0
+
+> ~/105190_mkt.log
+	"	1	12
+	.	2	0
+	+	2	0
+
+> ~/105190.log
+	"	1	0
+
+> ~/mkt.log
+	"	247662	0
 
 > ~/MW/Gandan.py
 	"	53	4
@@ -416,19 +582,6 @@ $buf_ptr
 > ~/sync.sh
 	"	1	0
 
-> ~/MW/GandanSub.py
-	"	16	14
-	^	40	14
-	.	40	0
-	+	23	48
-	+	24	11
-	+	27	10
-	+	34	5
-	+	32	7
-	+	43	0
-	+	41	0
-	+	40	0
-
 > ~/log/20171228.Gandan.log
 	"	406409	0
 
@@ -449,135 +602,3 @@ $buf_ptr
 	.	24	9
 	+	54	50
 	+	24	9
-
-> ~/MW_C/makefile
-	"	2	14
-	^	2	15
-	.	2	15
-	+	3	0
-	+	2	34
-	+	3	6
-	+	2	0
-	+	1	0
-	+	2	0
-	+	4	5
-	+	2	0
-	+	5	0
-	+	6	16
-	+	5	41
-	+	6	29
-	+	2	15
-
-> ~/MW_C/mmap.c
-	"	15	1
-	^	26	0
-	.	26	0
-	+	75	22
-	+	75	27
-	+	75	27
-	+	75	9
-	+	75	4
-	+	75	6
-	+	75	6
-	+	75	0
-	+	75	10
-	+	75	10
-	+	75	10
-	+	75	9
-	+	75	6
-	+	75	6
-	+	75	9
-	+	75	8
-	+	75	0
-	+	75	0
-	+	75	13
-	+	75	12
-	+	75	16
-	+	75	20
-	+	75	19
-	+	75	24
-	+	75	8
-	+	75	4
-	+	75	10
-	+	75	0
-	+	75	0
-	+	56	0
-	+	75	0
-	+	75	0
-	+	75	0
-	+	10	0
-	+	11	10
-	+	50	4
-	+	24	0
-	+	49	0
-	+	12	22
-	+	14	0
-	+	76	0
-	+	14	14
-	+	16	8
-	+	17	0
-	+	24	0
-	+	24	0
-	+	14	23
-	+	17	9
-	+	21	0
-	+	17	0
-	+	21	7
-	+	20	8
-	+	22	8
-	+	12	44
-	+	18	15
-	+	24	0
-	+	15	0
-	+	63	0
-	+	71	19
-	+	70	10
-	+	71	29
-	+	72	41
-	+	14	7
-	+	12	30
-	+	15	1
-	+	18	8
-	+	71	20
-	+	64	70
-	+	48	0
-	+	43	10
-	+	48	18
-	+	73	13
-	+	41	3
-	+	73	21
-	+	33	22
-	+	34	0
-	+	38	1
-	+	41	25
-	+	44	39
-	+	73	10
-	+	74	12
-	+	33	10
-	+	48	0
-	+	44	18
-	+	45	0
-	+	44	19
-	+	48	0
-	+	45	41
-	+	47	15
-	+	10	10
-	+	10	0
-	+	11	0
-	+	10	36
-	+	71	1
-	+	11	0
-	+	10	0
-	+	10	0
-	+	11	0
-	+	25	0
-	+	26	0
-
-> ~/MW_C/some
-	"	2	149
-
-> ~/MW_C/TEST
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
