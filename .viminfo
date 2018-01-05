@@ -100,13 +100,23 @@ $buf_ptr
 "0	LINE	0
 				else:
 					_pub.writep(bytes(_msg,'utf-8'))
-""1	BLOCK	3
+""1	LINE	0
+	>>>>>>> 35adfd6d2667e9cce21ff1cca11da23966ad5943
+"2	LINE	0
+							cb(_h, obj)
+"3	LINE	0
+						else:
+"4	LINE	0
+	=======
+"5	LINE	0
+	<<<<<<< HEAD
+"6	BLOCK	3
 		
 		
 		
 		
 		
-"2	CHAR	0
+"7	CHAR	0
 	648
 <08:10:01:616^{'issue_code': '105190', 'time': '081001', 'sell_1_price': 33820.0, 'sell_2_price': 33950.0, 'sell_3_price': 33985.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 19, 'sell_2_amt': 10, 'sell_3_amt': 50, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 32000, 'buy_2_price': 31500, 'buy_3_price': 31000, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
 	648
@@ -207,47 +217,28 @@ $buf_ptr
 <08:58:12:838^{'issue_code': '105190', 'time': '085812', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
 	654
 <08:58:12:950^{'issue_code': '105190', 'time': '085812', 'sell_1_price': 33110.0, 'sell_2_price': 33115.0, 'sell_3_price': 33120.0, 'sell_4_price': 0.0, 'sell_5_price': 0.0, 'sell_6_price': 0.0, 'sell_7_price': 0.0, 'sell_8_price': 0.0, 'sell_9_price': 0.0, 'sell_10_price': 0.0, 'sell_1_amt': 6099, 'sell_2_amt': 6000, 'sell_3_amt': 5277, 'sell_4_amt': 0, 'sell_5_amt': 0, 'sell_6_amt': 0, 'sell_7_amt': 0, 'sell_8_amt': 0, 'sell_9_amt': 0, 'sell_10_amt': 0, 'buy_1_price': 33090, 'buy_2_price': 33085, 'buy_3_price': 33080, 'buy_4_price': 0, 'buy_5_price': 0, 'buy_6_price': 0, 'buy_7_price': 0, 'buy_8_price': 0, 'buy_9_price': 0, 'buy_10_price': 0}
-"3	LINE	0
-				else:
-"4	LINE	0
-						time.sleep(3)
-"5	CHAR	0
-				else:
-					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-					self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-					logging.info(str(e))
-					time.sleep(3)
-					return
-	
-	
-"6	BLOCK	0
-	s
-	s
-"7	BLOCK	0
-	(
-	(
 "8	LINE	0
-					import pdb;pdb.set_trace()
-"9	BLOCK	0
-	(
-	(
+				else:
+"9	LINE	0
+						time.sleep(3)
 "-	CHAR	0
 	print
 
 # File marks:
-'0  30  14  ~/MW/GandanSub.py
-'1  15  14  ~/virtual_mkt.py
-'2  17  9  ~/virtual_mkt.py
-'3  14  52  ~/virtual_mkt.py
-'4  1  12  ~/105190_mkt.log
-'5  1  21  ~/virtual_mkt.py
-'6  19  15  ~/virtual_mkt.py
-'7  1  0  ~/105190.log
-'8  247662  0  ~/mkt.log
-'9  53  4  ~/MW/Gandan.py
+'0  31  5  ~/MW/GandanSub.py
+'1  29  14  ~/MW/GandanSub.py
+'2  15  14  ~/virtual_mkt.py
+'3  17  9  ~/virtual_mkt.py
+'4  14  52  ~/virtual_mkt.py
+'5  1  12  ~/105190_mkt.log
+'6  1  21  ~/virtual_mkt.py
+'7  19  15  ~/virtual_mkt.py
+'8  1  0  ~/105190.log
+'9  247662  0  ~/mkt.log
 
 # Jumplist (newest first):
--'  30  14  ~/MW/GandanSub.py
+-'  31  5  ~/MW/GandanSub.py
+-'  29  6  ~/MW/GandanSub.py
 -'  16  2  ~/MW/GandanSub.py
 -'  15  14  ~/virtual_mkt.py
 -'  17  2  ~/virtual_mkt.py
@@ -344,28 +335,27 @@ $buf_ptr
 -'  91  4  ~/MW/Gandan.py
 -'  103  3  ~/MW/Gandan.py
 -'  176  2  ~/MW/Gandan.py
--'  6  1  ~/mw_pub.py
--'  13  52  ~/virtual_mkt.py
 
 # History of marks within files (newest to oldest):
 
 > ~/MW/GandanSub.py
-	"	30	14
-	^	30	15
-	.	30	14
+	"	31	5
+	^	29	15
+	.	31	0
 	+	23	48
 	+	24	11
-	+	30	10
-	+	37	5
-	+	35	7
-	+	46	0
-	+	44	0
-	+	43	0
+	+	29	10
+	+	32	5
+	+	31	7
+	+	41	0
+	+	39	0
+	+	38	0
 	+	18	26
 	+	27	20
 	+	28	12
 	+	29	13
-	+	30	14
+	+	29	0
+	+	31	0
 
 > ~/virtual_mkt.py
 	"	15	14
