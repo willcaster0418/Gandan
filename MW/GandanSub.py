@@ -1,4 +1,4 @@
-import struct, sys, time, logging
+import struct, sys, time, logging, traceback
 import socket
 import re
 from MW.MMAP import *
@@ -30,8 +30,10 @@ class GandanSub:
 					cb(_h, obj)
 					return 1
 				except Exception as e:
-					logging.info("exception in cb : please catch exception[%s]" % str(e))
-
+					_type, _value, _traceback = sys.exc_info()
+					logging.info("#Error" + str(_type) + str(_value))
+					for _err_str in traceback.format_tb(_traceback):
+						logging.info(_err_str)
 		except Exception as e:
 			if str(e) in ["timeout"]:
 				return 1
@@ -54,7 +56,8 @@ class GandanSub:
 							logging.info("socket close succ")
 						except Exception as e:
 							logging.info("socket close fail")
-						time.sleep(60)
+						finally:
+							time.sleep(60)
 			else:
 				logging.info(str(e)+":unknown error")
 
