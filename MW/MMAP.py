@@ -1,4 +1,4 @@
-import os,struct,threading,time,gc
+import os,struct,threading,time,gc,logging
 from mmap import mmap
 
 class MMAP:
@@ -89,15 +89,21 @@ class RoboMMAP(threading.Thread, MMAP):
 
 	def run (self)   : self.handle()
 
-	def handle(self):
+	def handle(self, flag=True):
 		#put handler in while loop
 		while True:
 			try:
-				time.sleep(self.time)
+				logging.info("MMMMMMMMMAP")
+				#time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
 					_list = self.readp()
 					self.callback(self.topic, _list)
 					del(_list)
+				else:
+					logging.info("nothing to read")
+
+				if flag == False:
+					break
 			except Exception as e:
-				print(e)
+				logging.info("#Error:"+str(e))
 				break

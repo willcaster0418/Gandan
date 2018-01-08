@@ -56,18 +56,31 @@ class Gandan:
 			#Note : PUB/SUB가 등록 시 경쟁하는 상황이 발생가능
 			if _pubsub == "PUB": 
 				if not _topic in self.pub_topic_.keys():
-					self.p_reg_lock.acquire()
-					_p = self.pub(_req, _topic, _msg)
-					self.p_reg_lock.release()
+					try:
+						self.p_reg_lock.acquire()
+						_p = self.pub(_req, _topic, _msg)
+					except Exception as e:
+						logging.info("#Error in PUB Reg")
+					finally:
+						self.p_reg_lock.release()
 				else:
+					try:
+						logging.info("PUB for %s len %d" % (_topic, len(self.sub_topic_[_topic])))
+					except Exception as e:
+						logging.info("PUB for %s len 0" % (_topic))
 					_p = self.pub(_req, _topic, _msg)
+				#time.sleep(0.001)
 				continue
 
 			if _pubsub == "SUB":
 				if not _topic in self.sub_topic_.keys():
-					self.s_reg_lock.acquire()
-					_p = self.sub(_req, _topic, _msg)
-					self.s_reg_lock.release()
+					try:
+						self.s_reg_lock.acquire()
+						_p = self.sub(_req, _topic, _msg)
+					except Exception as e:
+						logging.info("#Error in PUB Reg")
+					finally:
+						self.s_reg_lock.release()
 				else: 
 					_p = self.sub(_req, _topic, _msg)
 				break
@@ -90,8 +103,8 @@ class Gandan:
 				self.pub_topic_[_topic] = []
 				self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
 				_pub = self.pub_topic_[_topic][-1]
-				_pub.start()
-				self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+				#_pub.start()
+				#self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
 			else:
 				_pub = self.pub_topic_[_topic][-1]
 
@@ -99,9 +112,12 @@ class Gandan:
 				_pub.writep(bytes(_msg))
 			else:
 				_pub.writep(bytes(_msg,'utf-8'))
+			#without thread
+			logging.info("RRRRRRRR")
+			_pub.handle(False)
 		except Exception as e:
 			#self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
-			self.log(str(e))
+			logging.info(str(e))
 			return False
 
 		self.log("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
@@ -138,7 +154,10 @@ class Gandan:
 					break
 
 	def mon(self, _topic, _data):
+		logging.info("[%s]" % str(type(_data)))
+		logging.info("mon data for topic[%s]" % _topic)
 		if not _topic in self.sub_topic_.keys():
+			logging.info("no topic for data")
 			return
 
 		error_req_list = []
