@@ -103,8 +103,7 @@ class Gandan:
 				self.pub_topic_[_topic] = []
 				self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
 				_pub = self.pub_topic_[_topic][-1]
-				#_pub.start()
-				#self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+				self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
 			else:
 				_pub = self.pub_topic_[_topic][-1]
 
@@ -112,11 +111,10 @@ class Gandan:
 				_pub.writep(bytes(_msg))
 			else:
 				_pub.writep(bytes(_msg,'utf-8'))
-			#without thread
-			logging.info("RRRRRRRR")
+
 			_pub.handle(False)
 		except Exception as e:
-			#self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+			self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 			logging.info(str(e))
 			return False
 

@@ -12,6 +12,7 @@ class MMAP:
 		for i in range(0, item_size):
 			self.erase_buff_ += ' '
 		self.erase_buff_ = bytes(self.erase_buff_, "ascii")
+		self.m_lock = threading.Lock()
 
 	def init_file(self, path, size):
 		#import pdb; pdb.set_trace()
@@ -48,6 +49,7 @@ class MMAP:
 		write_res = (write_pos - 11) % self.item_size
 		#clear que item before write
 		try:
+			self.m_lock.acquire()
 			if write_res == 0 : 
 				self.m.seek(write_pos, os.SEEK_SET); self.m.write(self.erase_buff_)
 				self.m.seek(write_pos, os.SEEK_SET); self.m.write(data)
@@ -57,27 +59,34 @@ class MMAP:
 				self.m.seek(write_pos, os.SEEK_SET); self.m.write(data[0: write_res])
 				self.m.seek(11	     , os.SEEK_SET); self.m.write(data[write_res: self.item_size ])
 		except Exception as e:
-			print(e)
-			print("try to write ", write_pos, "@", self.size + 11)
+			logging.info("try to write ", write_pos, "@", self.size + 11)
+		finally:
+			self.m_lock.release()
 
 	def read(self):
-		_l = []
-		for i in range(self.r(), self.w()):
-			read_pos = 11 + (i*self.item_size) % self.size
-			read_res = (read_pos - 11) % self.item_size
-			try:
-				if read_pos == 11 + self.size :
-					_l.append(self.m[11:11+self.item_size])
-				elif read_res == 0 : 
-					_l.append(self.m[read_pos:read_pos + self.item_size])
-				else			 :
-					data = ""
-					self.m.seek(read_pos, os.SEEK_SET); data = self.m.read(self.item_size - read_res)
-					self.m.seek(11	  , os.SEEK_SET); data = data + self.m.read(read_res)
-					_l.append(data)
-			except Exception as e:
-				print("try to read", read_pos, "@", self.size + 11)
-		return _l
+		try:
+			self.m_lock.acquire()
+			_l = []
+			for i in range(self.r(), self.w()):
+				read_pos = 11 + (i*self.item_size) % self.size
+				read_res = (read_pos - 11) % self.item_size
+				try:
+					if read_pos == 11 + self.size :
+						_l.append(self.m[11:11+self.item_size])
+					elif read_res == 0 : 
+						_l.append(self.m[read_pos:read_pos + self.item_size])
+					else			 :
+						data = ""
+						self.m.seek(read_pos, os.SEEK_SET); data = self.m.read(self.item_size - read_res)
+						self.m.seek(11	  , os.SEEK_SET); data = data + self.m.read(read_res)
+						_l.append(data)
+				except Exception as e:
+					logging.info("try to read", read_pos, "@", self.size + 11)
+			return _l
+		except Exception as e:
+			logging.info(str(e))
+		finally:
+			self.m_lock.release()
 
 class RoboMMAP(threading.Thread, MMAP):
 	def __init__(self, path, topic, callback, size, item_size):
@@ -93,7 +102,6 @@ class RoboMMAP(threading.Thread, MMAP):
 		#put handler in while loop
 		while True:
 			try:
-				logging.info("MMMMMMMMMAP")
 				#time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
 					_list = self.readp()

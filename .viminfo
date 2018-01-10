@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/time.sleep
+~MSle0~/RRRR
 
 # Last Substitute Search Pattern:
 ~MSle0&tmp
@@ -17,9 +17,9 @@
 $
 
 # Command Line History (newest to oldest):
+:q
 :wq
 :w
-:q
 :158
 :116
 :e ./MW
@@ -53,6 +53,7 @@ $
 :51
 
 # Search String History (newest to oldest):
+?/RRRR
 ?/time.sleep
 ?/PUB
 ?/handler
@@ -102,7 +103,6 @@ $
 ?/pdb
 ?/sub
 ? \<GandanMsg\>
-?/send
 
 # Expression History (newest to oldest):
 
@@ -141,21 +141,23 @@ $
 	self
 
 # File marks:
-'0  97  4  ~/MW/MMAP.py
-'1  72  4  ~/MW/Gandan.py
-'2  179  0  ~/MW/Gandan.py
-'3  104  0  ~/MW/MMAP.py
-'4  120  14  ~/MW/Gandan.py
-'5  96  30  ~/MW/MMAP.py
-'6  116  14  ~/MW/Gandan.py
-'7  103  35  ~/MW/MMAP.py
-'8  118  2  ~/MW/Gandan.py
-'9  114  3  ~/MW/Gandan.py
+'0  96  3  ~/MW/Gandan.py
+'1  25  2  ~/MW/Gandan.py
+'2  97  4  ~/MW/MMAP.py
+'3  72  4  ~/MW/Gandan.py
+'4  179  0  ~/MW/Gandan.py
+'5  104  0  ~/MW/MMAP.py
+'6  120  14  ~/MW/Gandan.py
+'7  96  30  ~/MW/MMAP.py
+'8  116  14  ~/MW/Gandan.py
+'9  103  35  ~/MW/MMAP.py
 
 # Jumplist (newest first):
+-'  96  3  ~/MW/Gandan.py
+-'  25  2  ~/MW/Gandan.py
+-'  72  5  ~/MW/Gandan.py
 -'  97  4  ~/MW/MMAP.py
 -'  104  0  ~/MW/MMAP.py
--'  72  4  ~/MW/Gandan.py
 -'  176  0  ~/MW/Gandan.py
 -'  179  0  ~/MW/Gandan.py
 -'  120  3  ~/MW/Gandan.py
@@ -248,33 +250,11 @@ $
 -'  53747  208  ~/log/20180108.Gandan.log
 -'  53758  208  ~/log/20180108.Gandan.log
 -'  53769  208  ~/log/20180108.Gandan.log
--'  53780  208  ~/log/20180108.Gandan.log
--'  53791  208  ~/log/20180108.Gandan.log
 
 # History of marks within files (newest to oldest):
 
-> ~/MW/MMAP.py
-	"	97	4
-	^	97	5
-	.	97	4
-	+	4	0
-	+	3	0
-	+	108	21
-	+	1	35
-	+	108	24
-	+	92	26
-	+	94	11
-	+	102	9
-	+	103	35
-	+	96	30
-	+	94	11
-	+	105	21
-	+	106	9
-	+	104	0
-	+	97	4
-
 > ~/MW/Gandan.py
-	"	72	4
+	"	96	3
 	^	72	5
 	.	72	4
 	+	150	41
@@ -355,6 +335,26 @@ $
 	+	116	14
 	+	120	15
 	+	72	4
+
+> ~/MW/MMAP.py
+	"	97	4
+	^	97	5
+	.	97	4
+	+	4	0
+	+	3	0
+	+	108	21
+	+	1	35
+	+	108	24
+	+	92	26
+	+	94	11
+	+	102	9
+	+	103	35
+	+	96	30
+	+	94	11
+	+	105	21
+	+	106	9
+	+	104	0
+	+	97	4
 
 > ~/log/20180108.Gandan.log
 	"	342459	37
