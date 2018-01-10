@@ -41,15 +41,35 @@ class MMAP:
 	def wp(self): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", self.w()+1))
 	def rs(self, r): self.m.seek(3, os.SEEK_SET); self.m.write(struct.pack("i", r))
 	def ws(self, w): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", w))
-	def writep(self, data): self.write(data); self.ws(self.w()+1); del(data); return self.r();
-	def readp(self)	   : _l = self.read(); self.rs(self.r() + len(_l)); return _l
+	def writet(self, data): self.write(data); self.ws(self.w()+1); del(data); return self.r();
+	def readt(self)	   : _l = self.read(); self.rs(self.r() + len(_l)); return _l
+
+	def writep(self, data): 
+		try:
+			self.m_lock.acquire()
+			self.write(data); self.ws(self.w()+1); del(data); 
+		except Exception as e:
+			logging.info(str(e))
+		finally:
+			self.m_lock.release()
+
+		return self.r();
+
+	def readp(self)	   : 
+		try:
+			self.m_lock.acquire()
+			_l = self.read(); self.rs(self.r() + len(_l)); 
+		except Exception as e:
+			logging.info(str(e))
+		finally:
+			self.m_lock.release()
+			return _l
 
 	def write(self, data):
 		write_pos = 11 + (self.w()*self.item_size) % self.size
 		write_res = (write_pos - 11) % self.item_size
 		#clear que item before write
 		try:
-			self.m_lock.acquire()
 			if write_res == 0 : 
 				self.m.seek(write_pos, os.SEEK_SET); self.m.write(self.erase_buff_)
 				self.m.seek(write_pos, os.SEEK_SET); self.m.write(data)
@@ -60,12 +80,9 @@ class MMAP:
 				self.m.seek(11	     , os.SEEK_SET); self.m.write(data[write_res: self.item_size ])
 		except Exception as e:
 			logging.info("try to write ", write_pos, "@", self.size + 11)
-		finally:
-			self.m_lock.release()
 
 	def read(self):
 		try:
-			self.m_lock.acquire()
 			_l = []
 			for i in range(self.r(), self.w()):
 				read_pos = 11 + (i*self.item_size) % self.size
@@ -85,8 +102,6 @@ class MMAP:
 			return _l
 		except Exception as e:
 			logging.info(str(e))
-		finally:
-			self.m_lock.release()
 
 class RoboMMAP(threading.Thread, MMAP):
 	def __init__(self, path, topic, callback, size, item_size):

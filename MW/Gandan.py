@@ -39,9 +39,12 @@ class Gandan:
 		_pubsub = ""
 		while(_p):
 			try:
+				_st = datetime.now()
 				_h = GandanMsg.recv(None, _req)
+				_et = datetime.now()
 				(_cmd, _msg)	  = (_h.cmd_, _h.dat_)
 				[_pubsub, _topic] = _cmd.split("_")
+				logging.info("RECV time for 1 item : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
 			except Exception as e:
 				_type, _value, _traceback = sys.exc_info()
 				self.log("#Error" + str(_type) + str(_value))
@@ -55,6 +58,7 @@ class Gandan:
 
 			#Note : PUB/SUB가 등록 시 경쟁하는 상황이 발생가능
 			if _pubsub == "PUB": 
+				_st = datetime.now()
 				if not _topic in self.pub_topic_.keys():
 					try:
 						self.p_reg_lock.acquire()
@@ -70,6 +74,8 @@ class Gandan:
 						logging.info("PUB for %s len 0" % (_topic))
 					_p = self.pub(_req, _topic, _msg)
 				#time.sleep(0.001)
+				_et = datetime.now()
+				logging.info("PUB time for 1 item : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
 				continue
 
 			if _pubsub == "SUB":
