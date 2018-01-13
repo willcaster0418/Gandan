@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~Msle0~/\<m_lock\>
+~MSle0~/HB
 
 # Last Substitute Search Pattern:
 ~MSle0&tmp
@@ -17,9 +17,9 @@
 $
 
 # Command Line History (newest to oldest):
-:q
-:w
 :wq
+:w
+:q
 :78
 :W
 :e
@@ -54,6 +54,7 @@ $
 :51
 
 # Search String History (newest to oldest):
+?/HB
 ? \<m_lock\>
 ?/m_lock
 ?/MW
@@ -103,7 +104,6 @@ $
 ?/version
 ?/selflog
 ? \<data\>
-?/str\(
 
 # Expression History (newest to oldest):
 
@@ -169,18 +169,24 @@ $
 	n
 
 # File marks:
-'0  69  41  ~/MW/MMAP.py
-'1  15  7  ~/MW/MMAP.py
-'2  75  19  ~/MW/Gandan.py
-'3  88  3  ~/MW/GandanMsg.py
-'4  68  3  ~/MW/GandanMsg.py
-'5  57  0  ~/MW/MMAP.py
-'6  83  7  ~/MW/GandanMsg.py
-'7  1  0  MW/GandanMsg.py./
-'8  62  23  ~/MW/GandanMsg.py
-'9  71  3  ~/MW/GandanMsg.py
+'0  34  4  ~/MW/GandanPub.py
+'1  23  4  ~/MW/GandanSub.py
+'2  69  41  ~/MW/MMAP.py
+'3  15  7  ~/MW/MMAP.py
+'4  75  19  ~/MW/Gandan.py
+'5  88  3  ~/MW/GandanMsg.py
+'6  68  3  ~/MW/GandanMsg.py
+'7  57  0  ~/MW/MMAP.py
+'8  83  7  ~/MW/GandanMsg.py
+'9  1  0  MW/GandanMsg.py./
 
 # Jumplist (newest first):
+-'  34  4  ~/MW/GandanPub.py
+-'  32  25  ~/MW/GandanPub.py
+-'  30  14  ~/MW/GandanPub.py
+-'  1  0  ~/MW/GandanPub.py
+-'  23  4  ~/MW/GandanSub.py
+-'  52  6  ~/MW/GandanSub.py
 -'  69  41  ~/MW/MMAP.py
 -'  15  2  ~/MW/MMAP.py
 -'  49  8  ~/MW/MMAP.py
@@ -273,12 +279,34 @@ $
 -'  329794  0  ~/log/20180108.Gandan.log
 -'  329119  0  ~/log/20180108.Gandan.log
 -'  329829  0  ~/log/20180108.Gandan.log
--'  328621  0  ~/log/20180108.Gandan.log
--'  329229  0  ~/log/20180108.Gandan.log
--'  322864  0  ~/log/20180108.Gandan.log
--'  81  3  ~/MW/MMAP.py
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/GandanPub.py
+	"	34	4
+	^	34	5
+	.	34	4
+	+	34	4
+
+> ~/MW/GandanSub.py
+	"	23	4
+	^	23	5
+	.	23	4
+	+	23	48
+	+	24	11
+	+	29	10
+	+	32	5
+	+	31	7
+	+	41	0
+	+	39	0
+	+	38	0
+	+	18	26
+	+	27	20
+	+	28	12
+	+	29	13
+	+	29	0
+	+	31	0
+	+	23	4
 
 > ~/MW/MMAP.py
 	"	69	41
@@ -586,25 +614,6 @@ $
 	"	342459	37
 	m	83909	0
 
-> ~/MW/GandanSub.py
-	"	52	6
-	^	29	15
-	.	31	0
-	+	23	48
-	+	24	11
-	+	29	10
-	+	32	5
-	+	31	7
-	+	41	0
-	+	39	0
-	+	38	0
-	+	18	26
-	+	27	20
-	+	28	12
-	+	29	13
-	+	29	0
-	+	31	0
-
 > ~/gmw_main.py
 	"	10	2
 	^	10	58
@@ -687,6 +696,3 @@ $
 	+	11	2
 	+	1	22
 	+	6	18
-
-> /usr/share/vim/vim74/doc/help.txt
-	"	1	0

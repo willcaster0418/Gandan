@@ -20,7 +20,7 @@ class GandanSub:
 			_h = GandanMsg.recv(None, self.s)
 
 			if _h.dat_.strip() == "HB":
-				logging.info("Heart Beat...[%s]" % self.cmd_)
+				#logging.info("Heart Beat...[%s]" % self.cmd_)
 				return 1
 			else:
 				try:
