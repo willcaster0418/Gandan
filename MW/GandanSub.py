@@ -1,4 +1,4 @@
-import struct, sys, time, logging, traceback
+import struct, sys, time, logging, traceback, datetime
 import socket
 import re
 from MW.MMAP import *
@@ -15,25 +15,28 @@ class GandanSub:
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
-	def sub(self, cb, obj=None):
+	def sub(self, cb, obj=None, hb_cb=None):
 		try:
 			_h = GandanMsg.recv(None, self.s)
 
-			if _h.dat_.strip() == "HB":
-				#logging.info("Heart Beat...[%s]" % self.cmd_)
-				return 1
-			else:
-				try:
+			try:
+				if _h.dat_.strip() == "HB":
+					logging.info("------------------HB----------------[%s]" % self.cmd_)
+					if hb_cb == None:
+						return 1
+					hb_cb(_h)
+				else:
 					if obj == None:
 						cb(_h)
 						return 1
 					cb(_h, obj)
-					return 1
-				except Exception as e:
-					_type, _value, _traceback = sys.exc_info()
-					logging.info("#Error" + str(_type) + str(_value))
-					for _err_str in traceback.format_tb(_traceback):
-						logging.info(_err_str)
+
+				return 1
+			except Exception as e:
+				_type, _value, _traceback = sys.exc_info()
+				logging.info("#Error" + str(_type) + str(_value))
+				for _err_str in traceback.format_tb(_traceback):
+					logging.info(_err_str)
 		except Exception as e:
 			if str(e) in ["timeout"]:
 				return 1

@@ -26,15 +26,10 @@ class GandanPub:
 	def hb(self, obj):
 		while obj.hb_flag:
 			try:
-				#self.publock.acquire()
-				hb_msg = "HB"
-				#GandanMsg.send(None, self.s, self.cmd_, hb_msg)
 				self.pub(self.cmd_, "HB")
-				#self.publock.release()
-				#logging.info("send HB for topic[%s, %s]...done" % (self.cmd_, self.hb_flag))
+				logging.info("-------------------HB-----------------[%s, %s]...done" % (self.cmd_, self.hb_flag))
 				time.sleep(30)
 			except Exception as e:
-				#self.publock.release()
 				time.sleep(1)
 				continue
 
