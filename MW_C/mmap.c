@@ -41,7 +41,7 @@ static int
 add(char *buf, char opcode, int idx)
 {
 	int *ptr;
-	if (opcode == 'w') ptr = (int *)(buf+3);
+	if (opcode == 'r') ptr = (int *)(buf+3);
 	if (opcode == 'w') ptr = (int *)(buf+7);
 	
 	_add(ptr, idx);

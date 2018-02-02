@@ -21,8 +21,8 @@ class Gandan:
 		self.pub_topic_ = {}
 		self.sub_topic_ = {}
 		self.rlist_ = []
-		self.p_reg_lock = threading.Lock()
-		self.s_reg_lock = threading.Lock()
+		#self.p_reg_lock = threading.Lock()
+		#self.s_reg_lock = threading.Lock()
 
 	def setup_log(self, path):
 		l_format = '%(asctime)s:%(msecs)03d^%(levelname)s^%(funcName)s^%(lineno)d^%(message)s'
@@ -61,12 +61,12 @@ class Gandan:
 				_st = datetime.now()
 				if not _topic in self.pub_topic_.keys():
 					try:
-						self.p_reg_lock.acquire()
+						#self.p_reg_lock.acquire()
 						_p = self.pub(_req, _topic, _msg)
 					except Exception as e:
 						logging.info("#Error in PUB Reg")
-					finally:
-						self.p_reg_lock.release()
+					#finally:
+						#self.p_reg_lock.release()
 				else:
 					try:
 						logging.info("PUB for %s len %d" % (_topic, len(self.sub_topic_[_topic])))
@@ -81,12 +81,12 @@ class Gandan:
 			if _pubsub == "SUB":
 				if not _topic in self.sub_topic_.keys():
 					try:
-						self.s_reg_lock.acquire()
+						#self.s_reg_lock.acquire()
 						_p = self.sub(_req, _topic, _msg)
 					except Exception as e:
 						logging.info("#Error in PUB Reg")
-					finally:
-						self.s_reg_lock.release()
+					#finally:
+						#self.s_reg_lock.release()
 				else: 
 					_p = self.sub(_req, _topic, _msg)
 				break
@@ -124,7 +124,7 @@ class Gandan:
 			logging.info(str(e))
 			return False
 
-		self.log("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+		logging.info("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 		return True
 
 	def sub(self, _req, _topic, _msg):
@@ -145,7 +145,7 @@ class Gandan:
 			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 			self.log("------------ MW Gandan Start --------------")
 			s.bind(self.ip_port)
-			s.listen(10)
+			s.listen(30)
 			#Todo : 소켓 당 쓰레드를 띄우는 대신 다중 IO로 변경
 			while True:
 				try:
@@ -168,21 +168,20 @@ class Gandan:
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
 		for i, _req in enumerate(self.sub_topic_[_topic]):
-			try:
-				for d in _data:
+			for d in _data:
+				try:
 					if Gandan.version(None) < 3:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d))
 					else:
 						GandanMsg.send(None, _req, "DATA_"+_topic, str(d,'utf-8'))
-			except Exception as e:
-				error_req_list.append(_req)
-				continue
+				except Exception as e:
+					error_req_list.append(_req)
 
 		for _req in error_req_list:
 			self.sub_topic_[_topic].remove(_req)
 
 		if len(error_req_list) > 0:
-			self.log("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))
+			logging.info("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))
 
 	@staticmethod
 	def version(self):

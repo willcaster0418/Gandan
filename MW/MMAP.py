@@ -41,8 +41,6 @@ class MMAP:
 	def wp(self): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", self.w()+1))
 	def rs(self, r): self.m.seek(3, os.SEEK_SET); self.m.write(struct.pack("i", r))
 	def ws(self, w): self.m.seek(7, os.SEEK_SET); self.m.write(struct.pack("i", w))
-	def writet(self, data): self.write(data); self.ws(self.w()+1); del(data); return self.r();
-	def readt(self)	   : _l = self.read(); self.rs(self.r() + len(_l)); return _l
 
 	def writep(self, data): 
 		try:
@@ -121,11 +119,12 @@ class RoboMMAP(threading.Thread, MMAP):
 				if self.r() < self.w() and self.callback != None:
 					_list = self.readp()
 					self.callback(self.topic, _list)
-					del(_list)
 				else:
 					logging.info("nothing to read")
 
 				if flag == False:
+					for i in range(0, len(_list)):
+						logging.info(_list[i])
 					break
 			except Exception as e:
 				logging.info("#Error:"+str(e))

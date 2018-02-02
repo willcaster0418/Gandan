@@ -19,50 +19,54 @@ class GandanSub:
 		try:
 			_h = GandanMsg.recv(None, self.s)
 
-			try:
-				if _h.dat_.strip() == "HB":
-					logging.info("------------------HB----------------[%s]" % self.cmd_)
-					if hb_cb == None:
-						return 1
-					hb_cb(_h)
-				else:
-					if obj == None:
-						cb(_h)
-						return 1
-					cb(_h, obj)
+			if _h.dat_.strip() == "HB":
+				logging.info("------------------HB----------------[%s]" % self.cmd_)
+				if hb_cb == None:
+					return 1
+				if hb_cb(obj, _h) == -1:
+					raise Exception("conn")
+			else:
+				if obj == None:
+					cb(_h)
+					return 1
+				cb(_h, obj)
 
-				return 1
-			except Exception as e:
+			return 1
+
+		except Exception as e:
+			if not str(e) in ["timeout"]:
 				_type, _value, _traceback = sys.exc_info()
 				logging.info("#Error" + str(_type) + str(_value))
 				for _err_str in traceback.format_tb(_traceback):
 					logging.info(_err_str)
-		except Exception as e:
+
 			if str(e) in ["timeout"]:
-				return 1
+				if hb_cb != None and hb_cb(obj, None) == -1:
+					e = Exception("conn")
 			elif str(e) in ["convert"]:
 				return -2
-			elif str(e) in ["conn"]:
+
+			if str(e) in ["conn"]:
 				logging.info(str(e)+": #Error Try to reconnect")
+				display_cnt = 0
 				while True:
 					try:
-						_tmp_socket = self.s
-						self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-						self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-						logging.info("reconnect SUCC")
-						return 1
+						self.s.close()
+						logging.info("#SUCC : previous socket close")
 					except Exception as e:
-						logging.info(str(e)+" : reconnect FAIL")
+						logging.info("#FAIL : previous socket close")
 					finally:
 						try:
-							_tmp_socket.close()
-							logging.info("socket close succ")
+							self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+							self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
+							logging.info("#SUCC : new socket connect")
+							break
 						except Exception as e:
-							logging.info("socket close fail")
+							if display_cnt % 100 == 0:
+								logging.info("#FAIL : new socket connect")
 						finally:
-							time.sleep(60)
-			else:
-				logging.info(str(e)+":unknown error")
+							display_cnt = display_cnt + 1
+							time.sleep(0.1)
 
 	def close(self):
 		self.s.close()
