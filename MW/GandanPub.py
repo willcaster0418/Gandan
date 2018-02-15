@@ -5,11 +5,7 @@ import re
 import threading, time
 import logging
 
-from MW.MMAP import *
-from MW.Gandan import *
-from MW.GandanMsg import *
-from MW.GandanPub import *
-from MW.GandanSub import *
+from .GandanMsg import *
 
 class GandanPub:
 	def __init__(self, ip, port):
@@ -27,7 +23,7 @@ class GandanPub:
 		while obj.hb_flag:
 			try:
 				self.pub(self.cmd_, "HB")
-				logging.info("-------------------HB-----------------[%s, %s]...done" % (self.cmd_, self.hb_flag))
+				#logging.info("-------------------HB-----------------[%s, %s]...done" % (self.cmd_, self.hb_flag))
 				time.sleep(30)
 			except Exception as e:
 				time.sleep(1)
@@ -85,10 +81,6 @@ class GandanPub:
 	def close(self):
 		self.s.close()
 		self.hb_flag = False
-
-	@staticmethod
-	def version(self):
-		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
 
 	@staticmethod
 	def connect(self, _sock, _ip_port):

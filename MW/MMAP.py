@@ -118,13 +118,13 @@ class RoboMMAP(threading.Thread, MMAP):
 				#time.sleep(self.time)
 				if self.r() < self.w() and self.callback != None:
 					_list = self.readp()
-					self.callback(self.topic, _list)
+					self.callback(self.topic, _list, self.r(), self.w())
 				else:
 					logging.info("nothing to read")
 
 				if flag == False:
 					for i in range(0, len(_list)):
-						logging.info(_list[i])
+						logging.info(_list[i].strip())
 					break
 			except Exception as e:
 				logging.info("#Error:"+str(e))

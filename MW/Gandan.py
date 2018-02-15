@@ -6,136 +6,131 @@ import socket
 import threading, logging
 import traceback
 
-from MW.MMAP import *
-from MW.Gandan import *
-from MW.GandanMsg import *
-from MW.GandanPub import *
-from MW.GandanSub import *
+from .GandanMsg import *
+from .MMAP  import *
 
 class Gandan:
-	def __init__(self, ip_port, path, size, item_size):
+	def __init__(self, ip_port, path, size, item_size, debug):
 		self.ip_port = ip_port
-		self.path_ = path
-		self.sz_   = size
-		self.isz_  = item_size
-		self.pub_topic_ = {}
-		self.sub_topic_ = {}
-		self.rlist_ = []
-		#self.p_reg_lock = threading.Lock()
-		#self.s_reg_lock = threading.Lock()
+		self.path    = path
+		self.sz      = size
+		self.isz     = item_size
+
+		self.pub_topic = {}
+		self.sub_topic = {}
+		self.rlist     = []
+
+		self.debug = debug
+
+		self.pub_lock_dict = {}
 
 	def setup_log(self, path):
 		l_format = '%(asctime)s:%(msecs)03d^%(levelname)s^%(funcName)s^%(lineno)d^%(message)s'
 		d_format = '%Y-%m-%d^%H:%M:%S'
 		logging.basicConfig(filename=path, format=l_format, datefmt=d_format,level=logging.DEBUG)
 
-	def log(self, _d):
-		logging.info(_d)
-
 	def handler(self, _req):
-		_p = True
-		_h = None
-		_cnt_none = 0
+		p = True; h = None
 		_pubsub = ""
-		while(_p):
+		while(p):
 			try:
-				_st = datetime.now()
-				_h = GandanMsg.recv(None, _req)
-				_et = datetime.now()
-				(_cmd, _msg)	  = (_h.cmd_, _h.dat_)
+				if self.debug:
+					_st = datetime.now()
+					h = GandanMsg.recv(None, _req)
+					_et = datetime.now()
+					logging.info("RECV_DATA : %s" % str(h).strip())
+					logging.info("RECV_TIME : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
+				else:
+					h = GandanMsg.recv(None, _req)
+
+				(_cmd, _msg)	  = (h.cmd_, h.dat_)
 				[_pubsub, _topic] = _cmd.split("_")
-				logging.info("RECV time for 1 item : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
 			except Exception as e:
-				_type, _value, _traceback = sys.exc_info()
-				self.log("#Error" + str(_type) + str(_value))
-				for _err_str in traceback.format_tb(_traceback):
-					self.log(_err_str)
+				Gandan.error_stack()
 				if str(e) in ['convert']:
 					continue
-				else:
-					_p = False
-					continue
+				p = False
+				continue
 
 			#Note : PUB/SUB가 등록 시 경쟁하는 상황이 발생가능
 			if _pubsub == "PUB": 
-				_st = datetime.now()
-				if not _topic in self.pub_topic_.keys():
-					try:
-						#self.p_reg_lock.acquire()
-						_p = self.pub(_req, _topic, _msg)
-					except Exception as e:
-						logging.info("#Error in PUB Reg")
-					#finally:
-						#self.p_reg_lock.release()
-				else:
-					try:
-						logging.info("PUB for %s len %d" % (_topic, len(self.sub_topic_[_topic])))
-					except Exception as e:
-						logging.info("PUB for %s len 0" % (_topic))
-					_p = self.pub(_req, _topic, _msg)
-				#time.sleep(0.001)
-				_et = datetime.now()
-				logging.info("PUB time for 1 item : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
-				continue
+				try:
+					if not _topic in self.pub_lock_dict.keys():
+						self.pub_lock_dict[_topic] = threading.Lock()
+					self.pub_lock_dict[_topic].acquire()
+					if self.debug:
+						_st = datetime.now()
+						p = self.pub(_req, _topic, _msg)
+						_et = datetime.now()
+						logging.info("PUB_TIME : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
+					else:
+						p = self.pub(_req, _topic, _msg)
+				except Exception as e:
+					Gandan.error_stack()
+				finally:
+					self.pub_lock_dict[_topic].release()
 
 			if _pubsub == "SUB":
-				if not _topic in self.sub_topic_.keys():
-					try:
-						#self.s_reg_lock.acquire()
-						_p = self.sub(_req, _topic, _msg)
-					except Exception as e:
-						logging.info("#Error in PUB Reg")
-					#finally:
-						#self.s_reg_lock.release()
-				else: 
-					_p = self.sub(_req, _topic, _msg)
-				break
+				try: 
+					if self.debug:
+						_st = datetime.now()
+						p = self.sub(_req, _topic, _msg)
+						_et = datetime.now()
+						logging.info("PUB_TIME : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
+					else:
+						p = self.sub(_req, _topic, _msg)
+				except Exception as e:
+					Gandan.error_stack()
 		try:
 			if _pubsub == "PUB":
 				_req.close()
 		except Exception as e:
-			self.log("#Error socket close for %s" % str(_req))
+			logging.info("#Error socket close for %s" % str(_req))
 
 	def pub(self, _req, _topic, _msg):
 		try:
-			_path = self.path_+_topic
+			_path = self.path +_topic
 			_pub = None
 
 			if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
 				_req.close()
 				return False
 
-			if not _topic in self.pub_topic_.keys(): 
-				self.pub_topic_[_topic] = []
-				self.pub_topic_[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz_, self.isz_))
-				_pub = self.pub_topic_[_topic][-1]
-				self.log("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
+			if not _topic in self.pub_topic.keys(): 
+				logging.info("ADD new PUB TOPIC[%s]" % _topic)
+				self.pub_topic[_topic] = []
+				self.pub_topic[_topic].append(RoboMMAP(_path, _topic, self.mon, self.sz, self.isz))
+				_pub = self.pub_topic[_topic][-1]
+				logging.info("PUB que path : %s monitor start,r[%d]w[%d]" % (_path, _pub.r(), _pub.w()) + ", TOPIC : %s" % _topic)
 			else:
-				_pub = self.pub_topic_[_topic][-1]
+				_pub = self.pub_topic[_topic][-1]
 
-			if Gandan.version(None) < 3:
+			if Gandan.version() < 3:
 				_pub.writep(bytes(_msg))
 			else:
 				_pub.writep(bytes(_msg,'utf-8'))
 
 			_pub.handle(False)
 		except Exception as e:
-			self.log("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
-			logging.info(str(e))
-			return False
+			if _pub == None:
+				logging.info(str(e))
+				return False
+			else:
+				logging.info("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
+				return False
 
 		logging.info("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 		return True
 
 	def sub(self, _req, _topic, _msg):
 		try:
-			if not _topic in self.sub_topic_.keys():
-				self.sub_topic_[_topic] = []
-				self.sub_topic_[_topic].append(_req)
-				self.log("_topic : %s is created for SUB" % _topic)
+			if not _topic in self.sub_topic.keys():
+				self.sub_topic[_topic] = []
+				self.sub_topic[_topic].append(_req)
+				logging.info("_topic : %s is created for SUB" % _topic)
 			else:
-				self.sub_topic_[_topic].append(_req)
-				self.log("_topic : %s is appended for SUB" % _topic)
+				self.sub_topic[_topic].append(_req)
+				logging.info("_topic : %s is appended for SUB" % _topic)
 		except Exception as e:
 			return False
 		return True
@@ -143,57 +138,53 @@ class Gandan:
 	def start(self):
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-			self.log("------------ MW Gandan Start --------------")
+			logging.info("------------ MW Gandan Version[%d] Start --------------" % Gandan.version())
 			s.bind(self.ip_port)
 			s.listen(30)
 			#Todo : 소켓 당 쓰레드를 띄우는 대신 다중 IO로 변경
 			while True:
 				try:
 					_r, _a = s.accept()
-					self.rlist_.append(_r)
+					self.rlist.append(_r)
 					t = threading.Thread(target = self.handler, args = (_r, ))
 					t.start()
 				except Exception as e:
-					self.log("%s"%str(e)+":%s"%str(e))
+					logging.info("%s"%str(e)+":%s"%str(e))
 					break
 
-	def mon(self, _topic, _data):
+	def mon(self, _topic, _data, r, w):
 		logging.info("[%s]" % str(type(_data)))
 		logging.info("mon data for topic[%s]" % _topic)
-		if not _topic in self.sub_topic_.keys():
+		if not _topic in self.sub_topic.keys():
 			logging.info("no topic for data")
 			return
 
 		error_req_list = []
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
-		for i, _req in enumerate(self.sub_topic_[_topic]):
+		for i, _req in enumerate(self.sub_topic[_topic]):
 			for d in _data:
 				try:
-					if Gandan.version(None) < 3:
-						GandanMsg.send(None, _req, "DATA_"+_topic, str(d))
+					if Gandan.version() < 3:
+						GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
 					else:
-						GandanMsg.send(None, _req, "DATA_"+_topic, str(d,'utf-8'))
+						GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
 				except Exception as e:
 					error_req_list.append(_req)
 
 		for _req in error_req_list:
-			self.sub_topic_[_topic].remove(_req)
+			self.sub_topic[_topic].remove(_req)
 
 		if len(error_req_list) > 0:
 			logging.info("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))
 
 	@staticmethod
-	def version(self):
+	def error_stack():
+		_type, _value, _traceback = sys.exc_info()
+		logging.info("#Error" + str(_type) + str(_value))
+		for _err_str in traceback.format_tb(_traceback):
+			logging.info(_err_str)
+
+	@staticmethod
+	def version():
 		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
-
-if __name__ == "__main__":
-	try:
-		l_ip_port = ("0.0.0.0", 8888)
-		h = Gandan(l_ip_port, "/home/robosys/Gandan/MW/que/", 10000, 1000)
-		h.setup_log(datetime.now().strftime("/home/robosys/Gandan/MW/log/%Y%m%d")+".Gandan.log")
-		h.start()
-
-	except Exception as e:
-		print("Error in Gandan", e)
-

@@ -1,11 +1,8 @@
 import struct, sys, time, logging, traceback, datetime
 import socket
 import re
-from MW.MMAP import *
-from MW.Gandan import *
-from MW.GandanMsg import *
-from MW.GandanPub import *
-from MW.GandanSub import *
+
+from .GandanMsg import *
 
 class GandanSub:
 	def __init__(self, ip, port, _cmd, _io): # _io is wating time 
@@ -20,7 +17,7 @@ class GandanSub:
 			_h = GandanMsg.recv(None, self.s)
 
 			if _h.dat_.strip() == "HB":
-				logging.info("------------------HB----------------[%s]" % self.cmd_)
+				#logging.info("------------------HB----------------[%s]" % self.cmd_)
 				if hb_cb == None:
 					return 1
 				if hb_cb(obj, _h) == -1:
@@ -70,10 +67,6 @@ class GandanSub:
 
 	def close(self):
 		self.s.close()
-
-	@staticmethod
-	def version(self):
-		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
 
 	@staticmethod
 	def connect(self, _sock, _ip_port, _cmd, _io):
