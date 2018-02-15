@@ -10,3 +10,4 @@ MW/__pycache__/
 .git/
 .gitignore
 .pki
+.*

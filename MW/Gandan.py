@@ -10,7 +10,7 @@ from .GandanMsg import *
 from .MMAP  import *
 
 class Gandan:
-	def __init__(self, ip_port, path, size, item_size, debug):
+	def __init__(self, ip_port, path, size, item_size, debug=False):
 		self.ip_port = ip_port
 		self.path    = path
 		self.sz      = size

@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/HB
+~MSle0~/Re
 
 # Last Substitute Search Pattern:
 ~MSle0&GandanMsg.version
@@ -56,6 +56,8 @@ $Gandan.version
 :51
 
 # Search String History (newest to oldest):
+?/Re
+? \<debug\>
 ?/HB
 ? \<init_file\>
 ?/mmap
@@ -104,8 +106,6 @@ $Gandan.version
 ?/handler
 ?/start
 ?/MMAP
-?/gandan
-??mon
 
 # Expression History (newest to oldest):
 
@@ -142,21 +142,37 @@ $Gandan.version
 	None
 
 # File marks:
-'0  20  4  ~/MW/GandanSub.py
-'1  26  38  ~/MW/GandanPub.py
-'2  20  19  ~/MW/MMAP.py
-'3  64  23  ~/MW_C/mmap.c
-'4  89  1  ~/MW/GandanPub.py
-'5  172  22  ~/MW/Gandan.py
-'6  84  3  ~/MW/GandanMsg.py
-'7  73  0  ~/MW/GandanSub.py
-'8  194  19  ~/MW/Gandan.py
-'9  193  11  ~/MW/Gandan.py
+'0  11  67  ~/gmw_main.py
+'1  72  21  ~/MW/GandanPub.py
+'2  69  16  ~/MW/GandanPub.py
+'3  10  4  ~/service.sh
+'4  10  2  ~/gmw_main.py
+'5  14  4  ~/service.sh
+'6  13  62  ~/MW/Gandan.py
+'7  13  1  ~/.gitignore
+'8  1  0  ~/mw_main.py
+'9  20  4  ~/MW/GandanSub.py
 
 # Jumplist (newest first):
+-'  11  67  ~/gmw_main.py
+-'  10  2  ~/gmw_main.py
+-'  72  21  ~/MW/GandanPub.py
+-'  69  6  ~/MW/GandanPub.py
+-'  26  4  ~/MW/GandanPub.py
+-'  10  4  ~/service.sh
+-'  14  4  ~/service.sh
+-'  13  62  ~/MW/Gandan.py
+-'  190  2  ~/MW/Gandan.py
+-'  23  15  ~/MW/Gandan.py
+-'  37  12  ~/MW/Gandan.py
+-'  61  13  ~/MW/Gandan.py
+-'  75  13  ~/MW/Gandan.py
+-'  172  4  ~/MW/Gandan.py
+-'  13  1  ~/.gitignore
+-'  1  0  ~/.gitignore
+-'  1  0  ~/mw_main.py
 -'  20  4  ~/MW/GandanSub.py
 -'  73  2  ~/MW/GandanSub.py
--'  26  38  ~/MW/GandanPub.py
 -'  25  25  ~/MW/GandanPub.py
 -'  89  0  ~/MW/GandanPub.py
 -'  20  19  ~/MW/MMAP.py
@@ -166,7 +182,6 @@ $Gandan.version
 -'  48  0  ~/MW_C/mmap.c
 -'  45  1  ~/MW_C/mmap.c
 -'  34  4  ~/MW/GandanPub.py
--'  172  22  ~/MW/Gandan.py
 -'  115  20  ~/MW/Gandan.py
 -'  194  2  ~/MW/Gandan.py
 -'  84  3  ~/MW/GandanMsg.py
@@ -221,7 +236,6 @@ $Gandan.version
 -'  162  32  ~/MW/Gandan.py
 -'  169  40  ~/MW/Gandan.py
 -'  180  16  ~/MW/Gandan.py
--'  23  7  ~/MW/Gandan.py
 -'  107  33  ~/MW/Gandan.py
 -'  108  17  ~/MW/Gandan.py
 -'  109  17  ~/MW/Gandan.py
@@ -234,156 +248,39 @@ $Gandan.version
 -'  100  19  ~/MW/Gandan.py
 -'  18  10  ~/MW/Gandan.py
 -'  120  3  ~/MW/Gandan.py
--'  10  2  ~/gmw_main.py
 -'  1  0  /tmp/crontab.BomVO9
 -'  4  0  ~/MW_C/test.c
 -'  1  0  ~/MW_C/test.c
 -'  101  3  ~/MW/Gandan.py
--'  128  5  ~/MW/MMAP.py
--'  69  2  ~/MW/MMAP.py
--'  123  3  ~/MW/Gandan.py
--'  33  0  ~/MW_C/mmap.c
--'  44  1  ~/MW_C/mmap.c
--'  26  38  ~/MW/GandanPub.py
--'  25  25  ~/MW/GandanPub.py
--'  89  0  ~/MW/GandanPub.py
--'  20  19  ~/MW/MMAP.py
--'  6  19  ~/MW/MMAP.py
--'  109  2  ~/MW/MMAP.py
--'  64  23  ~/MW_C/mmap.c
 
 # History of marks within files (newest to oldest):
 
-> ~/MW/GandanSub.py
-	"	20	4
-	^	20	5
-	.	20	4
-	+	23	48
-	+	24	11
-	+	29	10
-	+	32	5
-	+	31	7
-	+	41	0
-	+	39	0
-	+	38	0
-	+	18	26
-	+	27	20
-	+	28	12
-	+	29	13
-	+	29	0
-	+	31	0
-	+	23	4
-	+	73	0
-	+	20	4
+> ~/gmw_main.py
+	"	11	67
+	^	11	68
+	.	11	67
+	+	10	57
+	+	11	67
 
 > ~/MW/GandanPub.py
-	"	26	38
-	^	26	5
-	.	26	4
+	"	72	21
+	^	69	19
+	.	69	18
 	+	34	4
 	+	89	0
 	+	26	4
+	+	69	18
 
-> ~/MW/MMAP.py
-	"	20	19
-	^	15	32
-	.	15	31
-	+	4	0
-	+	3	0
-	+	123	21
-	+	1	35
-	+	123	24
-	+	107	26
-	+	109	11
-	+	117	9
-	+	118	35
-	+	111	30
-	+	109	11
-	+	120	21
-	+	121	9
-	+	119	0
-	+	112	4
-	+	73	0
-	+	83	0
-	+	86	0
-	+	105	0
-	+	16	0
-	+	67	10
-	+	67	9
-	+	67	1
-	+	67	20
-	+	67	31
-	+	67	1
-	+	67	23
-	+	67	13
-	+	67	18
-	+	67	0
-	+	16	31
-	+	67	13
-	+	68	30
-	+	67	0
-	+	67	0
-	+	67	19
-	+	69	20
-	+	67	22
-	+	67	5
-	+	67	2
-	+	67	15
-	+	67	1
-	+	67	24
-	+	67	24
-	+	67	23
-	+	67	9
-	+	67	2
-	+	67	21
-	+	44	10
-	+	45	9
-	+	67	10
-	+	67	9
-	+	67	3
-	+	67	3
-	+	67	1
-	+	44	10
-	+	45	9
-	+	68	0
-	+	16	0
-	+	69	27
-	+	68	21
-	+	47	0
-	+	46	0
-	+	44	10
-	+	45	9
-	+	48	52
-	+	56	1
-	+	52	2
-	+	49	24
-	+	51	23
-	+	52	0
-	+	50	0
-	+	52	23
-	+	53	10
-	+	54	24
-	+	61	50
-	+	66	2
-	+	62	0
-	+	63	0
-	+	64	0
-	+	60	0
-	+	65	0
-	+	57	0
-	+	15	31
-
-> ~/MW_C/mmap.c
-	"	64	23
-	^	44	17
-	.	44	16
-	+	44	16
+> ~/service.sh
+	"	10	4
+	^	10	22
+	.	10	21
+	+	10	21
 
 > ~/MW/Gandan.py
-	"	172	22
-	^	172	23
-	.	172	23
-	+	109	9
+	"	13	62
+	^	13	63
+	.	13	62
 	+	108	9
 	+	107	25
 	+	180	16
@@ -483,6 +380,133 @@ $Gandan.version
 	+	195	0
 	+	115	21
 	+	172	23
+	+	13	62
+
+> ~/.gitignore
+	"	13	1
+	^	13	2
+	.	13	1
+	+	13	1
+
+> ~/mw_main.py
+	"	1	0
+
+> ~/MW/GandanSub.py
+	"	20	4
+	^	20	5
+	.	20	4
+	+	23	48
+	+	24	11
+	+	29	10
+	+	32	5
+	+	31	7
+	+	41	0
+	+	39	0
+	+	38	0
+	+	18	26
+	+	27	20
+	+	28	12
+	+	29	13
+	+	29	0
+	+	31	0
+	+	23	4
+	+	73	0
+	+	20	4
+
+> ~/MW/MMAP.py
+	"	20	19
+	^	15	32
+	.	15	31
+	+	4	0
+	+	3	0
+	+	123	21
+	+	1	35
+	+	123	24
+	+	107	26
+	+	109	11
+	+	117	9
+	+	118	35
+	+	111	30
+	+	109	11
+	+	120	21
+	+	121	9
+	+	119	0
+	+	112	4
+	+	73	0
+	+	83	0
+	+	86	0
+	+	105	0
+	+	16	0
+	+	67	10
+	+	67	9
+	+	67	1
+	+	67	20
+	+	67	31
+	+	67	1
+	+	67	23
+	+	67	13
+	+	67	18
+	+	67	0
+	+	16	31
+	+	67	13
+	+	68	30
+	+	67	0
+	+	67	0
+	+	67	19
+	+	69	20
+	+	67	22
+	+	67	5
+	+	67	2
+	+	67	15
+	+	67	1
+	+	67	24
+	+	67	24
+	+	67	23
+	+	67	9
+	+	67	2
+	+	67	21
+	+	44	10
+	+	45	9
+	+	67	10
+	+	67	9
+	+	67	3
+	+	67	3
+	+	67	1
+	+	44	10
+	+	45	9
+	+	68	0
+	+	16	0
+	+	69	27
+	+	68	21
+	+	47	0
+	+	46	0
+	+	44	10
+	+	45	9
+	+	48	52
+	+	56	1
+	+	52	2
+	+	49	24
+	+	51	23
+	+	52	0
+	+	50	0
+	+	52	23
+	+	53	10
+	+	54	24
+	+	61	50
+	+	66	2
+	+	62	0
+	+	63	0
+	+	64	0
+	+	60	0
+	+	65	0
+	+	57	0
+	+	15	31
+
+> ~/MW_C/mmap.c
+	"	64	23
+	^	44	17
+	.	44	16
+	+	44	16
 
 > ~/MW/GandanMsg.py
 	"	84	3
@@ -589,12 +613,6 @@ $Gandan.version
 	+	28	0
 	+	8	0
 
-> ~/gmw_main.py
-	"	10	2
-	^	10	58
-	.	10	57
-	+	10	57
-
 > /tmp/crontab.BomVO9
 	"	1	0
 
@@ -626,12 +644,6 @@ $Gandan.version
 	+	17	0
 	+	10	15
 	+	14	50
-
-> ~/service.sh
-	"	10	18
-	^	10	19
-	.	10	19
-	+	10	19
 
 > ~/mw_pub.py
 	"	13	16
@@ -668,37 +680,3 @@ $Gandan.version
 > ~/log/20180108.Gandan.log
 	"	342459	37
 	m	83909	0
-
-> ~/log/20180107.Gandan.log
-	"	23928	0
-
-> ~/virtual_mkt.py
-	"	15	14
-	^	15	15
-	.	15	14
-	+	12	0
-	+	1	10
-	+	12	17
-	+	14	32
-	+	2	28
-	+	7	26
-	+	3	0
-	+	8	23
-	+	3	0
-	+	4	21
-	+	5	10
-	+	15	12
-	+	1	16
-	+	19	15
-	+	1	21
-	+	14	52
-	+	11	4
-	+	13	0
-	+	19	1
-	+	16	22
-	+	20	0
-	+	18	8
-	+	19	1
-	+	17	9
-	+	15	14
-	e	12	0
