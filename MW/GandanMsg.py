@@ -1,6 +1,5 @@
 import struct, sys, time, re
 from ast import literal_eval
-from datetime import datetime
 import threading, logging, socket
 
 class GandanMsg:

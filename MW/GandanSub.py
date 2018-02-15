@@ -1,4 +1,4 @@
-import struct, sys, time, logging, traceback, datetime
+import struct, sys, time, logging, traceback
 import socket
 import re
 

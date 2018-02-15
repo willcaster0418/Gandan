@@ -17,9 +17,9 @@
 $Gandan.version
 
 # Command Line History (newest to oldest):
+:q
 :wq
 :w
-:q
 :version
 :%s/GandanMsg.version/Gandan.version/g
 :W
@@ -142,10 +142,10 @@ $Gandan.version
 	None
 
 # File marks:
-'0  11  67  ~/gmw_main.py
-'1  72  21  ~/MW/GandanPub.py
-'2  69  16  ~/MW/GandanPub.py
-'3  10  4  ~/service.sh
+'0  10  4  ~/service.sh
+'1  11  67  ~/gmw_main.py
+'2  72  21  ~/MW/GandanPub.py
+'3  69  16  ~/MW/GandanPub.py
 '4  10  2  ~/gmw_main.py
 '5  14  4  ~/service.sh
 '6  13  62  ~/MW/Gandan.py
@@ -154,12 +154,12 @@ $Gandan.version
 '9  20  4  ~/MW/GandanSub.py
 
 # Jumplist (newest first):
+-'  10  4  ~/service.sh
 -'  11  67  ~/gmw_main.py
 -'  10  2  ~/gmw_main.py
 -'  72  21  ~/MW/GandanPub.py
 -'  69  6  ~/MW/GandanPub.py
 -'  26  4  ~/MW/GandanPub.py
--'  10  4  ~/service.sh
 -'  14  4  ~/service.sh
 -'  13  62  ~/MW/Gandan.py
 -'  190  2  ~/MW/Gandan.py
@@ -251,9 +251,14 @@ $Gandan.version
 -'  1  0  /tmp/crontab.BomVO9
 -'  4  0  ~/MW_C/test.c
 -'  1  0  ~/MW_C/test.c
--'  101  3  ~/MW/Gandan.py
 
 # History of marks within files (newest to oldest):
+
+> ~/service.sh
+	"	10	4
+	^	10	22
+	.	10	21
+	+	10	21
 
 > ~/gmw_main.py
 	"	11	67
@@ -270,12 +275,6 @@ $Gandan.version
 	+	89	0
 	+	26	4
 	+	69	18
-
-> ~/service.sh
-	"	10	4
-	^	10	22
-	.	10	21
-	+	10	21
 
 > ~/MW/Gandan.py
 	"	13	62
