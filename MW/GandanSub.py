@@ -13,6 +13,7 @@ class GandanSub:
 		self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
 
 	def sub(self, cb, obj=None, hb_cb=None):
+		_h = None
 		try:
 			_h = GandanMsg.recv(None, self.s)
 
@@ -36,6 +37,10 @@ class GandanSub:
 				logging.info("#Error" + str(_type) + str(_value))
 				for _err_str in traceback.format_tb(_traceback):
 					logging.info(_err_str)
+				try:
+					logging.info(str(_h).strip())
+				except Exception as er:
+					logging.info(str(er))
 
 			if str(e) in ["timeout"]:
 				if hb_cb != None and hb_cb(obj, None) == -1:
