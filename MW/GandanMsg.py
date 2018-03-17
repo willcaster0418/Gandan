@@ -22,7 +22,7 @@ class GandanMsg:
 		return _b
 	
 	def __str__(self):
-		return self.cmd_+":"+self.dat_
+		return str(self.total_size)+":"+self.cmd_+":"+self.dat_
 
 	@staticmethod
 	def version():
@@ -74,6 +74,7 @@ class GandanMsg:
 
 		try:
 			_sz  = struct.unpack("!i", _b)[0]
+			logging.info("size of recv packet from socket => [%d]" % _sz)
 		except Exception as e:
 			raise Exception('convert')
 

@@ -47,6 +47,8 @@ class GandanPub:
 				logging.info(str(e))
 				self.publock.release()
 				raise Exception("connection lost")
+			finally:
+				self.publock.release()
 
 		except Exception as e:
 
@@ -75,7 +77,8 @@ class GandanPub:
 				except Exception as e:
 					self.publock.release()
 					time.sleep(1)
-
+				finally:
+					self.publock.release()
 			return 0
 
 	def close(self):
