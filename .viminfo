@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~H
 # Last Search Pattern:
-~MSle0~/lock
+~MSle0~/release
 
 # Last Substitute Search Pattern:
 ~MSle0&GandanMsg.version
@@ -59,6 +59,7 @@ $
 :51
 
 # Search String History (newest to oldest):
+?/release
 ?/lock
 ?/finally
 ? \<GandanMsg\>
@@ -108,7 +109,6 @@ $
 ?/11866.5
 ?/obj
 ?/jango
-?/MKTMAT.*122630
 
 # Expression History (newest to oldest):
 
@@ -120,40 +120,44 @@ $
 "0	LINE	0
 	
 ""1	LINE	0
-						self.publock.release()
+					self.publock.release()
 "2	LINE	0
 					self.publock.release()
 "3	LINE	0
-	
+						self.publock.release()
 "4	LINE	0
-	echo $ISSUE_CODE
+						self.publock.acquire()
 "5	LINE	0
-	echo $1
+						self.publock.release()
 "6	LINE	0
-	01 02 * * * /home/gandan/service.sh start
+					self.publock.release()
 "7	LINE	0
-	00 02 * * * mv /home/gandan/log/* /home/gandan/log/prev/
+	
 "8	LINE	0
-		mv /home/gandan/log/* /home/gandan/log/prev/
+	echo $ISSUE_CODE
 "9	LINE	0
-	    ps aux|grep -v grep|egrep gandan.*gmw_main.py|awk '{print $2}'|xargs -Iz kill z
-	    /usr/bin/python3.4 /home/gandan/gmw_main.py &
+	echo $1
 "-	CHAR	0
 	None
 
 # File marks:
-'0  1  0  ~/mw_main.py
-'1  10  4  ~/service.sh
-'2  76  7  ~/MW/MMAP.py
-'3  77  17  ~/MW/GandanSub.py
-'4  77  5  ~/MW/GandanPub.py
-'5  282390  0  ~/log/20180317.gandan.log
-'6  14  0  ~/MW/GandanMsg.py
-'7  1  0  ~/MW/Gandan
-'8  40  29  ~/MW/GandanPub.py
-'9  95  2  ~/MW/GandanMsg.py
+'0  77  1  ~/MW/GandanSub.py
+'1  87  6  ~/MW/GandanPub.py
+'2  60  5  ~/MW/GandanPub.py
+'3  75  5  ~/MW/GandanPub.py
+'4  1  0  ~/mw_main.py
+'5  10  4  ~/service.sh
+'6  76  7  ~/MW/MMAP.py
+'7  282390  0  ~/log/20180317.gandan.log
+'8  14  0  ~/MW/GandanMsg.py
+'9  1  0  ~/MW/Gandan
 
 # Jumplist (newest first):
+-'  77  1  ~/MW/GandanSub.py
+-'  87  6  ~/MW/GandanPub.py
+-'  40  3  ~/MW/GandanPub.py
+-'  60  5  ~/MW/GandanPub.py
+-'  75  5  ~/MW/GandanPub.py
 -'  1  0  ~/mw_main.py
 -'  10  4  ~/service.sh
 -'  76  7  ~/MW/MMAP.py
@@ -161,10 +165,7 @@ $
 -'  47  10  ~/MW/MMAP.py
 -'  15  9  ~/MW/MMAP.py
 -'  1  0  ~/MW/MMAP.py
--'  77  17  ~/MW/GandanSub.py
 -'  1  0  ~/MW/GandanSub.py
--'  77  5  ~/MW/GandanPub.py
--'  40  4  ~/MW/GandanPub.py
 -'  282390  0  ~/log/20180317.gandan.log
 -'  282384  43  ~/log/20180317.gandan.log
 -'  282389  42  ~/log/20180317.gandan.log
@@ -180,8 +181,8 @@ $
 -'  49  9  ~/MW/GandanMsg.py
 -'  1  0  ~/MW/Gandan
 -'  6  0  ~/MW/GandanPub.py
--'  108  1  ~/MW/GandanPub.py
--'  80  3  ~/MW/GandanPub.py
+-'  106  1  ~/MW/GandanPub.py
+-'  78  3  ~/MW/GandanPub.py
 -'  52  2  ~/MW/GandanMsg.py
 -'  25  2  ~/MW/GandanMsg.py
 -'  118  3  ~/MW/Gandan.py
@@ -195,7 +196,7 @@ $
 -'  1  0  ~/MW/GandanMsg.py
 -'  102  45  ~/MW/Gandan.py
 -'  31  0  ~/MW/Gandan.py
--'  73  5  ~/MW/GandanPub.py
+-'  71  5  ~/MW/GandanPub.py
 -'  5  0  ~/log/some.sh
 -'  8  0  ~/log/some.sh
 -'  9  0  ~/log/some.sh
@@ -249,11 +250,27 @@ $
 -'  159  37  ~/log/20180307.gandan.log
 -'  154  37  ~/log/20180307.gandan.log
 -'  149  37  ~/log/20180307.gandan.log
--'  144  37  ~/log/20180307.gandan.log
--'  139  37  ~/log/20180307.gandan.log
--'  134  37  ~/log/20180307.gandan.log
 
 # History of marks within files (newest to oldest):
+
+> ~/MW/GandanSub.py
+	"	77	1
+
+> ~/MW/GandanPub.py
+	"	87	6
+	^	76	12
+	.	45	0
+	+	48	10
+	+	49	0
+	+	76	11
+	+	77	0
+	+	78	0
+	+	47	0
+	+	75	0
+	+	57	0
+	+	55	0
+	+	60	0
+	+	45	0
 
 > ~/mw_main.py
 	"	1	0
@@ -276,21 +293,6 @@ $
 
 > ~/MW/MMAP.py
 	"	76	7
-
-> ~/MW/GandanSub.py
-	"	77	17
-
-> ~/MW/GandanPub.py
-	"	77	5
-	^	78	12
-	.	77	0
-	+	49	10
-	+	50	0
-	+	78	11
-	+	79	0
-	+	80	0
-	+	48	0
-	+	77	0
 
 > ~/log/20180317.gandan.log
 	"	282390	0

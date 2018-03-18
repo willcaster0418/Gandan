@@ -42,7 +42,6 @@ class GandanPub:
 				#적절한 수준의 전송보장은 아닌 것 같음
 				self.prev_cmd_ = _cmd
 				self.prev_data_ = _data
-				self.publock.release()
 			except Exception as e:
 				logging.info(str(e))
 				raise Exception("connection lost")
@@ -53,12 +52,11 @@ class GandanPub:
 
 			while True:
 				try:
-					logging.info("connection lost retry ... ")
 					self.publock.acquire()
+					logging.info("connection lost retry ... ")
 					self.s.close()
 					self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					self.s = GandanPub.connect(None, self.s, self.ip_port_)
-					self.publock.release()
 					logging.info("connection lost retry ... SUCC ")
 
 					if False:#self.prev_cmd_ != None and self.prev_data_ != None:
