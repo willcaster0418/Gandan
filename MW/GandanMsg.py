@@ -74,7 +74,7 @@ class GandanMsg:
 
 		try:
 			_sz  = struct.unpack("!i", _b)[0]
-			logging.info("size of recv packet from socket => [%d]" % _sz)
+			#logging.info("size of recv packet from socket => [%d]" % _sz)
 		except Exception as e:
 			raise Exception('convert')
 

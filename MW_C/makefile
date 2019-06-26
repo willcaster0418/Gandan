@@ -1,4 +1,4 @@
-all:
+all: debug
 	gcc -lpthread thread.c -o thread
 	gcc ./mmap.c -o mmap
 debug:

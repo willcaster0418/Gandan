@@ -47,6 +47,7 @@ class MMAP:
 			self.m_lock.acquire()
 			self.write(data); self.ws(self.w()+1); del(data); 
 		except Exception as e:
+			print(str(e))
 			logging.info(str(e))
 		finally:
 			self.m_lock.release()
