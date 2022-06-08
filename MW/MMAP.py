@@ -1,5 +1,6 @@
 import os,struct,threading,time,gc,logging
 from mmap import mmap
+from .Gandan import * 
 
 class MMAP:
 	def __init__(self, path, size, item_size):
@@ -45,10 +46,10 @@ class MMAP:
 	def writep(self, data): 
 		try:
 			self.m_lock.acquire()
+			#print("write lock")
 			self.write(data); self.ws(self.w()+1); del(data); 
 		except Exception as e:
 			print(str(e))
-			logging.info(str(e))
 		finally:
 			self.m_lock.release()
 
@@ -57,9 +58,10 @@ class MMAP:
 	def readp(self)	   : 
 		try:
 			self.m_lock.acquire()
+			#print("read lock")
 			_l = self.read(); self.rs(self.r() + len(_l)); 
 		except Exception as e:
-			logging.info(str(e))
+			print(str(e))
 		finally:
 			self.m_lock.release()
 			return _l

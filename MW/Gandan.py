@@ -18,16 +18,18 @@ class Gandan:
 
 		self.pub_topic = {}
 		self.sub_topic = {}
+		self.sub_topic_websocket = {}
 		self.rlist     = []
 
 		self.debug = debug
 
 		self.pub_lock_dict = {}
 
-	def setup_log(self, path):
-		l_format = '%(asctime)s:%(msecs)03d^%(levelname)s^%(funcName)s^%(lineno)d^%(message)s'
+	@staticmethod
+	def setup_log(path, level = logging.DEBUG):
+		l_format = '%(asctime)s:%(msecs)03d^%(levelname)s^%(funcName)20s^%(lineno)04d^%(message)s'
 		d_format = '%Y-%m-%d^%H:%M:%S'
-		logging.basicConfig(filename=path, format=l_format, datefmt=d_format,level=logging.DEBUG)
+		logging.basicConfig(filename=path, format=l_format, datefmt=d_format,level=level)
 
 	def handler(self, _req):
 		p = True; h = None
@@ -81,6 +83,8 @@ class Gandan:
 						p = self.sub(_req, _topic, _msg)
 				except Exception as e:
 					Gandan.error_stack()
+
+
 		try:
 			if _pubsub == "PUB":
 				_req.close()
@@ -92,9 +96,9 @@ class Gandan:
 			_path = self.path +_topic
 			_pub = None
 
-			if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
-				_req.close()
-				return False
+			#if (_topic == "ORDER" or _topic == "OM") and _req.getsockname()[0] != '127.0.0.1':
+			#	_req.close()
+			#	return False
 
 			if not _topic in self.pub_topic.keys(): 
 				logging.info("ADD new PUB TOPIC[%s]" % _topic)
@@ -114,23 +118,34 @@ class Gandan:
 		except Exception as e:
 			if _pub == None:
 				logging.info(str(e))
+				logging.info(self.pub_topic)
 				return False
 			else:
+				Gandan.error_stack()
 				logging.info("#Error During PUB[%s], " % _topic + "[%s..]" % _msg.strip()[0:50] + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 				return False
 
 		logging.info("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 		return True
 
-	def sub(self, _req, _topic, _msg):
+	def sub(self, _req, _topic, _msg, _type = 0):
 		try:
-			if not _topic in self.sub_topic.keys():
-				self.sub_topic[_topic] = []
-				self.sub_topic[_topic].append(_req)
-				logging.info("_topic : %s is created for SUB" % _topic)
+			if _type == 0:
+				if not _topic in self.sub_topic.keys():
+					self.sub_topic[_topic] = []
+					self.sub_topic[_topic].append(_req)
+					logging.info("_topic : %s is created for SUB" % _topic)
+				else:
+					self.sub_topic[_topic].append(_req)
+					logging.info("_topic : %s is appended for SUB" % _topic)
 			else:
-				self.sub_topic[_topic].append(_req)
-				logging.info("_topic : %s is appended for SUB" % _topic)
+				if not _topic in self.sub_topic_websocket.keys():
+					self.sub_topic_websocket[_topic] = []
+					self.sub_topic_websocket[_topic].append(_req)
+					logging.info("_topic : %s is created for SUB, websocket" % _topic)
+				else:
+					self.sub_topic_websocket[_topic].append(_req)
+					logging.info("_topic : %s is appended for SUB, websocket" % _topic)
 		except Exception as e:
 			return False
 		return True
@@ -155,35 +170,58 @@ class Gandan:
 	def mon(self, _topic, _data, r, w):
 		logging.info("[%s]" % str(type(_data)))
 		logging.info("mon data for topic[%s]" % _topic)
-		if not _topic in self.sub_topic.keys():
+		if not _topic in self.sub_topic.keys() and not _topic in self.sub_topic_websocket.keys():
 			logging.info("no topic for data")
 			return
 
-		error_req_list = []
+		error_req_list  = []
+		error_req_listw = []
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
-		for i, _req in enumerate(self.sub_topic[_topic]):
-			for d in _data:
-				try:
-					if Gandan.version() < 3:
-						GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
-					else:
-						GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
-				except Exception as e:
-					error_req_list.append(_req)
+		if _topic in self.sub_topic.keys():
+			for i, _req in enumerate(self.sub_topic[_topic]):
+				for d in _data:
+					try:
+						if Gandan.version() < 3:
+							GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
+						else:
+							GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
+					except Exception as e:
+						error_req_list.append(_req)
 
-		for _req in error_req_list:
-			self.sub_topic[_topic].remove(_req)
+			for _req in error_req_list:
+				self.sub_topic[_topic].remove(_req)
+
+		if _topic in self.sub_topic_websocket.keys():
+			for i, _req in enumerate(self.sub_topic_websocket[_topic]):
+				for d in _data:
+					try:
+						if Gandan.version() < 3:
+							GandanMsg.send_websocket(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
+						else:
+							GandanMsg.send_websocket(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
+					except Exception as e:
+						Gandan.error_stack()
+						error_req_listw.append(_req)
+
+		for _req in error_req_listw:
+			self.sub_topic_websocket[_topic].remove(_req)
 
 		if len(error_req_list) > 0:
 			logging.info("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))
 
+		if len(error_req_listw) > 0:
+			logging.info("#Error in SUB [%s] : %d requestw is removed" % (_topic, len(error_req_listw)))
+
 	@staticmethod
-	def error_stack():
+	def error_stack(stdout = False):
 		_type, _value, _traceback = sys.exc_info()
 		logging.info("#Error" + str(_type) + str(_value))
 		for _err_str in traceback.format_tb(_traceback):
-			logging.info(_err_str)
+			if stdout == False:
+				logging.info(_err_str)
+			else:
+				print(_err_str)
 
 	@staticmethod
 	def version():

@@ -1,3 +1,4 @@
+#--*--coding:utf-8--*--
 import struct, sys, time, re
 from ast import literal_eval
 import threading, logging, socket
@@ -31,17 +32,17 @@ class GandanMsg:
 	@staticmethod
 	def conv2(self, _b):
 		_c_sz = struct.unpack("!i", _b[:4])[0]; _b = _b[4:]
-		_c    = str(_b[:_c_sz]); _b = _b[_c_sz:]
+		_c	= str(_b[:_c_sz]); _b = _b[_c_sz:]
 		_d_sz = struct.unpack("!i", _b[:4])[0]; _b = _b[4:]
-		_d	  = str(_b[:_d_sz])     
+		_d	  = str(_b[:_d_sz])	 
 		return GandanMsg(_c, _d)
 
 	@staticmethod
 	def conv3(self, _b):
 		_c_sz = struct.unpack("!i", _b[:4])[0]; _b = _b[4:]
-		_c    = str(_b[:_c_sz], 'utf-8'); _b = _b[_c_sz:]
+		_c	= str(_b[:_c_sz], 'utf-8'); _b = _b[_c_sz:]
 		_d_sz = struct.unpack("!i", _b[:4])[0]; _b = _b[4:]
-		_d	  = str(_b[:_d_sz], 'utf-8')     
+		_d	  = str(_b[:_d_sz], 'utf-8')	 
 		return GandanMsg(_c, _d)
 
 	@staticmethod
@@ -51,6 +52,19 @@ class GandanMsg:
 			_sock.send(_h.__bytes__())
 		else:
 			_sock.send(bytes(_h))
+
+	@staticmethod
+	def send_websocket(self, _sock, _cmd, _msg):
+		#안그래도 느린넘한테 보낼 때는 strip을 해서보냄
+		#data = bytearray(_msg.strip().encode('utf-8'))
+		data = bytearray(_msg.encode('utf-8'))
+		if len(data) > 126:
+			data = bytearray([ord(b'\x81'), 126]) + bytearray(struct.pack('>H', len(data))) + data
+			#logging.info("> %s" % data)
+		else:
+			data = bytearray([ord(b'\x81'), len(data)]) + data
+			#logging.info("%s" % data)
+		_sock.send(data)
 
 	@staticmethod
 	def recv(self, _sock):
