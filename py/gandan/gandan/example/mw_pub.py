@@ -1,5 +1,5 @@
 #--*--coding:utf-8--*--
-from MW.GandanPub import *
+from gandan.GandanPub import *
 import time
 if __name__ == "__main__":
 	_h = GandanPub("127.0.0.1", 8889)

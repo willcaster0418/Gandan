@@ -1,8 +1,8 @@
-from MW.MMAP import *
-from MW.Gandan import *
-from MW.GandanMsg import *
-from MW.GandanPub import *
-from MW.GandanSub import *
+from gandan.MMAP import *
+from gandan.Gandan import *
+from gandan.GandanMsg import *
+from gandan.GandanPub import *
+from gandan.GandanSub import *
 
 import json
 
