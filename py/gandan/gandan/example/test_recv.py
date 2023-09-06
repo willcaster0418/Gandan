@@ -24,9 +24,8 @@ while True:
         cnt, tv = int(cnt), float(tv)
         gap = (dt.now().timestamp() - tv)
         gap_total += gap; gap_count += 1
-        # if gap_count % 10 == 0:
-        # logging.error(gap_total/gap_count)
-        #logging.error("%s-%d" % (id, cnt))
+        if gap_count % 100 == 0:
+            logging.error("%s-%d" % (id, cnt))
         if not id in validity_dict.keys():
             validity_dict[id] = cnt
         else:
