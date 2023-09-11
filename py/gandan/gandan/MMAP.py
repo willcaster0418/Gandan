@@ -36,7 +36,7 @@ class MMAP:
             f.write(' '.encode("ascii"))
         return f
 
-    def close():
+    def close(self):
         self.m.close()
         self.f.close()
 
