@@ -17,7 +17,6 @@ class MMAP:
         self.m_lock = threading.Lock()
 
     def init_file(self, path, size):
-        #import pdb; pdb.set_trace()
         if os.path.isfile(path):
             f = open(path, "rb+");f.seek(0, os.SEEK_END)
             filesize = f.tell() ;f.seek(0, os.SEEK_SET)
@@ -36,6 +35,10 @@ class MMAP:
         for i in range(0, 11 + size):
             f.write(' '.encode("ascii"))
         return f
+
+    def close():
+        self.m.close()
+        self.f.close()
 
     def r (self): return struct.unpack("i", self.m[3: 7])[0]
     def w (self): return struct.unpack("i", self.m[7:11])[0]
