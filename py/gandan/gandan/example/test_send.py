@@ -2,7 +2,7 @@ from gandan import MMAP
 import time, sys
 from datetime import datetime as dt
 
-m = MMAP("/tmp/some.que", 128*4096, 128)
+m = MMAP("/tmp/some.que", 128*4096, 128, opt = ["TSTAMP"])
 
 _id = sys.argv[1]
 _latency = float(sys.argv[2])

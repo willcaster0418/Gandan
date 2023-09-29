@@ -10,7 +10,7 @@ logging.basicConfig(
     level = logging.INFO
 )
         
-m = MMAP("/tmp/some.que", 128*4096, 128)
+m = MMAP("/tmp/some.que", 128*4096, 128, opt = ["TSTAMP"])
 gap_total = 0
 gap_count = 0
 
@@ -20,6 +20,8 @@ while True:
     datas = m.readp()
     for data in datas:
         data = str(data, 'ascii')
+        print(data)
+        print(m.rstamp(), m.wstamp())
         id, cnt, tv = data.split("|")
         cnt, tv = int(cnt), float(tv)
         gap = (dt.now().timestamp() - tv)
