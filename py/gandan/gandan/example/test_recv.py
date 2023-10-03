@@ -21,7 +21,7 @@ while True:
     for data in datas:
         data = str(data, 'ascii')
         print(data)
-        print(m.rstamp(), m.wstamp())
+        print(m.rstamp(), m.wstamp(), m.count())
         id, cnt, tv = data.split("|")
         cnt, tv = int(cnt), float(tv)
         gap = (dt.now().timestamp() - tv)

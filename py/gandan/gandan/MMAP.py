@@ -14,6 +14,7 @@ class MMAP:
     def __init__(self, path, size, item_size, opt = []):
         self.f = self.init_file(path, size)
         self.f.seek(0, os.SEEK_SET); self.m = mmap(self.f.fileno(), MMAP.OFFSET_START+size)
+        self.countp()
         self.size      = size
         self.item_size = item_size
         self.item_num  = int(size/item_size)
@@ -61,19 +62,9 @@ class MMAP:
         return f
 
     def close(self):
-        while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
-            time.sleep(0.001)
-            continue
-        try:
-            cnt = struct.unpack("i", self.m[MMAP.CNT_START: MMAP.CNT_START + MMAP.CNT_SIZE])[0]
-            self.m.seek(MMAP.CNT_START, os.SEEK_SET)
-            self.m.write(struct.pack("i", cnt + 1))
-            self.m.close()
-            self.f.close()
-        except Exception as e:
-            print(str(e))
-        finally:
-            fcntl.flock(self.f, fcntl.LOCK_UN)
+        self.countm()
+        self.m.close()
+        self.f.close()
 
     def r (self): return struct.unpack("i", self.m[MMAP.R_START: MMAP.R_START + MMAP.R_SIZE])[0]
     def w (self): return struct.unpack("i", self.m[MMAP.W_START: MMAP.W_START + MMAP.W_SIZE])[0]
@@ -83,6 +74,29 @@ class MMAP:
     def ws(self, w): self.m.seek(MMAP.W_START, os.SEEK_SET); self.m.write(struct.pack("i", w))
     def rstamp(self): return struct.unpack("d", self.m[MMAP.RSTAMP_START: MMAP.RSTAMP_START + MMAP.RSTAMP_SIZE])[0]
     def wstamp(self): return struct.unpack("d", self.m[MMAP.WSTAMP_START: MMAP.WSTAMP_START + MMAP.WSTAMP_SIZE])[0]
+    def count(self):  return struct.unpack("i", self.m[MMAP.CNT_START: MMAP.CNT_START + MMAP.CNT_SIZE])[0]
+
+    def countp(self): 
+        while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
+            time.sleep(0.001)
+            continue
+        try:
+            self.m.seek(MMAP.CNT_START, os.SEEK_SET); self.m.write(struct.pack("i", self.count() + 1))
+        except Exception as e:
+            print(str(e))
+        finally:
+            fcntl.flock(self.f, fcntl.LOCK_UN)
+
+    def countm(self): 
+        while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
+            time.sleep(0.001)
+            continue
+        try:
+            self.m.seek(MMAP.CNT_START, os.SEEK_SET); self.m.write(struct.pack("i", self.count() - 1))
+        except Exception as e:
+            print(str(e))
+        finally:
+            fcntl.flock(self.f, fcntl.LOCK_UN)
 
     def writep(self, data): 
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
