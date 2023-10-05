@@ -12,7 +12,12 @@ class MMAP:
     OFFSET_START = 31
 
     def __init__(self, path, size, item_size, opt = []):
+        if "TSTAMP" in opt:
+            self.use_tstamp = 1
+        (self.use_cnt, self.use_tstamp) = (0, 0)
+        
         self.f = self.init_file(path, size)
+        
         self.f.seek(0, os.SEEK_SET); self.m = mmap(self.f.fileno(), MMAP.OFFSET_START+size)
         self.countp()
         self.size      = size
@@ -23,10 +28,6 @@ class MMAP:
             self.erase_buff_ += ' '
         self.erase_buff_ = bytes(self.erase_buff_, "ascii")
 
-        (self.use_cnt, self.use_tstamp) = (0, 0)
-        self.use_tstamp = 0
-        if "TSTAMP" in opt:
-            self.use_tstamp = 1
 
     def init_file(self, path, size):
         if os.path.isfile(path):
