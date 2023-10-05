@@ -12,9 +12,9 @@ class MMAP:
     OFFSET_START = 31
 
     def __init__(self, path, size, item_size, opt = []):
+        (self.use_cnt, self.use_tstamp) = (0, 0)
         if "TSTAMP" in opt:
             self.use_tstamp = 1
-        (self.use_cnt, self.use_tstamp) = (0, 0)
         
         self.f = self.init_file(path, size)
         
