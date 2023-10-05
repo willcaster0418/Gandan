@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
 	name="gandan", # Replace with your own username
-	version="0.1.1",
+	version="0.1.2",
 	author="SANG-HUN, KIM",
 	author_email="fury8208@gmail.com",
 	description="a small tcp based middlware",
