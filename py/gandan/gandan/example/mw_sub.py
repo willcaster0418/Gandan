@@ -16,4 +16,5 @@ if __name__ == "__main__":
 		try:
 			_h.sub(callback)
 		except Exception as e:
+			print(str(e))
 			continue
