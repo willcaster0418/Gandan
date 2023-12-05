@@ -2,8 +2,12 @@ import struct, sys, time, logging, traceback
 import socket
 import re
 
-from .GandanMsg import *
-from .MMAP  import *
+try:
+	from .GandanMsg import *
+	from .MMAP  import *
+except Exception as e:
+	from GandanMsg import *
+	from MMAP  import *
 
 class GandanSub:
 	def __init__(self, ip, port, _cmd, _io, path=None): # _io is wating time 

@@ -6,8 +6,15 @@ import socket
 import threading, logging
 import traceback
 
-from .GandanMsg import *
-from .MMAP  import *
+import sys
+from os import path
+
+try:
+	from .GandanMsg import *
+	from .MMAP  import *
+except Exception as e:
+	from GandanMsg import *
+	from MMAP  import *
 
 class Gandan:
 	def __init__(self, ip_port, path, size, item_size, debug=False):

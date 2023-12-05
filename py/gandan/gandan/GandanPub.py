@@ -5,8 +5,13 @@ import re
 import threading, time
 import logging
 
-from .GandanMsg import *
-from .MMAP  import *
+try:
+	from .GandanMsg import *
+	from .MMAP  import *
+except Exception as e:
+	from GandanMsg import *
+	from MMAP  import *
+	
 
 class GandanPub:
 	def __init__(self, ip, port, path=None, hb_time = 30):

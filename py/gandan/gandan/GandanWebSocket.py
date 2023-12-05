@@ -1,16 +1,25 @@
+import sys
+from os import path
+
+if __package__ is None:
+	sys.path.append(path.dirname( path.dirname( path.abspath(__file__) ) ))
+	from Gandan import *
+	from GandanPub import *
+	from GandanSub import *
+else:
+	from .Gandan import *
+	from .GandanPub import *
+	from .GandanSub import *
+
 import socket, re, threading, logging
 import hashlib, base64, json
 
-from .Gandan    import *
-from .GandanPub import *
-from .GandanSub import *
-
 class GandanWebSocket:
-	def __init__(self,ip, port, sip, sport, main_mw): # _io is wating time 
+	def __init__(self,ip, port, main_mw): # _io is wating time 
 		self.main_mw  = main_mw
-		self.sip_port = (sip, sport)
 		self.ip_port  = (ip, port)
 		self.rlist    = []
+		self.sub_dict = {}
 
 	@staticmethod
 	def handshake(_sock):
@@ -25,6 +34,11 @@ class GandanWebSocket:
 		r = response % str(base64.b64encode(hashlib.sha1(bytes(key,'utf-8')).digest()),'utf-8')
 		_sock.send(bytes(r, 'utf-8'))
 
+		method = (str(request, 'ascii').split("\r\n")[0].split(" ")[0])
+		url = (str(request, 'ascii').split("\r\n")[0].split(" ")[1])
+
+		return (method, url)
+
 	@staticmethod
 	def send(_sock, msg):
 		data = bytearray(msg.encode('utf-8'))
@@ -37,7 +51,6 @@ class GandanWebSocket:
 	@staticmethod
 	def recv(_sock):
 		data= bytearray(_sock.recv(1))
-		logging.info("ret")
 		if len(data) == 0:
 			return None, None
 		first_byte = data[0]
@@ -62,43 +75,63 @@ class GandanWebSocket:
 			return opcode, bytearray(b'\x00')
 		return opcode, bytearray(data)
 	
-	def handler(self, _sock):
+	def handler(self, param):
 		p = True
-		sub_dict = {}
+		(_sock, method, url) = param
+
+		# split url to pubsub/topic
+		pubsub = url.split("/")[1]
+		topic = url.split("/")[2]
+		logging.info("%s >> %s" % (pubsub, topic))
+
 		while(p):
 			try:
 				(opcode, data) = GandanWebSocket.recv(_sock)
+
 				if opcode == None and data == None:
 					p = False
 					break
-				sdata = data.decode("utf-8")
-				sdict = json.loads(sdata.replace("\'", "\""))
-				logging.info("%s" % str(sdict))
-				if sdict["type"] == "SUB":
-					self.main_mw.sub(_sock, sdict["topic"], None, _type=1)
-				if sdict["type"] == "PUB":
-					logging.info("PUB")
-					#self.main_mw.sub(_sock, sdict["topic"], None)
+
+				if pubsub == "pub":
+					if not topic in self.sub_dict.keys():
+						continue
+
+					for v in self.sub_dict[topic]:
+						try:
+							v['lock'].acquire()
+							GandanWebSocket.send(v['socket'], data.decode("utf-8"))
+						except Exception as e:
+							pass
+						finally:
+							v['lock'].release()
+
+				if pubsub == "sub":
+					if not topic in self.sub_dict.keys():
+						self.sub_dict[topic] = [{"socket" : _sock, "lock": threading.Lock()}]
+					else:
+						if not _sock in [v['socket'] for v in self.sub_dict[topic]]:
+							self.sub_dict[topic].append({"socket" : _sock, "lock": threading.Lock()})
 			except Exception as e:
 				continue
-
-		for k in sub_dict.keys():
-			sub_dict[k].close()
 
 	def start(self):
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		s.bind(self.ip_port)
 		s.listen(30)
+		# logging.info = print
 		while True:
 			try:
 				logging.info("ACCEPT WITH %s ... WAIT" % str(self.ip_port))
 				_r, _a = s.accept()
 				logging.info("ACCEPTED WITH %s ... Done" % str(self.ip_port))
-				GandanWebSocket.handshake(_r)
+				(method, url) = GandanWebSocket.handshake(_r)
 				_r.settimeout(0.1)
-				t = threading.Thread(target = self.handler, args = (_r, ))
+				t = threading.Thread(target = self.handler, args = ((_r, method, url), ))
 				t.start()
 			except Exception as e:
 				break
 
+if __name__ == "__main__":
+	g = GandanWebSocket("0.0.0.0", 58080, None)
+	g.start()
