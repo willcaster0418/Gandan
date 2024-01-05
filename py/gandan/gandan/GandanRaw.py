@@ -16,10 +16,7 @@ except Exception as e:
 	from GandanMsg import *
 	from MMAP  import *
 
-import socket, re, threading, logging
-import hashlib, base64, json
-
-class Gandan:
+class GandanRaw:
 	def __init__(self, ip_port, path, size, item_size, debug=False):
 		self.ip_port = ip_port
 		self.path    = path
@@ -41,28 +38,19 @@ class Gandan:
 		logging.basicConfig(filename=path, format=l_format, datefmt=d_format,level=level)
 
 	def handler(self, _req):
-		p = True; h = None; protocol = None
+		p = True; h = None
 		_pubsub = ""
 		while(p):
 			try:
 				if self.debug:
 					_st = datetime.now()
-					if _pubsub != "SUB":
-						h, protocol = GandanMsg.recvall(None, _req, status = 0 if protocol == None else 1
-															, protocol = protocol
-															, msg = h)
-					elif pubsub == "SUB":
-						continue
+					h = GandanMsg.recv(None, _req)
 					_et = datetime.now()
 					logging.info("RECV_DATA : %s" % str(h).strip())
 					logging.info("RECV_TIME : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
 				else:
-					if _pubsub != "SUB":
-						h, protocol = GandanMsg.recvall(None, _req, status = 0 if protocol == None else 1
-															, protocol = protocol
-															, msg = h)
-					elif pubsub == "SUB":
-						continue
+					h = GandanMsg.recv(None, _req)
+
 				(_cmd, _msg)	  = (h.cmd_, h.dat_)
 				[_pubsub, _topic] = _cmd.split("_")
 			except Exception as e:
@@ -94,11 +82,11 @@ class Gandan:
 				try: 
 					if self.debug:
 						_st = datetime.now()
-						p = self.sub(_req, _topic, _msg, protocol = protocol)
+						p = self.sub(_req, _topic, _msg)
 						_et = datetime.now()
 						logging.info("PUB_TIME : %d" % ((_et-_st).seconds*1000000 + (_et-_st).microseconds))
 					else:
-						p = self.sub(_req, _topic, _msg, protocol = protocol)
+						p = self.sub(_req, _topic, _msg)
 				except Exception as e:
 					Gandan.error_stack()
 
@@ -141,15 +129,15 @@ class Gandan:
 		logging.info("PUB[%s], " % _topic + "^%s^%d" % (_msg.strip(), len(_msg.strip())) + " r[%d]w[%d]" % (_pub.r(), _pub.w()))
 		return True
 
-	def sub(self, _req, _topic, _msg, _type = 0, protocol = "raw"):
+	def sub(self, _req, _topic, _msg, _type = 0):
 		try:
 			if _type == 0:
 				if not _topic in self.sub_topic.keys():
 					self.sub_topic[_topic] = []
-					self.sub_topic[_topic].append({"socket" : _req, "protocol" : protocol})
+					self.sub_topic[_topic].append(_req)
 					logging.info("_topic : %s is created for SUB" % _topic)
 				else:
-					self.sub_topic[_topic].append({"socket" : _req, "protocol" : protocol})
+					self.sub_topic[_topic].append(_req)
 					logging.info("_topic : %s is appended for SUB" % _topic)
 		except Exception as e:
 			return False
@@ -184,28 +172,19 @@ class Gandan:
 
 		#http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
 		if _topic in self.sub_topic.keys():
-			for i, info in enumerate(self.sub_topic[_topic]):
-				_req = info['socket']
-				_protocol = info['protocol']
+			for i, _req in enumerate(self.sub_topic[_topic]):
 				for d in _data:
 					try:
-						# SUb하는 녀석 중 websocket이 있다면 websocket send를 해주어야 한다
-						if _protocol == "raw":
-							if Gandan.version() < 3:
-								GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
-							else:
-								GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
+						if Gandan.version() < 3:
+							GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d))
 						else:
-							# TODO : send by websocket
-							if Gandan.version() < 3:
-								GandanMsg.send_websocket(None, _req, d.decode('utf-8'))
-							else:
-								GandanMsg.send_websocket(None, _req, d.decode('utf-8'))
+							GandanMsg.send(None, _req, "[%d][%d]DATA_" % (r, w) +_topic, str(d,'utf-8'))
 					except Exception as e:
 						error_req_list.append(_req)
 
 			for _req in error_req_list:
 				self.sub_topic[_topic].remove(_req)
+
 
 		if len(error_req_list) > 0:
 			logging.info("#Error in SUB [%s] : %d request is removed" % (_topic, len(error_req_list)))

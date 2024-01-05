@@ -9,6 +9,6 @@ if __name__ == "__main__":
 		for _l in _list:
 			_h.pub(sys.argv[1], str(_l))
 			print("SENT:"+str(_l))
-		time.sleep(1)
+		time.sleep(0.1)
 		_cnt = _cnt + 1
 	_h.close()

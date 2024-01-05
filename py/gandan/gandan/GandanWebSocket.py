@@ -86,13 +86,13 @@ class GandanWebSocket:
 
 		while(p):
 			try:
-				(opcode, data) = GandanWebSocket.recv(_sock)
-
-				if opcode == None and data == None:
-					p = False
-					break
 
 				if pubsub == "pub":
+					(opcode, data) = GandanWebSocket.recv(_sock)
+					if opcode == None and data == None:
+						p = False
+						break
+
 					if not topic in self.sub_dict.keys():
 						continue
 
@@ -101,6 +101,7 @@ class GandanWebSocket:
 							v['lock'].acquire()
 							GandanWebSocket.send(v['socket'], data.decode("utf-8"))
 						except Exception as e:
+							print(str(e))
 							pass
 						finally:
 							v['lock'].release()
@@ -119,7 +120,7 @@ class GandanWebSocket:
 		s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		s.bind(self.ip_port)
 		s.listen(30)
-		# logging.info = print
+		logging.info = print
 		while True:
 			try:
 				logging.info("ACCEPT WITH %s ... WAIT" % str(self.ip_port))

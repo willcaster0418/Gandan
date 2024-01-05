@@ -44,59 +44,11 @@ class GandanSub:
 		if self.type_ == 0:
 			try:
 				_h = GandanMsg.recv(None, self.s)
-
-				if _h.dat_.strip() == "HB":
-					#logging.info("------------------HB----------------[%s]" % self.cmd_)
-					if hb_cb == None:
-						return 1
-					if hb_cb(obj, _h) == -1:
-						raise Exception("conn")
-				else:
-					if obj == None:
-						return cb(_h)
-					return cb(_h, obj)
-
-				return 1
-
+				if obj == None:
+					return cb(_h)
+				return cb(_h, obj)
 			except Exception as e:
-				if not str(e) in ["timeout"]:
-					_type, _value, _traceback = sys.exc_info()
-					logging.info("#Error" + str(_type) + str(_value))
-					for _err_str in traceback.format_tb(_traceback):
-						logging.info(_err_str)
-					try:
-						logging.info(str(_h).strip())
-					except Exception as er:
-						logging.info(str(er))
-
-				if str(e) in ["timeout"]:
-					if hb_cb != None and hb_cb(obj, None) == -1:
-						e = Exception("conn")
-					return None
-				elif str(e) in ["convert"]:
-					return -2
-
-				if str(e) in ["conn"]:
-					logging.info(str(e)+": #Error Try to reconnect")
-					display_cnt = 0
-					while True:
-						try:
-							self.s.close()
-							logging.info("#SUCC : previous socket close")
-						except Exception as e:
-							logging.info("#FAIL : previous socket close")
-						finally:
-							try:
-								self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-								self.s = GandanSub.connect(None, self.s, self.ip_port_, self.cmd_, self.io_)
-								logging.info("#SUCC : new socket connect")
-								break
-							except Exception as e:
-								if display_cnt % 100 == 0:
-									logging.info("#FAIL : new socket connect")
-							finally:
-								display_cnt = display_cnt + 1
-								time.sleep(0.1)
+				pass
 		elif self.type_ == 1:
 			return self.sub_shm(cb, obj, hb_cb)
 
