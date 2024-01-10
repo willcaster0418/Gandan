@@ -79,7 +79,7 @@ class MMAP:
 
     def countp(self): 
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
-            time.sleep(0.001)
+            time.sleep(0.0001)
             continue
         try:
             self.m.seek(MMAP.CNT_START, os.SEEK_SET); self.m.write(struct.pack("i", self.count() + 1))
@@ -90,7 +90,7 @@ class MMAP:
 
     def countm(self): 
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
-            time.sleep(0.001)
+            time.sleep(0.0001)
             continue
         try:
             self.m.seek(MMAP.CNT_START, os.SEEK_SET); self.m.write(struct.pack("i", self.count() - 1))
@@ -101,7 +101,7 @@ class MMAP:
 
     def writep(self, data): 
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
-            time.sleep(0.001)
+            time.sleep(0.0001)
             continue
         try:
             self.write(data); self.ws(self.w()+1); del(data); 
@@ -117,7 +117,7 @@ class MMAP:
 
     def readp(self)       : 
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
-            time.sleep(0.001)
+            time.sleep(0.0001)
             continue
         try:
             _l = self.read(); self.rs(self.r() + len(_l)); 
@@ -173,7 +173,7 @@ class RoboMMAP(threading.Thread, MMAP):
         threading.Thread.__init__(self)
         MMAP.__init__(self, path, size, item_size)
         self.topic    = topic
-        self.time    = 0.001
+        self.time    = 0.0001
         self.callback = callback
 
     def run (self)   : self.handle()

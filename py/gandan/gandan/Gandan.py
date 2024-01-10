@@ -51,7 +51,7 @@ class Gandan:
 						h, protocol = GandanMsg.recvall(None, _req, status = 0 if protocol == None else 1
 															, protocol = protocol
 															, msg = h)
-					elif pubsub == "SUB":
+					elif _pubsub == "SUB":
 						continue
 					_et = datetime.now()
 					logging.info("RECV_DATA : %s" % str(h).strip())
@@ -61,7 +61,7 @@ class Gandan:
 						h, protocol = GandanMsg.recvall(None, _req, status = 0 if protocol == None else 1
 															, protocol = protocol
 															, msg = h)
-					elif pubsub == "SUB":
+					elif _pubsub == "SUB":
 						continue
 				(_cmd, _msg)	  = (h.cmd_, h.dat_)
 				[_pubsub, _topic] = _cmd.split("_")
@@ -202,6 +202,7 @@ class Gandan:
 							else:
 								GandanMsg.send_websocket(None, _req, d.decode('utf-8'))
 					except Exception as e:
+						logging.info("#Error in mon : %s" % str(e))
 						error_req_list.append(_req)
 
 			for _req in error_req_list:
