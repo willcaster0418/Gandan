@@ -223,7 +223,13 @@ class Gandan:
 				logging.info(_err_str)
 			else:
 				print(_err_str)
-
+				
 	@staticmethod
 	def version():
 		return int(re.sub('\.','',sys.version.split(' ')[0][0]))
+
+if __name__ == "__main__":
+	import sys
+	l_ip_port = ("0.0.0.0", int(sys.argv[1]))
+	mw = Gandan(l_ip_port, "/dev/shm", 50*100, 50)
+	mw.start()
