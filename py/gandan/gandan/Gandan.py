@@ -13,8 +13,8 @@ try:
 	from .GandanMsg import *
 	from .MMAP  import *
 except Exception as e:
-	from GandanMsg import *
-	from MMAP  import *
+	from gandan.GandanMsg import *
+	from gandan.MMAP  import *
 
 import socket, re, threading, logging
 import hashlib, base64, json
