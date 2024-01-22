@@ -1,8 +1,8 @@
-FROM alpine:3.10
+FROM ubuntu:latest
 
-apt-get update -y
-apt-get install -y python3
-apt-get install -y python3 pip
-apt-get install -y gandan >= 0.1.5
+RUN apt-get update -y
+RUN apt-get install -y python3
+RUN apt-get install -y python3 pip
+RUN /usr/bin/python3 -m pip install gandan >= 0.1.5
   
 ENTRYPOINT ["/usr/bin/python3", "-m", "Gandan.gandan", "8080"]
