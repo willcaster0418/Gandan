@@ -1,6 +1,5 @@
 import os,struct,threading,time,gc,logging
 from mmap import mmap
-import fcntl
 import datetime
 
 class MMAP:
@@ -78,6 +77,7 @@ class MMAP:
     def count(self):  return struct.unpack("i", self.m[MMAP.CNT_START: MMAP.CNT_START + MMAP.CNT_SIZE])[0]
 
     def countp(self): 
+        import fcntl
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
             time.sleep(0.0001)
             continue
@@ -88,7 +88,8 @@ class MMAP:
         finally:
             fcntl.flock(self.f, fcntl.LOCK_UN)
 
-    def countm(self): 
+    def countm(self):
+        import fcntl
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
             time.sleep(0.0001)
             continue
@@ -99,7 +100,8 @@ class MMAP:
         finally:
             fcntl.flock(self.f, fcntl.LOCK_UN)
 
-    def writep(self, data): 
+    def writep(self, data):
+        import fcntl
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
             time.sleep(0.0001)
             continue
@@ -116,6 +118,7 @@ class MMAP:
         return self.r();
 
     def readp(self)       : 
+        import fcntl
         while fcntl.flock(self.f, fcntl.LOCK_EX) == False:
             time.sleep(0.0001)
             continue
