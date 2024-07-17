@@ -86,7 +86,6 @@ class GandanWebSocket:
 
 		while(p):
 			try:
-
 				if pubsub == "pub":
 					(opcode, data) = GandanWebSocket.recv(_sock)
 					if opcode == None and data == None:
@@ -134,5 +133,6 @@ class GandanWebSocket:
 				break
 
 if __name__ == "__main__":
-	g = GandanWebSocket("0.0.0.0", 58080, None)
+	import sys
+	g = GandanWebSocket("0.0.0.0", int(sys.argv[1]), None)
 	g.start()

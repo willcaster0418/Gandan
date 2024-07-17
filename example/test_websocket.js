@@ -4,7 +4,7 @@ const pubsub = process.argv[2]
 const topic = process.argv[3]
 console.log(pubsub, topic)
 
-ws = new WebSocket(`ws://127.0.0.1:8889/${pubsub}/${topic}`)
+ws = new WebSocket(`ws://127.0.0.1:8080/${pubsub}/${topic}`)
 
 var i = 0;
 ws.on("open", ()=>{

@@ -2,7 +2,7 @@
 from gandan.GandanPub import *
 import time
 if __name__ == "__main__":
-	_h = GandanPub("127.0.0.1", 8889)
+	_h = GandanPub("127.0.0.1", 8080)
 	_cnt = 0
 	while True:
 		_list = [{'this_is_test':_cnt} for i in range(10)]

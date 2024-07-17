@@ -11,3 +11,4 @@ MW/__pycache__/
 .gitignore
 .pki
 .*
+node_modules/
